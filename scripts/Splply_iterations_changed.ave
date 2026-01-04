@@ -1,0 +1,11 @@
+if ((Self.GetText.AsNumber < 1) or (Self.GetText.AsNumber > 100)) then
+  Self.SetText("")
+  MsgBox.Error("Zwischen 1 und 100 Durchgänge sind möglich","")
+end
+
+if (Self.GetText <> "") then
+  Self.GetDialog.FindByName("OK").SetEnabled(true)
+else
+  Self.GetDialog.FindByName("OK").SetEnabled(false)
+end
+

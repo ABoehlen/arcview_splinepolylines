@@ -1,0 +1,383 @@
+/3.2
+(Extension.1
+	Name:	"Spline Polylines"
+	Dependencies:	"$AVBIN/avdlog.dll\n"
+	FirstRootClassName:	"Butn"
+	Roots:	2
+	Roots:	4
+	Roots:	40
+	Roots:	41
+	Roots:	42
+	Roots:	43
+	Roots:	44
+	Roots:	45
+	Roots:	46
+	Roots:	47
+	Roots:	48
+	Roots:	49
+	Version:	32
+	About:	"erzeugt simulierte Splinekurve aus selektierten Linienfeatures als Graphic oder neues Shapefile (v1.2)"
+	UnloadScript:	50
+	InstallScript:	51
+	UninstallScript:	52
+	ExtVersion:	1
+)
+
+(Butn.2
+	Help:	"Spline polylines//"
+	Icon:	3
+	Click:	"Splply.Start"
+)
+
+(AVIcon.3
+	Name:	"Contour"
+	Res:	"Icons.Contour"
+
+)
+
+(AVDLog.4
+	Name:	"Splinepolylines"
+	X:	49
+	Y:	568
+	W:	380
+	H:	157
+	ConstrainedControlNames:	5
+	ConstrainedControlNames:	6
+	Constraints:	7
+	Constraints:	8
+	Server:	9
+	ControlPanel:	10
+	Title:	"Spline Polylines"
+	EscapeEnabled:	1
+	AlwaysOnTop:	1
+	HasTitleBar:	1
+	Closeable:	1
+	Open:	"Splply.dlgOpen"
+	DefaultButton:	39
+)
+
+(AVStr.5
+	S:	"OK"
+)
+
+(AVStr.6
+	S:	"Close"
+)
+
+(Numb.7
+	N:	85.00000000000000
+)
+
+(Numb.8
+	N:	85.00000000000000
+)
+
+(Nil.9
+)
+
+(CPanel.10
+	Child:	11
+	Child:	26
+	ResBox:	37
+	ResBox:	38
+	Listening:	1
+)
+
+(CPanel.11
+	InternalName:	"aControlPanel3"
+	Child:	12
+	Child:	14
+	Constraints:	0x55
+	ResBox:	24
+	ResBox:	25
+	VisibleBorder:	1
+	Listening:	1
+)
+
+(TextLine.12
+	InternalName:	"densityfactor"
+	Text:	"0.002"
+	Label:	"Dichte-Faktor"
+	Constraints:	0x55
+	Listening:	1
+	TextType:	13
+	Changed:	"Splply.densityfactor.changed"
+	NextControl:	14
+)
+
+(AVEnum.13
+	Name:	"TEXTLINE_TYPE_ALL"
+)
+
+(TextLine.14
+	InternalName:	"iterations"
+	Text:	"3"
+	Label:	"Durchgänge"
+	Constraints:	0x55
+	Listening:	1
+	TextType:	15
+	Changed:	"Splply.iterations.changed"
+	NextControl:	16
+)
+
+(AVEnum.15
+	Name:	"TEXTLINE_TYPE_ALL"
+)
+
+(TextLine.16
+	InternalName:	"red"
+	Text:	"255"
+	Label:	"R"
+	Constraints:	0x55
+	Listening:	1
+	TextType:	17
+	Changed:	"Splply.red.changed"
+	NextControl:	18
+)
+
+(AVEnum.17
+	Name:	"TEXTLINE_TYPE_ALL"
+)
+
+(TextLine.18
+	InternalName:	"green"
+	Text:	"0"
+	Label:	"G"
+	Constraints:	0x55
+	Listening:	1
+	TextType:	19
+	Changed:	"Splply.green.changed"
+	NextControl:	20
+)
+
+(AVEnum.19
+	Name:	"TEXTLINE_TYPE_ALL"
+)
+
+(TextLine.20
+	InternalName:	"blue"
+	Text:	"0"
+	Label:	"B"
+	Constraints:	0x55
+	Listening:	1
+	TextType:	21
+	Changed:	"Splply.blue.changed"
+	NextControl:	22
+)
+
+(AVEnum.21
+	Name:	"TEXTLINE_TYPE_ALL"
+)
+
+(TextLine.22
+	InternalName:	"stroke"
+	Text:	"2"
+	Label:	"Strichstärke"
+	Constraints:	0x55
+	Listening:	1
+	TextType:	23
+	Changed:	"Splply.stroke.changed"
+	NextControl:	12
+)
+
+(AVEnum.23
+	Name:	"TEXTLINE_TYPE_ALL"
+)
+
+(RectD.24
+	Left:	9.00000000000000
+	Top:	29.00000000000000
+	Right:	184.00000000000000
+	Bottom:	9.00000000000000
+)
+
+(RectD.25
+	Left:	194.00000000000000
+	Top:	29.00000000000000
+	Right:	364.00000000000000
+	Bottom:	9.00000000000000
+)
+
+(CPanel.26
+	InternalName:	"aControlPanel1"
+	Child:	27
+	Child:	28
+	Child:	16
+	Child:	22
+	Child:	29
+	Child:	18
+	Child:	20
+	Constraints:	0x55
+	ResBox:	30
+	ResBox:	31
+	ResBox:	32
+	ResBox:	33
+	ResBox:	34
+	ResBox:	35
+	ResBox:	36
+	VisibleBorder:	1
+	Listening:	1
+)
+
+(LButn.27
+	InternalName:	"OK"
+	Label:	"OK"
+	Click:	"Splply.Spline"
+)
+
+(LButn.28
+	InternalName:	"Close"
+	Label:	"Schliessen"
+	Click:	"Splply.Close"
+)
+
+(TextLabel.29
+	InternalName:	"color"
+	Constraints:	0x55
+	Label:	"Farbe (RGB)"
+	Listening:	1
+)
+
+(RectD.30
+	Left:	259.00000000000000
+	Top:	65.00000000000000
+	Right:	364.00000000000000
+	Bottom:	39.00000000000000
+)
+
+(RectD.31
+	Left:	259.00000000000000
+	Top:	101.00000000000000
+	Right:	364.00000000000000
+	Bottom:	76.00000000000000
+)
+
+(RectD.32
+	Left:	92.00000000000000
+	Top:	29.00000000000000
+	Right:	183.00000000000000
+	Bottom:	9.00000000000000
+)
+
+(RectD.33
+	Left:	196.00000000000000
+	Top:	29.00000000000000
+	Right:	364.00000000000000
+	Bottom:	9.00000000000000
+)
+
+(RectD.34
+	Left:	8.00000000000000
+	Top:	37.00000000000000
+	Right:	104.00000000000000
+	Bottom:	9.00000000000000
+)
+
+(RectD.35
+	Left:	92.00000000000000
+	Top:	57.00000000000000
+	Right:	183.00000000000000
+	Bottom:	37.00000000000000
+)
+
+(RectD.36
+	Left:	93.00000000000000
+	Top:	87.00000000000000
+	Right:	183.00000000000000
+	Bottom:	67.00000000000000
+)
+
+(RectD.37
+	Left:	7.00000000000000
+	Top:	39.00000000000000
+	Right:	378.00000000000000
+	Bottom:	3.00000000000000
+)
+
+(RectD.38
+	Left:	8.00000000000000
+	Top:	152.00000000000000
+	Right:	378.00000000000000
+	Bottom:	43.00000000000000
+)
+
+(Nil.39
+)
+
+(Script.40
+	Name:	"Splply.blue.changed"
+	SourceCode:	"if ((Self.GetText.AsNumber < 0) or (Self.GetText.AsNumber > 255)) then\n  Self.SetText(\"\")\n  MsgBox.Error(\"RGB-Wert muss zwischen 0 und 255 liegen\",\"\")\nend\n\nif (Self.GetText <> \"\") then\n  Self.GetDialog.FindByName(\"OK\").SetEnabled(true)\nelse\n  Self.GetDialog.FindByName(\"OK\").SetEnabled(false)\nend\n"
+)
+
+(Script.41
+	Name:	"Splply.Close"
+	SourceCode:	"Self.GetDialog.Close"
+)
+
+(Script.42
+	Name:	"Splply.densityfactor.changed"
+	SourceCode:	"if ((Self.GetText.AsNumber < 0) or (Self.GetText.AsNumber > 1)) then\n  Self.SetText(\"\")\n  MsgBox.Error(\"Dichte-Faktor muss zwischen 0 und 1 liegen\",\"\")\nend\n\nif (Self.GetText <> \"\") then\n  Self.GetDialog.FindByName(\"OK\").SetEnabled(true)\nelse\n  Self.GetDialog.FindByName(\"OK\").SetEnabled(false)\nend\n"
+)
+
+(Script.43
+	Name:	"Splply.dlgOpen"
+	SourceCode:	"Self.FindByName(\"densityfactor\").SetText(0.002.AsString)\nSelf.FindByName(\"iterations\").SetText(3.AsString)\nSelf.FindByName(\"stroke\").SetText(2.AsString)\nSelf.FindByName(\"red\").SetText(255.AsString)\nSelf.FindByName(\"green\").SetText(0.AsString)\nSelf.FindByName(\"blue\").SetText(0.AsString)\n"
+)
+
+(Script.44
+	Name:	"Splply.green.changed"
+	SourceCode:	"if ((Self.GetText.AsNumber < 0) or (Self.GetText.AsNumber > 255)) then\n  Self.SetText(\"\")\n  MsgBox.Error(\"RGB-Wert muss zwischen 0 und 255 liegen\",\"\")\nend\n\nif (Self.GetText <> \"\") then\n  Self.GetDialog.FindByName(\"OK\").SetEnabled(true)\nelse\n  Self.GetDialog.FindByName(\"OK\").SetEnabled(false)\nend\n"
+)
+
+(Script.45
+	Name:	"Splply.iterations.changed"
+	SourceCode:	"if ((Self.GetText.AsNumber < 1) or (Self.GetText.AsNumber > 100)) then\n  Self.SetText(\"\")\n  MsgBox.Error(\"Zwischen 1 und 100 Durchgänge sind möglich\",\"\")\nend\n\nif (Self.GetText <> \"\") then\n  Self.GetDialog.FindByName(\"OK\").SetEnabled(true)\nelse\n  Self.GetDialog.FindByName(\"OK\").SetEnabled(false)\nend\n"
+)
+
+(Script.46
+	Name:	"Splply.red.changed"
+	SourceCode:	"if ((Self.GetText.AsNumber < 0) or (Self.GetText.AsNumber > 255)) then\n  Self.SetText(\"\")\n  MsgBox.Error(\"RGB-Wert muss zwischen 0 und 255 liegen\",\"\")\nend\n\nif (Self.GetText <> \"\") then\n  Self.GetDialog.FindByName(\"OK\").SetEnabled(true)\nelse\n  Self.GetDialog.FindByName(\"OK\").SetEnabled(false)\nend\n"
+)
+
+(Script.47
+	Name:	"Splply.Spline"
+	SourceCode:	"'##############################################################\n'#\n'# Filename:     spline_polylines_scale_graphics.ave\n'# Author:       Adrian Boehlen\n'# Date:         23.02.2014\n'# Version:      1.2\n'#\n'# Purpose:      erzeugt simulierte Splinekurve aus \n'#               selektierten Linienfeatures als Graphic\n'#               \n'#               Staerke der Splines, Strichstaerke\n'#               und Farbe koennen angegeben werden\n'#\n'#               Wenn gewuenscht, koennen die erzeugten\n'#               
+Linien entsprechend dem Referenzmassstab\n'#               skaliert werden \n'#\n'#               Wenn gewuenscht, koennen die erzeugten \n'#               Grafiken anschliessend in ein Shapefile\n'#               konvertiert werden. Die definierte \n'#               Symbolik bleibt dabei erhalten\n'#\n'# Based on:     spline_polyline.ave\n'#               scale_graphics_text.ave\n'#               Scriptgra2shp.ave\n'#\n'# This script uses a basic combination of densifying the \n'# polyline and implementing the Bezier's
+ spline\n'# method on the polyline. This script needs a view\n'# and the target theme active.\n'#\n'# A combination of these two variables will produce different\n'# results depending on the nature and scale of the Polyline.\n'#\n'# densityfactor 0.000 to 1.000 only\n'# iterations 1 to 100 works best\n'#\n'##############################################################\n\n'# read variables from dialog\n\nderDialog = Self.GetDialog\ndensityfactor = derDialog.FindByName(\"densityfactor\").GetText.AsNumber\niterations = derDialo
+g.FindByName(\"iterations\").GetText.AsNumber\nstrichst = derDialog.FindByName(\"stroke\").GetText.AsNumber\nrot = derDialog.FindByName(\"red\").GetText.AsNumber\ngruen = derDialog.FindByName(\"green\").GetText.AsNumber\nblau = derDialog.FindByName(\"blue\").GetText.AsNumber\n\n'# if the name of the active view is not \"View1\"\n\nif (Av.FindDoc(\"View1\") = nil) then\n  theView = MsgBox.ListAsString(Av.GetProject.GetDocs,\"View auswaehlen\",\"\")\nelse\n  theView = Av.FindDoc(\"View1\")\nend\n\ntheDisplay = theView.GetDisplay\n\n'# check the
+me\n\ntheGraphics = theView.GetGraphics\nthm = theView.GetActiveThemes.Get(0)\nftb = thm.GetFtab\nif(ftb.GetShapeclass.GetClassname <> \"PolyLine\") then\n  MsgBox.Error(\"Nur Linienfeatures koennen verarbeitet werden\",\"\")\n  return nil\nend\n\nif (ftb.getselection.count = 0) then\n  MsgBox.Info(\"ein oder mehrere Linienfeatures muessen selektiert sein\",\"\")\n  return nil\nend\n\n'# spline function\n\nfor each selrec in ftb.GetSelection\n\n  thepolyline = ftb.ReturnValue(ftb.FindField(\"Shape\"),SelRec)\n    \n  howdense = thepolyline
+.ReturnLength*densityfactor\n  oldplist = thepolyline.ReturnDensified(howdense).AsList\n  \n  newplist = {}\n  for each apart in oldplist\n    for each ap in apart\n      newplist.Add(ap)\n    end\n  end\n  \n  for each x in 1..iterations \n    newerplist = {}  \n    for each i in 0..(newplist.count-1)\n      if (i = 0) then\n        newerplist.Add(newplist.Get(i))\n      elseif (i = (newplist.Count-1)) then\n        newerplist.add(newplist.Get(i))\n        break\n      end        \n      newp = Line.Make(newplist.Get(i),newp
+list.Get(i+1)).ReturnCenter \n      newerplist.Add(newp)  \n    end\n    newplist = newerplist.DeepClone  \n  end\n  \n  newpolyline = Polyline.Make({newplist})  \n\n  theGraphicShape = Graphicshape.Make(newpolyline)\n  asymbol = Symbol.Make(#SYMBOL_PEN)\n  asymbol.SetSize(strichst)\n  nc = Color.Make\n  nc.SetRGBList({rot,gruen,blau})\n  asymbol.SetColor(nc)\n  theGraphicShape.SetSymbol(asymbol)\n  theGraphicShape.SetSelected(true)\n  theGraphics.Add(theGraphicShape)\nend\n\n'# scale graphics\n\ntheGTL = theView.GetGraphics.Fi
+ndAllByClass(graphicshape)\nthingsToStopScaling = theView.GetGraphics.GetSelected\ntheSelGTL = {}\n\nif (MsgBox.YesNo(\"Linien skalieren ?\",\"Skalieren\",true)) then\n  theChoice = 1\n  theScale = MsgBox.Input(\"Geben Sie den Referenzmassstab ein:\" + 10.AsChar + \"1 :...\",\n    \"Referenzmassstab definieren\",1000.AsString)\n  if (theScale = nil) then\n    return nil\n  elseif (theScale.IsNumber.Not) then\n    MsgBox.Error(\"Ungueltige Eingabe\",\"Abbruch\")\n    return nil\n  end\n  theDisplay.ZoomToScale(theScale.AsNumber)\n  for 
+each g in thingsToStopScaling \n    if (g.GetShape.Is(polygon).Not) then\n      g.GetSymbol.UnHook\n    end\n  end\n  for each gt in theGTL\n    if (gt.IsSelected)\n      then\n        theSelGTL.Add(gt)\n     end\n  end\n  for each gt in theSelGTL\n    theDisplay.HookupSymbol(gt.GetSymbol)\n  end\n  theDisplay.UndoZoom\nelse\n  theChoice = 0\n  for each g in thingsToStopScaling \n    if (g.GetShape.Is(polygon).Not) then\n      g.GetSymbol.UnHook\n    end\n  end\nend\nav.purgeobjects\n\n'# convert graphics to shapefile\n\nif (MsgBox.Y
+esNo(\"Grafiken zu Shapefile konvertieren ?\",\"Zu Shapefile konvertieren\",true)) then\n  theGPL=theView.GetGraphics.GetSelected\n  if (theGPL = nil) then \n    MsgBox.Error(\"No graphic shapes in view\",\"\")\n    return nil\n  end\n\n  theclass = polyline\n\n  theCLoF={}\n  for each g in theGPL\n    if ((g.getshape.is(rect)) or (g.getshape.is(circle))) then\n      g = graphicshape.make(g.getshape.aspolygon)\n    end\n    if (g.getshape.Is(theclass)) then\n      theCLoF.Add(g)  \n    end\n  end\n\n  if (theCLoF.count = 0) then\n    
+MsgBox.error(\"No graphic features in\"+\n    \"view\",\"\")\n    return nil\n  end\n\n  tmpfn = av.GetProject.GetWorkDir\n  theOutFileName=FileDialog.Put(tmpfn,\"*.shp\",\"neues Shapefile definieren\")\n  theFtab=Ftab.MakeNew(theOutFileName, theclass)\n  theIDfld=Field.Make(\"myID\", #FIELD_LONG, 10, 0)\n  theShapeFld=theFtab.FindField(\"Shape\")\n  theFldList={theIDfld}\n  theFtab.AddFields(theFldList)\n\n  for each fea in theCLoF\n    theRecNo=theFtab.AddRecord\n    theFtab.SetValue(theIDfld, theRecNo, theRecNo)\n    eachShape=fea.ge
+tshape\n    theFtab.SetValue(theShapeFld, theRecNo, eachShape)\n  end\n  \n  theFTheme=Ftheme.Make(theFTab)\n  theView.AddTheme(theFTheme)\n\n  theLeg = theFTheme.GetLegend\n  theLine = Symbol.Make(#SYMBOL_PEN)\n  theLine.SetColor(nc)\n  theLine.SetSize(strichst)\n  theLeg.SetLegendType(#LEGEND_TYPE_SIMPLE)\n  if (theChoice = 1) then\n    theLeg.SetScaleSymbols(true)\n    theLeg.SetRefScale(theScale.AsNumber)\n  end\n  theLeg.GetSymbols.Set(0,theLine)\n  \n  '# delete selected graphics\n\n  if (theView.GetGraphics.HasSelected)
+ then\n    av.GetProject.SetModified(true)\n  end\n\n  theView.GetGraphics.ClearSelected\nend\n\n"
+)
+
+(Script.48
+	Name:	"Splply.Start"
+	SourceCode:	"av.getproject.finddialog(\"Splinepolylines\").open"
+)
+
+(Script.49
+	Name:	"Splply.stroke.changed"
+	SourceCode:	"if (Self.GetText.AsNumber < 0) then\n  Self.SetText(\"\")\n  MsgBox.Error(\"Strichstärke muss grösser als 0 sein\",\"\")\nend\n\nif (Self.GetText <> \"\") then\n  Self.GetDialog.FindByName(\"OK\").SetEnabled(true)\nelse\n  Self.GetDialog.FindByName(\"OK\").SetEnabled(false)\nend\n"
+)
+
+(Script.50
+	Name:	"Ext_Unload"
+	SourceCode:	"Dialog.DetachFromExtension(self)\n"
+)
+
+(Script.51
+	Name:	"Ext_Inst"
+	SourceCode:	"if (av.GetProject = nil) then\n  return nil\nend\n\nSack=Self\n\nSchaltflaeche=Sack.Get(0)\nviewGUI = av.GetProject.FindGUI( \"View\" )\nif (viewGUI <> nil) then\n  if(viewGUI.GetButtonBar.FindByScript(Schaltflaeche.GetClick)=nil)then\n    viewGUI.GetButtonBar.Add( Schaltflaeche, 20)\n  end\nend\n\nav.GetProject.AddDialog( Sack.Get(1))\n\n\n\n\n"
+)
+
+(Script.52
+	Name:	"Ext_Unin"
+	SourceCode:	"if (av.GetProject = nil) then\n  return nil\nend\n\nif (av.GetProject.IsClosing) then\n  return nil\nend\n\nviewGUI = av.GetProject.FindGUI( \"View\" )\n\nviewGUI.GetButtonBar.Remove(viewGUI.GetButtonBar.FindByScript( \"Splply.start\"))\nav.GetProject.removedialog(\"SplplyDialog\")\n"
+)
+

@@ -1,0 +1,26 @@
+Splply = Extension.Make("$AVHOME/projects/splinepolylines/splinepolylines.avx".AsFileName,
+"Spline Polylines",av.FindScript("Ext_inst"),av.FindScript("Ext_unin"), {"$AVBIN/avdlog.dll".AsFileName})
+
+Splply.SetExtVersion(1)
+Splply.SetAbout("erzeugt simulierte Splinekurve aus selektierten Linienfeatures als Graphic oder neues Shapefile (v1.2)")
+Splply.SetUnloadScript(av.FindScript("ext_unload"))
+
+Schaltflaeche=( av.FindGUI( "View").GetButtonBar.FindByScript("Splply.start"))  
+SplplyDialog =av.FindDialog("Splinepolylines")
+Splply.Add( Schaltflaeche)   'Schaltfläche hinzufügen
+Splply.Add(SplplyDialog)
+
+for each aDoc in av.GetProject.GetDocs
+  if (aDoc.Is(SEd)) then
+    if (aDoc.GetName.Contains("Splply.")) then
+      if (aDoc.IsCompiled.Not) then
+        aDoc.Compile
+      end
+      Splply.Add(av.FindScript(aDoc.GetName))
+    end
+  end
+end
+
+Splply.Commit
+
+

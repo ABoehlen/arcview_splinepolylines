@@ -1,0 +1,902 @@
+/3.2
+(ODB.1
+	Dependencies:	"$AVEXT/dialog.avx\n"
+	FirstRootClassName:	"DEd"
+	Roots:	2
+	Roots:	87
+	Roots:	91
+	Roots:	95
+	Roots:	99
+	Roots:	103
+	Roots:	107
+	Roots:	111
+	Roots:	115
+	Roots:	119
+	Version:	32
+)
+
+(DEd.2
+	Name:	"Splinepolylines"
+	Creator:	"adrian"
+	CreationDate:	"Sam 13 Jul 2013 14:45:08 CEST"
+	Comments:	"Version 1.2"
+	GUIName:	"DialogEditor"
+	Win:	3
+	CSMgr:	4
+	DocExts:	6
+	DocExts:	7
+	Graphics:	8
+	Dpy:	47
+	Dialog:	50
+	DialogExtent:	86
+	Compiled:	1
+)
+
+(DocWin.3
+	Owner:	2
+	Open:	1
+	X:	273
+	Y:	283
+	W:	518
+	H:	344
+)
+
+(CSMgr.4
+	Client:	5
+)
+
+(CSClient.5
+	Client:	6
+	ReqName:	"ClientNfy"
+)
+
+(PanMgr.6
+	Doc:	2
+)
+
+(DocAct.7
+	Doc:	2
+)
+
+(GList.8
+	Child:	9
+	Child:	12
+	Child:	15
+	Child:	28
+	Child:	30
+	Child:	33
+	Child:	36
+	Child:	38
+	Child:	40
+	Child:	43
+	Child:	45
+	Dpy:	47
+	FormatNumb:	49
+)
+
+(GCtrl.9
+	Name:	"aControlPanel3"
+	Bounds:	10
+	ControlConstraints:	0x55
+	Control:	11
+	Editable:	1
+)
+
+(RectD.10
+	Left:	1.19791666666667
+	Top:	2.93750000000000
+	Right:	5.06250000000000
+	Bottom:	2.56250000000000
+)
+
+(CPanel.11
+	InternalName:	"aControlPanel3"
+	UseGraphicNfy:	1
+	Constraints:	0x55
+	VisibleBorder:	1
+	Listening:	1
+)
+
+(GCtrl.12
+	Name:	"aControlPanel1"
+	Bounds:	13
+	ControlConstraints:	0x55
+	Control:	14
+	Editable:	1
+)
+
+(RectD.13
+	Left:	1.20833333333333
+	Top:	2.52083333333333
+	Right:	5.06250000000000
+	Bottom:	1.38541666666667
+)
+
+(CPanel.14
+	InternalName:	"aControlPanel1"
+	UseGraphicNfy:	1
+	Constraints:	0x55
+	VisibleBorder:	1
+	Listening:	1
+)
+
+(GCtrl.15
+	Name:	"densityfactor"
+	Bounds:	16
+	ControlConstraints:	0x55
+	Control:	17
+	Editable:	1
+)
+
+(RectD.16
+	Left:	1.29166666666667
+	Top:	2.84375000000000
+	Right:	3.11458333333333
+	Bottom:	2.63541666666667
+)
+
+(TextLine.17
+	InternalName:	"densityfactor"
+	UseGraphicNfy:	1
+	Label:	"Dichte-Faktor"
+	Constraints:	0x55
+	Listening:	1
+	TextType:	18
+	Changed:	"Splply.densityfactor.changed"
+	NextControl:	19
+)
+
+(AVEnum.18
+	Name:	"TEXTLINE_TYPE_ALL"
+)
+
+(TextLine.19
+	InternalName:	"iterations"
+	UseGraphicNfy:	1
+	Label:	"Durchgänge"
+	Constraints:	0x55
+	Listening:	1
+	TextType:	18
+	Changed:	"Splply.iterations.changed"
+	NextControl:	20
+)
+
+(TextLine.20
+	InternalName:	"red"
+	UseGraphicNfy:	1
+	Label:	"R"
+	Constraints:	0x55
+	Listening:	1
+	TextType:	21
+	Changed:	"Splply.red.changed"
+	NextControl:	22
+)
+
+(AVEnum.21
+	Name:	"TEXTLINE_TYPE_ALL"
+)
+
+(TextLine.22
+	InternalName:	"green"
+	UseGraphicNfy:	1
+	Label:	"G"
+	Constraints:	0x55
+	Listening:	1
+	TextType:	23
+	Changed:	"Splply.green.changed"
+	NextControl:	24
+)
+
+(AVEnum.23
+	Name:	"TEXTLINE_TYPE_ALL"
+)
+
+(TextLine.24
+	InternalName:	"blue"
+	UseGraphicNfy:	1
+	Label:	"B"
+	Constraints:	0x55
+	Listening:	1
+	TextType:	25
+	Changed:	"Splply.blue.changed"
+	NextControl:	26
+)
+
+(AVEnum.25
+	Name:	"TEXTLINE_TYPE_ALL"
+)
+
+(TextLine.26
+	InternalName:	"stroke"
+	UseGraphicNfy:	1
+	Label:	"Strichstärke"
+	Constraints:	0x55
+	Listening:	1
+	TextType:	27
+	Changed:	"Splply.stroke.changed"
+	NextControl:	17
+)
+
+(AVEnum.27
+	Name:	"TEXTLINE_TYPE_ALL"
+)
+
+(GCtrl.28
+	Name:	"iterations"
+	Bounds:	29
+	ControlConstraints:	0x55
+	Control:	19
+	Editable:	1
+)
+
+(RectD.29
+	Left:	3.21875000000000
+	Top:	2.84375000000000
+	Right:	4.98958333333333
+	Bottom:	2.63541666666667
+)
+
+(GCtrl.30
+	Name:	"OK"
+	Bounds:	31
+	ControlConstraints:	0x55
+	Control:	32
+	Editable:	1
+)
+
+(RectD.31
+	Left:	3.90625000000000
+	Top:	2.11458333333333
+	Right:	5.00000000000000
+	Bottom:	1.84375000000000
+)
+
+(LButn.32
+	InternalName:	"OK"
+	UseGraphicNfy:	1
+	Disabled:	1
+	Label:	"OK"
+	Click:	"Splply.Spline"
+)
+
+(GCtrl.33
+	Name:	"Close"
+	Bounds:	34
+	ControlConstraints:	0x55
+	Control:	35
+	Editable:	1
+)
+
+(RectD.34
+	Left:	3.90625000000000
+	Top:	1.72916666666667
+	Right:	5.00000000000000
+	Bottom:	1.46875000000000
+)
+
+(LButn.35
+	InternalName:	"Close"
+	UseGraphicNfy:	1
+	Label:	"Schliessen"
+	Click:	"Splply.Close"
+)
+
+(GCtrl.36
+	Name:	"red"
+	Bounds:	37
+	ControlConstraints:	0x55
+	Control:	20
+	Editable:	1
+)
+
+(RectD.37
+	Left:	2.16666666666667
+	Top:	2.42708333333333
+	Right:	3.11458333333333
+	Bottom:	2.21875000000000
+)
+
+(GCtrl.38
+	Name:	"stroke"
+	Bounds:	39
+	ControlConstraints:	0x55
+	Control:	26
+	Editable:	1
+)
+
+(RectD.39
+	Left:	3.25000000000000
+	Top:	2.42708333333333
+	Right:	5.00000000000000
+	Bottom:	2.21875000000000
+)
+
+(GCtrl.40
+	Name:	"color"
+	Bounds:	41
+	ControlConstraints:	0x55
+	Control:	42
+	Editable:	1
+)
+
+(RectD.41
+	Left:	1.29166666666667
+	Top:	2.42708333333333
+	Right:	2.29166666666667
+	Bottom:	2.13541666666667
+)
+
+(TextLabel.42
+	InternalName:	"color"
+	UseGraphicNfy:	1
+	Constraints:	0x55
+	Label:	"Farbe (RGB)"
+	Listening:	1
+)
+
+(GCtrl.43
+	Name:	"green"
+	Bounds:	44
+	ControlConstraints:	0x55
+	Control:	22
+	Editable:	1
+)
+
+(RectD.44
+	Left:	2.16666666666667
+	Top:	2.13541666666667
+	Right:	3.11458333333333
+	Bottom:	1.92708333333333
+)
+
+(GCtrl.45
+	Name:	"blue"
+	Bounds:	46
+	ControlConstraints:	0x55
+	Control:	24
+	Editable:	1
+)
+
+(RectD.46
+	Left:	2.17708333333333
+	Top:	1.82291666666667
+	Right:	3.11458333333333
+	Bottom:	1.61458333333333
+)
+
+(PageDpy.47
+	Top:	3.32291666666667
+	Right:	5.32291666666667
+	ReportUnits:	1
+	Units:	1
+	Scale:	48
+	ZoomRight:	5.32291666666667
+	ZoomTop:	3.32291666666667
+	GridSpacingX:	0.10000000000000
+	GridSpacingY:	0.10000000000000
+)
+
+(Numb.48
+	N:	96.00000000000000
+)
+
+(Numb.49
+)
+
+(AVDLog.50
+	Name:	"Splinepolylines"
+	X:	111
+	Y:	56
+	W:	380
+	H:	157
+	ConstrainedControlNames:	51
+	ConstrainedControlNames:	52
+	Constraints:	53
+	Constraints:	54
+	Server:	55
+	ControlPanel:	56
+	Title:	"Spline Polylines"
+	EscapeEnabled:	1
+	AlwaysOnTop:	1
+	HasTitleBar:	1
+	Closeable:	1
+	Open:	"Splply.dlgOpen"
+	DefaultButton:	85
+)
+
+(AVStr.51
+	S:	"OK"
+)
+
+(AVStr.52
+	S:	"Close"
+)
+
+(Numb.53
+	N:	85.00000000000000
+)
+
+(Numb.54
+	N:	85.00000000000000
+)
+
+(Nil.55
+)
+
+(CPanel.56
+	Child:	57
+	Child:	72
+	ResBox:	83
+	ResBox:	84
+	Listening:	1
+)
+
+(CPanel.57
+	InternalName:	"aControlPanel3"
+	Child:	58
+	Child:	60
+	Constraints:	0x55
+	ResBox:	70
+	ResBox:	71
+	VisibleBorder:	1
+	Listening:	1
+)
+
+(TextLine.58
+	InternalName:	"densityfactor"
+	Label:	"Dichte-Faktor"
+	Constraints:	0x55
+	Listening:	1
+	TextType:	59
+	Changed:	"Splply.densityfactor.changed"
+	NextControl:	60
+)
+
+(AVEnum.59
+	Name:	"TEXTLINE_TYPE_ALL"
+)
+
+(TextLine.60
+	InternalName:	"iterations"
+	Label:	"Durchgänge"
+	Constraints:	0x55
+	Listening:	1
+	TextType:	61
+	Changed:	"Splply.iterations.changed"
+	NextControl:	62
+)
+
+(AVEnum.61
+	Name:	"TEXTLINE_TYPE_ALL"
+)
+
+(TextLine.62
+	InternalName:	"red"
+	Label:	"R"
+	Constraints:	0x55
+	Listening:	1
+	TextType:	63
+	Changed:	"Splply.red.changed"
+	NextControl:	64
+)
+
+(AVEnum.63
+	Name:	"TEXTLINE_TYPE_ALL"
+)
+
+(TextLine.64
+	InternalName:	"green"
+	Label:	"G"
+	Constraints:	0x55
+	Listening:	1
+	TextType:	65
+	Changed:	"Splply.green.changed"
+	NextControl:	66
+)
+
+(AVEnum.65
+	Name:	"TEXTLINE_TYPE_ALL"
+)
+
+(TextLine.66
+	InternalName:	"blue"
+	Label:	"B"
+	Constraints:	0x55
+	Listening:	1
+	TextType:	67
+	Changed:	"Splply.blue.changed"
+	NextControl:	68
+)
+
+(AVEnum.67
+	Name:	"TEXTLINE_TYPE_ALL"
+)
+
+(TextLine.68
+	InternalName:	"stroke"
+	Label:	"Strichstärke"
+	Constraints:	0x55
+	Listening:	1
+	TextType:	69
+	Changed:	"Splply.stroke.changed"
+	NextControl:	58
+)
+
+(AVEnum.69
+	Name:	"TEXTLINE_TYPE_ALL"
+)
+
+(RectD.70
+	Left:	9.00000000000000
+	Top:	29.00000000000000
+	Right:	184.00000000000000
+	Bottom:	9.00000000000000
+)
+
+(RectD.71
+	Left:	194.00000000000000
+	Top:	29.00000000000000
+	Right:	364.00000000000000
+	Bottom:	9.00000000000000
+)
+
+(CPanel.72
+	InternalName:	"aControlPanel1"
+	Child:	73
+	Child:	74
+	Child:	62
+	Child:	68
+	Child:	75
+	Child:	64
+	Child:	66
+	Constraints:	0x55
+	ResBox:	76
+	ResBox:	77
+	ResBox:	78
+	ResBox:	79
+	ResBox:	80
+	ResBox:	81
+	ResBox:	82
+	VisibleBorder:	1
+	Listening:	1
+)
+
+(LButn.73
+	InternalName:	"OK"
+	Disabled:	1
+	Label:	"OK"
+	Click:	"Splply.Spline"
+)
+
+(LButn.74
+	InternalName:	"Close"
+	Label:	"Schliessen"
+	Click:	"Splply.Close"
+)
+
+(TextLabel.75
+	InternalName:	"color"
+	Constraints:	0x55
+	Label:	"Farbe (RGB)"
+	Listening:	1
+)
+
+(RectD.76
+	Left:	259.00000000000000
+	Top:	65.00000000000000
+	Right:	364.00000000000000
+	Bottom:	39.00000000000000
+)
+
+(RectD.77
+	Left:	259.00000000000000
+	Top:	101.00000000000000
+	Right:	364.00000000000000
+	Bottom:	76.00000000000000
+)
+
+(RectD.78
+	Left:	92.00000000000000
+	Top:	29.00000000000000
+	Right:	183.00000000000000
+	Bottom:	9.00000000000000
+)
+
+(RectD.79
+	Left:	196.00000000000000
+	Top:	29.00000000000000
+	Right:	364.00000000000000
+	Bottom:	9.00000000000000
+)
+
+(RectD.80
+	Left:	8.00000000000000
+	Top:	37.00000000000000
+	Right:	104.00000000000000
+	Bottom:	9.00000000000000
+)
+
+(RectD.81
+	Left:	92.00000000000000
+	Top:	57.00000000000000
+	Right:	183.00000000000000
+	Bottom:	37.00000000000000
+)
+
+(RectD.82
+	Left:	93.00000000000000
+	Top:	87.00000000000000
+	Right:	183.00000000000000
+	Bottom:	67.00000000000000
+)
+
+(RectD.83
+	Left:	7.00000000000000
+	Top:	39.00000000000000
+	Right:	378.00000000000000
+	Bottom:	3.00000000000000
+)
+
+(RectD.84
+	Left:	8.00000000000000
+	Top:	152.00000000000000
+	Right:	378.00000000000000
+	Bottom:	43.00000000000000
+)
+
+(Nil.85
+)
+
+(RectD.86
+	Left:	1.12500000000000
+	Top:	2.96875000000000
+	Right:	5.08333333333333
+	Bottom:	1.33333333333333
+)
+
+(SEd.87
+	Name:	"Splply.blue.changed"
+	Creator:	"adrian"
+	CreationDate:	"Son 14 Jul 2013 17:25:44 CEST"
+	GUIName:	"Script"
+	Win:	88
+	CSMgr:	89
+	DocExts:	90
+	Source:	"if ((Self.GetText.AsNumber < 0) or (Self.GetText.AsNumber > 255)) then\n  Self.SetText(\"\")\n  MsgBox.Error(\"RGB-Wert muss zwischen 0 und 255 liegen\",\"\")\nend\n\nif (Self.GetText <> \"\") then\n  Self.GetDialog.FindByName(\"OK\").SetEnabled(true)\nelse\n  Self.GetDialog.FindByName(\"OK\").SetEnabled(false)\nend\n"
+)
+
+(DocWin.88
+	Owner:	87
+	X:	95
+	Y:	95
+	W:	745
+	H:	325
+)
+
+(CSMgr.89
+)
+
+(DocAct.90
+	Doc:	87
+)
+
+(SEd.91
+	Name:	"Splply.Close"
+	Creator:	"adrian"
+	CreationDate:	"Sam 13 Jul 2013 15:30:55 CEST"
+	GUIName:	"Script"
+	Win:	92
+	CSMgr:	93
+	DocExts:	94
+	Source:	"Self.GetDialog.Close"
+)
+
+(DocWin.92
+	Owner:	91
+	X:	35
+	Y:	35
+	W:	363
+	H:	245
+)
+
+(CSMgr.93
+)
+
+(DocAct.94
+	Doc:	91
+)
+
+(SEd.95
+	Name:	"Splply.densityfactor.changed"
+	Creator:	"adrian"
+	CreationDate:	"Sam 13 Jul 2013 14:57:12 CEST"
+	GUIName:	"Script"
+	Win:	96
+	CSMgr:	97
+	DocExts:	98
+	Source:	"if ((Self.GetText.AsNumber < 0) or (Self.GetText.AsNumber > 1)) then\n  Self.SetText(\"\")\n  MsgBox.Error(\"Dichte-Faktor muss zwischen 0 und 1 liegen\",\"\")\nend\n\nif (Self.GetText <> \"\") then\n  Self.GetDialog.FindByName(\"OK\").SetEnabled(true)\nelse\n  Self.GetDialog.FindByName(\"OK\").SetEnabled(false)\nend\n"
+)
+
+(DocWin.96
+	Owner:	95
+	X:	325
+	Y:	244
+	W:	678
+	H:	288
+)
+
+(CSMgr.97
+)
+
+(DocAct.98
+	Doc:	95
+)
+
+(SEd.99
+	Name:	"Splply.dlgOpen"
+	Creator:	"adrian"
+	CreationDate:	"Sam 13 Jul 2013 15:00:31 CEST"
+	GUIName:	"Script"
+	Win:	100
+	CSMgr:	101
+	DocExts:	102
+	Source:	"Self.FindByName(\"densityfactor\").SetText(0.002.AsString)\nSelf.FindByName(\"iterations\").SetText(3.AsString)\nSelf.FindByName(\"stroke\").SetText(2.AsString)\nSelf.FindByName(\"red\").SetText(255.AsString)\nSelf.FindByName(\"green\").SetText(0.AsString)\nSelf.FindByName(\"blue\").SetText(0.AsString)\n"
+)
+
+(DocWin.100
+	Owner:	99
+	X:	280
+	Y:	182
+	W:	505
+	H:	227
+)
+
+(CSMgr.101
+)
+
+(DocAct.102
+	Doc:	99
+)
+
+(SEd.103
+	Name:	"Splply.green.changed"
+	Creator:	"adrian"
+	CreationDate:	"Son 14 Jul 2013 17:25:26 CEST"
+	GUIName:	"Script"
+	Win:	104
+	CSMgr:	105
+	DocExts:	106
+	Source:	"if ((Self.GetText.AsNumber < 0) or (Self.GetText.AsNumber > 255)) then\n  Self.SetText(\"\")\n  MsgBox.Error(\"RGB-Wert muss zwischen 0 und 255 liegen\",\"\")\nend\n\nif (Self.GetText <> \"\") then\n  Self.GetDialog.FindByName(\"OK\").SetEnabled(true)\nelse\n  Self.GetDialog.FindByName(\"OK\").SetEnabled(false)\nend\n"
+)
+
+(DocWin.104
+	Owner:	103
+	X:	80
+	Y:	80
+	W:	727
+	H:	295
+)
+
+(CSMgr.105
+)
+
+(DocAct.106
+	Doc:	103
+)
+
+(SEd.107
+	Name:	"Splply.iterations.changed"
+	Creator:	"adrian"
+	CreationDate:	"Sam 13 Jul 2013 14:59:15 CEST"
+	GUIName:	"Script"
+	Win:	108
+	CSMgr:	109
+	DocExts:	110
+	Source:	"if ((Self.GetText.AsNumber < 1) or (Self.GetText.AsNumber > 100)) then\n  Self.SetText(\"\")\n  MsgBox.Error(\"Zwischen 1 und 100 Durchgänge sind möglich\",\"\")\nend\n\nif (Self.GetText <> \"\") then\n  Self.GetDialog.FindByName(\"OK\").SetEnabled(true)\nelse\n  Self.GetDialog.FindByName(\"OK\").SetEnabled(false)\nend\n"
+)
+
+(DocWin.108
+	Owner:	107
+	X:	80
+	Y:	80
+	W:	681
+	H:	266
+)
+
+(CSMgr.109
+)
+
+(DocAct.110
+	Doc:	107
+)
+
+(SEd.111
+	Name:	"Splply.red.changed"
+	Creator:	"adrian"
+	CreationDate:	"Son 14 Jul 2013 17:25:12 CEST"
+	GUIName:	"Script"
+	Win:	112
+	CSMgr:	113
+	DocExts:	114
+	Source:	"if ((Self.GetText.AsNumber < 0) or (Self.GetText.AsNumber > 255)) then\n  Self.SetText(\"\")\n  MsgBox.Error(\"RGB-Wert muss zwischen 0 und 255 liegen\",\"\")\nend\n\nif (Self.GetText <> \"\") then\n  Self.GetDialog.FindByName(\"OK\").SetEnabled(true)\nelse\n  Self.GetDialog.FindByName(\"OK\").SetEnabled(false)\nend\n"
+)
+
+(DocWin.112
+	Owner:	111
+	X:	65
+	Y:	65
+	W:	658
+	H:	362
+)
+
+(CSMgr.113
+)
+
+(DocAct.114
+	Doc:	111
+)
+
+(SEd.115
+	Name:	"Splply.Spline"
+	Creator:	"adrian"
+	CreationDate:	"Sam 13 Jul 2013 14:43:58 CEST"
+	GUIName:	"Script"
+	Win:	116
+	CSMgr:	117
+	DocExts:	118
+	Source:	"'##############################################################\n'#\n'# Filename:     spline_polylines_scale_graphics.ave\n'# Author:       Adrian Boehlen\n'# Date:         02.02.2014\n'# Version:      1.1\n'#\n'# Purpose:      erzeugt simulierte Splinekurve aus \n'#               selektierten Linienfeatures als Graphic\n'#               \n'#               Staerke der Splines, Strichstaerke\n'#               und Farbe koennen angegeben werden\n'#\n'#               Wenn gewuenscht, koennen die erzeugten\n'#               
+Linien entsprechend dem Referenzmassstab\n'#               skaliert werden \n'#\n'#               Wenn gewuenscht, koennen die erzeugten \n'#               Grafiken anschliessend in ein Shapefile\n'#               konvertiert werden\n'#\n'# Based on:     spline_polyline.ave\n'#               scale_graphics_text.ave\n'#\n'# This script uses a basic combination of densifying the \n'# polyline and implementing the Bezier's spline\n'# method on the polyline. This script needs a view\n'# and the target theme active.\n'#\n'# A 
+combination of these two variables will produce different\n'# results depending on the nature and scale of the Polyline.\n'#\n'# densityfactor 0.000 to 1.000 only\n'# iterations 1 to 100 works best\n'#\n'##############################################################\n\n'# read variables from dialog\n\nderDialog = Self.GetDialog\ndensityfactor = derDialog.FindByName(\"densityfactor\").GetText.AsNumber\niterations = derDialog.FindByName(\"iterations\").GetText.AsNumber\nstrichst = derDialog.FindByName(\"stroke\").GetText.AsNumb
+er\nrot = derDialog.FindByName(\"red\").GetText.AsNumber\ngruen = derDialog.FindByName(\"green\").GetText.AsNumber\nblau = derDialog.FindByName(\"blue\").GetText.AsNumber\n\n'# if the name of the active view is not \"View1\"\n\nif (Av.FindDoc(\"View1\") = nil) then\n  theView = MsgBox.ListAsString(Av.GetProject.GetDocs,\"Select your view\",\"\")\nelse\n  theView = Av.FindDoc(\"View1\")\nend\n\ntheDisplay = theView.GetDisplay\n\n'# check theme\n\ntheGraphics = theView.GetGraphics\nthm = theView.GetActiveThemes.Get(0)\nftb = thm.GetFtab\nif(ftb
+.GetShapeclass.GetClassname <> \"PolyLine\") then\n  MsgBox.Error(\"We can only spline PolyLine features.\",\"\")\n  return nil\nend\n\nif (ftb.getselection.count = 0) then\n  MsgBox.Info(\"Please select one or more PolyLine features\",\"\")\n  return nil\nend\n\n'# spline function\n\nfor each selrec in ftb.GetSelection\n\n  thepolyline = ftb.ReturnValue(ftb.FindField(\"Shape\"),SelRec)\n    \n  howdense = thepolyline.ReturnLength*densityfactor\n  oldplist = thepolyline.ReturnDensified(howdense).AsList\n  \n  newplist = {}\n  for each apa
+rt in oldplist\n    for each ap in apart\n      newplist.Add(ap)\n    end\n  end\n  \n  for each x in 1..iterations \n    newerplist = {}  \n    for each i in 0..(newplist.count-1)\n      if (i = 0) then\n        newerplist.Add(newplist.Get(i))\n      elseif (i = (newplist.Count-1)) then\n        newerplist.add(newplist.Get(i))\n        break\n      end        \n      newp = Line.Make(newplist.Get(i),newplist.Get(i+1)).ReturnCenter \n      newerplist.Add(newp)  \n    end\n    newplist = newerplist.DeepClone  \n  end\n  \n  newp
+olyline = Polyline.Make({newplist})  \n\n  theGraphicShape = Graphicshape.Make(newpolyline)\n  asymbol = Symbol.Make(#SYMBOL_PEN)\n  asymbol.SetSize(strichst)\n  nc = Color.Make\n  nc.SetRGBList({rot,gruen,blau})\n  asymbol.SetColor(nc)\n  theGraphicShape.SetSymbol(asymbol)\n  theGraphicShape.SetSelected(true)\n  theGraphics.Add(theGraphicShape)\nend\n\n'# scale graphics\n\ntheGTL = theView.GetGraphics.FindAllByClass(graphicshape)\nthingsToStopScaling = theView.GetGraphics.GetSelected\ntheSelGTL = {}\n\nif (MsgBox.YesNo(\"Lini
+en skalieren ?\",\"Skalieren\",true)) then\n  theScale = MsgBox.Input(\"Geben Sie den Referenzmassstab ein:\" + 10.AsChar + \"1 :...\",\n    \"Referenzmassstab definieren\",1000.AsString)\n  if (theScale = nil) then\n    return nil\n  elseif (theScale.IsNumber.Not) then\n    MsgBox.Error(\"Ungueltige Eingabe\",\"Abbruch\")\n    return nil\n  end\n  theDisplay.ZoomToScale(theScale.AsNumber)\n  for each g in thingsToStopScaling \n    if (g.GetShape.Is(polygon).Not) then\n      g.GetSymbol.UnHook\n    end\n  end\n  for each gt in theGTL\n
+    if (gt.IsSelected)\n      then\n        theSelGTL.Add(gt)\n     end\n  end\n  for each gt in theSelGTL\n    theDisplay.HookupSymbol(gt.GetSymbol)\n  end\n  theDisplay.UndoZoom\nelse\n  for each g in thingsToStopScaling \n    if (g.GetShape.Is(polygon).Not) then\n      g.GetSymbol.UnHook\n    end\n  end\nend\nav.purgeobjects\n\n'# convert to shapefile\n\nif (MsgBox.YesNo(\"Grafiken zu Shapefile konvertieren ?\",\"Zu Shapefile konvertieren\",true)) then\n  theGPL=theView.GetGraphics.GetSelected\n  if (theGPL = nil) then \n    MsgBo
+x.Error(\"No graphic shapes in view\",\"\")\n    return nil\n  end\n\n  theclass = polyline\n\n  theCLoF={}\n  for each g in theGPL\n    if ((g.getshape.is(rect)) or (g.getshape.is(circle))) then\n      g = graphicshape.make(g.getshape.aspolygon)\n    end\n    if (g.getshape.Is(theclass)) then\n      theCLoF.Add(g)  \n    end\n  end\n\n  if (theCLoF.count = 0) then\n    MsgBox.error(\"No graphic features in\"+\n    \"view\",\"\")\n    return nil\n  end\n\n  tmpfn = av.GetProject.GetWorkDir\n  theOutFileName=FileDialog.Put(tmpfn,\"*.shp\",\"ne
+ues Shapefile definieren\")\n  theFtab=Ftab.MakeNew(theOutFileName, theclass)\n  theIDfld=Field.Make(\"myID\", #FIELD_LONG, 10, 0)\n  theShapeFld=theFtab.FindField(\"Shape\")\n  theFldList={theIDfld}\n  theFtab.AddFields(theFldList)\n\n  for each fea in theCLoF\n    theRecNo=theFtab.AddRecord\n    theFtab.SetValue(theIDfld, theRecNo, theRecNo)\n    eachShape=fea.getshape\n    theFtab.SetValue(theShapeFld, theRecNo, eachShape)\n  end\n  \n  theFTheme=Ftheme.Make(theFTab)\n  theView.AddTheme(theFTheme)\n\n  theLeg = theFTheme.GetL
+egend\n  theLine = Symbol.Make(#SYMBOL_PEN)\n  theLine.SetColor(nc)\n  theLine.SetSize(strichst)\n  theLeg.SetLegendType(#LEGEND_TYPE_SIMPLE)\n  theLeg.SetScaleSymbols(true)\n  theLeg.SetRefScale(theScale.AsNumber)\n  theLeg.GetSymbols.Set(0,theLine)\n  \n  '# delete selected graphics\n\n  if (theView.GetGraphics.HasSelected) then\n    av.GetProject.SetModified(true)\n  end\n\n  theView.GetGraphics.ClearSelected\nend\n\n"
+)
+
+(DocWin.116
+	Owner:	115
+	Open:	1
+	X:	167
+	Y:	37
+	W:	831
+	H:	600
+)
+
+(CSMgr.117
+)
+
+(DocAct.118
+	Doc:	115
+)
+
+(SEd.119
+	Name:	"Splply.stroke.changed"
+	Creator:	"adrian"
+	CreationDate:	"Son 14 Jul 2013 17:18:22 CEST"
+	GUIName:	"Script"
+	Win:	120
+	CSMgr:	121
+	DocExts:	122
+	Source:	"if (Self.GetText.AsNumber < 0) then\n  Self.SetText(\"\")\n  MsgBox.Error(\"Strichstärke muss grösser als 0 sein\",\"\")\nend\n\nif (Self.GetText <> \"\") then\n  Self.GetDialog.FindByName(\"OK\").SetEnabled(true)\nelse\n  Self.GetDialog.FindByName(\"OK\").SetEnabled(false)\nend\n"
+)
+
+(DocWin.120
+	Owner:	119
+	X:	50
+	Y:	50
+	W:	806
+	H:	410
+)
+
+(CSMgr.121
+)
+
+(DocAct.122
+	Doc:	119
+)
+

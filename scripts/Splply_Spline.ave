@@ -1,0 +1,226 @@
+'##############################################################
+'#
+'# Filename:     spline_polylines_scale_graphics.ave
+'# Author:       Adrian Boehlen
+'# Date:         23.02.2014
+'# Version:      1.2
+'#
+'# Purpose:      erzeugt simulierte Splinekurve aus 
+'#               selektierten Linienfeatures als Graphic
+'#               
+'#               Staerke der Splines, Strichstaerke
+'#               und Farbe koennen angegeben werden
+'#
+'#               Wenn gewuenscht, koennen die erzeugten
+'#               Linien entsprechend dem Referenzmassstab
+'#               skaliert werden 
+'#
+'#               Wenn gewuenscht, koennen die erzeugten 
+'#               Grafiken anschliessend in ein Shapefile
+'#               konvertiert werden. Die definierte 
+'#               Symbolik bleibt dabei erhalten
+'#
+'# Based on:     spline_polyline.ave
+'#               scale_graphics_text.ave
+'#               Scriptgra2shp.ave
+'#
+'# This script uses a basic combination of densifying the 
+'# polyline and implementing the Bezier's spline
+'# method on the polyline. This script needs a view
+'# and the target theme active.
+'#
+'# A combination of these two variables will produce different
+'# results depending on the nature and scale of the Polyline.
+'#
+'# densityfactor 0.000 to 1.000 only
+'# iterations 1 to 100 works best
+'#
+'##############################################################
+
+'# read variables from dialog
+
+derDialog = Self.GetDialog
+densityfactor = derDialog.FindByName("densityfactor").GetText.AsNumber
+iterations = derDialog.FindByName("iterations").GetText.AsNumber
+strichst = derDialog.FindByName("stroke").GetText.AsNumber
+rot = derDialog.FindByName("red").GetText.AsNumber
+gruen = derDialog.FindByName("green").GetText.AsNumber
+blau = derDialog.FindByName("blue").GetText.AsNumber
+
+'# if the name of the active view is not "View1"
+
+if (Av.FindDoc("View1") = nil) then
+  theView = MsgBox.ListAsString(Av.GetProject.GetDocs,"View auswaehlen","")
+else
+  theView = Av.FindDoc("View1")
+end
+
+theDisplay = theView.GetDisplay
+
+'# check theme
+
+theGraphics = theView.GetGraphics
+thm = theView.GetActiveThemes.Get(0)
+ftb = thm.GetFtab
+if(ftb.GetShapeclass.GetClassname <> "PolyLine") then
+  MsgBox.Error("Nur Linienfeatures koennen verarbeitet werden","")
+  return nil
+end
+
+if (ftb.getselection.count = 0) then
+  MsgBox.Info("ein oder mehrere Linienfeatures muessen selektiert sein","")
+  return nil
+end
+
+'# spline function
+
+for each selrec in ftb.GetSelection
+
+  thepolyline = ftb.ReturnValue(ftb.FindField("Shape"),SelRec)
+    
+  howdense = thepolyline.ReturnLength*densityfactor
+  oldplist = thepolyline.ReturnDensified(howdense).AsList
+  
+  newplist = {}
+  for each apart in oldplist
+    for each ap in apart
+      newplist.Add(ap)
+    end
+  end
+  
+  for each x in 1..iterations 
+    newerplist = {}  
+    for each i in 0..(newplist.count-1)
+      if (i = 0) then
+        newerplist.Add(newplist.Get(i))
+      elseif (i = (newplist.Count-1)) then
+        newerplist.add(newplist.Get(i))
+        break
+      end        
+      newp = Line.Make(newplist.Get(i),newplist.Get(i+1)).ReturnCenter 
+      newerplist.Add(newp)  
+    end
+    newplist = newerplist.DeepClone  
+  end
+  
+  newpolyline = Polyline.Make({newplist})  
+
+  theGraphicShape = Graphicshape.Make(newpolyline)
+  asymbol = Symbol.Make(#SYMBOL_PEN)
+  asymbol.SetSize(strichst)
+  nc = Color.Make
+  nc.SetRGBList({rot,gruen,blau})
+  asymbol.SetColor(nc)
+  theGraphicShape.SetSymbol(asymbol)
+  theGraphicShape.SetSelected(true)
+  theGraphics.Add(theGraphicShape)
+end
+
+'# scale graphics
+
+theGTL = theView.GetGraphics.FindAllByClass(graphicshape)
+thingsToStopScaling = theView.GetGraphics.GetSelected
+theSelGTL = {}
+
+if (MsgBox.YesNo("Linien skalieren ?","Skalieren",true)) then
+  theChoice = 1
+  theScale = MsgBox.Input("Geben Sie den Referenzmassstab ein:" + 10.AsChar + "1 :...",
+    "Referenzmassstab definieren",1000.AsString)
+  if (theScale = nil) then
+    return nil
+  elseif (theScale.IsNumber.Not) then
+    MsgBox.Error("Ungueltige Eingabe","Abbruch")
+    return nil
+  end
+  theDisplay.ZoomToScale(theScale.AsNumber)
+  for each g in thingsToStopScaling 
+    if (g.GetShape.Is(polygon).Not) then
+      g.GetSymbol.UnHook
+    end
+  end
+  for each gt in theGTL
+    if (gt.IsSelected)
+      then
+        theSelGTL.Add(gt)
+     end
+  end
+  for each gt in theSelGTL
+    theDisplay.HookupSymbol(gt.GetSymbol)
+  end
+  theDisplay.UndoZoom
+else
+  theChoice = 0
+  for each g in thingsToStopScaling 
+    if (g.GetShape.Is(polygon).Not) then
+      g.GetSymbol.UnHook
+    end
+  end
+end
+av.purgeobjects
+
+'# convert graphics to shapefile
+
+if (MsgBox.YesNo("Grafiken zu Shapefile konvertieren ?","Zu Shapefile konvertieren",true)) then
+  theGPL=theView.GetGraphics.GetSelected
+  if (theGPL = nil) then 
+    MsgBox.Error("No graphic shapes in view","")
+    return nil
+  end
+
+  theclass = polyline
+
+  theCLoF={}
+  for each g in theGPL
+    if ((g.getshape.is(rect)) or (g.getshape.is(circle))) then
+      g = graphicshape.make(g.getshape.aspolygon)
+    end
+    if (g.getshape.Is(theclass)) then
+      theCLoF.Add(g)  
+    end
+  end
+
+  if (theCLoF.count = 0) then
+    MsgBox.error("No graphic features in"+
+    "view","")
+    return nil
+  end
+
+  tmpfn = av.GetProject.GetWorkDir
+  theOutFileName=FileDialog.Put(tmpfn,"*.shp","neues Shapefile definieren")
+  theFtab=Ftab.MakeNew(theOutFileName, theclass)
+  theIDfld=Field.Make("myID", #FIELD_LONG, 10, 0)
+  theShapeFld=theFtab.FindField("Shape")
+  theFldList={theIDfld}
+  theFtab.AddFields(theFldList)
+
+  for each fea in theCLoF
+    theRecNo=theFtab.AddRecord
+    theFtab.SetValue(theIDfld, theRecNo, theRecNo)
+    eachShape=fea.getshape
+    theFtab.SetValue(theShapeFld, theRecNo, eachShape)
+  end
+  
+  theFTheme=Ftheme.Make(theFTab)
+  theView.AddTheme(theFTheme)
+
+  theLeg = theFTheme.GetLegend
+  theLine = Symbol.Make(#SYMBOL_PEN)
+  theLine.SetColor(nc)
+  theLine.SetSize(strichst)
+  theLeg.SetLegendType(#LEGEND_TYPE_SIMPLE)
+  if (theChoice = 1) then
+    theLeg.SetScaleSymbols(true)
+    theLeg.SetRefScale(theScale.AsNumber)
+  end
+  theLeg.GetSymbols.Set(0,theLine)
+  
+  '# delete selected graphics
+
+  if (theView.GetGraphics.HasSelected) then
+    av.GetProject.SetModified(true)
+  end
+
+  theView.GetGraphics.ClearSelected
+end
+
+

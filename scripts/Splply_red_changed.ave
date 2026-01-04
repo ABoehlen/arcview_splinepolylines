@@ -1,0 +1,11 @@
+if ((Self.GetText.AsNumber < 0) or (Self.GetText.AsNumber > 255)) then
+  Self.SetText("")
+  MsgBox.Error("RGB-Wert muss zwischen 0 und 255 liegen","")
+end
+
+if (Self.GetText <> "") then
+  Self.GetDialog.FindByName("OK").SetEnabled(true)
+else
+  Self.GetDialog.FindByName("OK").SetEnabled(false)
+end
+

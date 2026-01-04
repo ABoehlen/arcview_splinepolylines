@@ -1,0 +1,3475 @@
+/3.2
+(ODB.1
+	Dependencies:	"$AVEXT/dialog.avx\n"
+	FirstRootClassName:	"Project"
+	Roots:	2
+	Version:	32
+)
+
+(Project.2
+	Name:	"splinepolylines.apr"
+	Creator:	"adrian"
+	CreationDate:	"Sam 13 Jul 2013 14:43:46 CEST"
+	GUIName:	"Project"
+	Win:	3
+	CSMgr:	4
+	DocExts:	5
+	VisGUIWidth:	70
+	Doc:	6
+	Doc:	10
+	Doc:	14
+	Doc:	18
+	Doc:	22
+	Doc:	26
+	Doc:	111
+	Doc:	115
+	Doc:	119
+	Doc:	123
+	Doc:	127
+	Doc:	131
+	Doc:	135
+	Doc:	139
+	Doc:	143
+	Doc:	147
+	Doc:	151
+	Buttons:	164
+	Buttons:	165
+	Buttons:	166
+	Dependencies:	167
+	Scripts:	168
+	Prefs:	169
+	GUI:	177
+	WorkDir:	1133
+	WinX:	3
+	WinY:	2
+	WinW:	1362
+	WinH:	763
+	SerialNumber:	"899941126318"
+	SelColor:	1134
+	GUINames:	1135
+	GUINames:	1136
+	GUINames:	1137
+	GUINames:	1138
+	GUINames:	1139
+	GUINames:	1140
+	GUINames:	1141
+	GUINames:	1142
+	TocWidthScale:	1.00000000000000
+)
+
+(DocWin.3
+	Owner:	2
+	Open:	1
+	X:	5
+	Y:	5
+	W:	252
+	H:	466
+)
+
+(CSMgr.4
+)
+
+(DocAct.5
+	Doc:	2
+)
+
+(SEd.6
+	Name:	"Ext_Inst"
+	Creator:	"adrian"
+	CreationDate:	"Son 02 Feb 2014 09:51:17 CET"
+	GUIName:	"Script"
+	Win:	7
+	CSMgr:	8
+	DocExts:	9
+	Source:	"if (av.GetProject = nil) then\n  return nil\nend\n\nSack=Self\n\nSchaltflaeche=Sack.Get(0)\nviewGUI = av.GetProject.FindGUI( \"View\" )\nif (viewGUI <> nil) then\n  if(viewGUI.GetButtonBar.FindByScript(Schaltflaeche.GetClick)=nil)then\n    viewGUI.GetButtonBar.Add( Schaltflaeche, 20)\n  end\nend\n\nav.GetProject.AddDialog( Sack.Get(1))\n\n\n\n\n"
+)
+
+(DocWin.7
+	Owner:	6
+	X:	133
+	Y:	152
+	W:	740
+	H:	425
+)
+
+(CSMgr.8
+)
+
+(DocAct.9
+	Doc:	6
+)
+
+(SEd.10
+	Name:	"Ext_Make"
+	Creator:	"adrian"
+	CreationDate:	"Son 02 Feb 2014 09:52:07 CET"
+	GUIName:	"Script"
+	Win:	11
+	CSMgr:	12
+	DocExts:	13
+	Source:	"Splply = Extension.Make(\"$AVHOME/projects/splinepolylines/splinepolylines.avx\".AsFileName,\n\"Spline Polylines\",av.FindScript(\"Ext_inst\"),av.FindScript(\"Ext_unin\"), {\"$AVBIN/avdlog.dll\".AsFileName})\n\nSplply.SetExtVersion(1)\nSplply.SetAbout(\"erzeugt simulierte Splinekurve aus selektierten Linienfeatures als Graphic oder neues Shapefile (v1.3)\")\nSplply.SetUnloadScript(av.FindScript(\"ext_unload\"))\n\nSchaltflaeche=( av.FindGUI( \"View\").GetButtonBar.FindByScript(\"Splply.start\"))  \nSplplyDialog =av.FindDialog(\"Splin
+epolylines\")\nSplply.Add( Schaltflaeche)   'Schaltfläche hinzufügen\nSplply.Add(SplplyDialog)\n\nfor each aDoc in av.GetProject.GetDocs\n  if (aDoc.Is(SEd)) then\n    if (aDoc.GetName.Contains(\"Splply.\")) then\n      if (aDoc.IsCompiled.Not) then\n        aDoc.Compile\n      end\n      Splply.Add(av.FindScript(aDoc.GetName))\n    end\n  end\nend\n\nSplply.Commit\n\n"
+	SearchStr:	"MeinDialog"
+)
+
+(DocWin.11
+	Owner:	10
+	X:	85
+	Y:	49
+	W:	1048
+	H:	565
+)
+
+(CSMgr.12
+)
+
+(DocAct.13
+	Doc:	10
+)
+
+(SEd.14
+	Name:	"Ext_Unin"
+	Creator:	"adrian"
+	CreationDate:	"Son 02 Feb 2014 09:52:25 CET"
+	GUIName:	"Script"
+	Win:	15
+	CSMgr:	16
+	DocExts:	17
+	Source:	"if (av.GetProject = nil) then\n  return nil\nend\n\nif (av.GetProject.IsClosing) then\n  return nil\nend\n\nviewGUI = av.GetProject.FindGUI( \"View\" )\n\nviewGUI.GetButtonBar.Remove(viewGUI.GetButtonBar.FindByScript( \"Splply.start\"))\nav.GetProject.removedialog(\"SplplyDialog\")\n"
+)
+
+(DocWin.15
+	Owner:	14
+	X:	50
+	Y:	50
+	W:	919
+	H:	518
+)
+
+(CSMgr.16
+)
+
+(DocAct.17
+	Doc:	14
+)
+
+(SEd.18
+	Name:	"Ext_Unload"
+	Creator:	"adrian"
+	CreationDate:	"Son 02 Feb 2014 09:52:39 CET"
+	GUIName:	"Script"
+	Win:	19
+	CSMgr:	20
+	DocExts:	21
+	Source:	"Dialog.DetachFromExtension(self)\n"
+)
+
+(DocWin.19
+	Owner:	18
+	X:	65
+	Y:	65
+	W:	363
+	H:	245
+)
+
+(CSMgr.20
+)
+
+(DocAct.21
+	Doc:	18
+)
+
+(SEd.22
+	Name:	"Graphic2Shape"
+	Creator:	"adrian"
+	CreationDate:	"Mon 10 Feb 2014 20:24:53 CET"
+	GUIName:	"Script"
+	Win:	23
+	CSMgr:	24
+	DocExts:	25
+	Source:	"'-- Scriptgra2shp.ave\n'-- Converts all view graphics of the selected feature type into a shapefile,\n'-- then adds that shapefile to the View.\n\ntheView=av.getactivedoc\ntheGPL=theView.getgraphics.findallbyclass(GraphicShape)\nif (theGPL = nil) then \n  MsgBox.error(\"No graphic shapes in view\",\"\")\n  return nil\nend\n\n'theFTL={\"Point\", \"Polyline\", \"Polygon\"}\n'aShapeType=MsgBox.listasstring(theFTL, \"Select the type of graphics you want\"+\n'\"converted into a shapefile\", \"Choose a feature type\")\n'if (aShapeType = nil) 
+then \n'  return nil\n'end\n\n'if (aShapetype = \"point\") then\n'  theclass = point\n'elseif (aShapeType = \"polyline\") then\ntheclass = polyline\n'elseif (aShapeType = \"polygon\") then\n'  theclass = polygon\n'end\n\ntheCLoF={}\nfor each g in theGPL\n  if ((g.getshape.is(rect)) or (g.getshape.is(circle))) then\n    g = graphicshape.make(g.getshape.aspolygon)\n  end\n  if (g.getshape.Is(theclass)) then\n    theCLoF.Add(g)  \n  end\nend\n\nif (theCLoF.count = 0) then\n  MsgBox.error(\"No graphic features in\"+\n  \"view\",\"\")\n  return nil
+\nend\n\ntmpfn = av.GetProject.GetWorkDir\ntheOutFileName=FileDialog.Put(tmpfn,\"*.shp\",\"Create new shapefile from graphic\")\ntheFtab=Ftab.MakeNew(theOutFileName, theclass)\ntheIDfld=Field.Make(\"myID\", #FIELD_LONG, 10, 0)\ntheShapeFld=theFtab.FindField(\"Shape\")\ntheFldList={theIDfld}\ntheFtab.AddFields(theFldList)\n\nfor each fea in theCLoF\n  theRecNo=theFtab.AddRecord\n  theFtab.SetValue(theIDfld, theRecNo, theRecNo)\n  eachShape=fea.getshape\n  theFtab.SetValue(theShapeFld, theRecNo, eachShape)\nend\n  \ntheFTheme=Ftheme.M
+ake(theFTab)\ntheView.AddTheme(theFTheme)\n\ntheLeg = theFTheme.GetLegend\ntheLine = Symbol.Make(#SYMBOL_PEN)\ntheLine.SetColor(Color.GetRed)\ntheLine.SetSize(1)\ntheLeg.SetLegendType(#LEGEND_TYPE_SIMPLE)\ntheLeg.GetSymbols.Set(0,theLine)\ntheLeg.GetSymbols.Unhook\n\ntheView.Invalidate\n"
+	SearchStr:	"theclass"
+)
+
+(DocWin.23
+	Owner:	22
+	X:	105
+	Y:	56
+	W:	870
+	H:	581
+)
+
+(CSMgr.24
+)
+
+(DocAct.25
+	Doc:	22
+)
+
+(DEd.26
+	Name:	"Splinepolylines"
+	Creator:	"adrian"
+	CreationDate:	"Sam 13 Jul 2013 14:45:08 CEST"
+	Comments:	"Version 1.2"
+	GUIName:	"DialogEditor"
+	Win:	27
+	CSMgr:	28
+	DocExts:	30
+	DocExts:	31
+	Graphics:	32
+	Dpy:	71
+	Dialog:	74
+	DialogExtent:	110
+	Compiled:	1
+)
+
+(DocWin.27
+	Owner:	26
+	X:	273
+	Y:	283
+	W:	518
+	H:	344
+)
+
+(CSMgr.28
+	Client:	29
+)
+
+(CSClient.29
+	Client:	30
+	ReqName:	"ClientNfy"
+)
+
+(PanMgr.30
+	Doc:	26
+)
+
+(DocAct.31
+	Doc:	26
+)
+
+(GList.32
+	Child:	33
+	Child:	36
+	Child:	39
+	Child:	52
+	Child:	54
+	Child:	57
+	Child:	60
+	Child:	62
+	Child:	64
+	Child:	67
+	Child:	69
+	Dpy:	71
+	FormatNumb:	73
+)
+
+(GCtrl.33
+	Name:	"aControlPanel3"
+	Bounds:	34
+	ControlConstraints:	0x55
+	Control:	35
+	Editable:	1
+)
+
+(RectD.34
+	Left:	1.19791666666667
+	Top:	2.93750000000000
+	Right:	5.06250000000000
+	Bottom:	2.56250000000000
+)
+
+(CPanel.35
+	InternalName:	"aControlPanel3"
+	UseGraphicNfy:	1
+	Constraints:	0x55
+	VisibleBorder:	1
+	Listening:	1
+)
+
+(GCtrl.36
+	Name:	"aControlPanel1"
+	Bounds:	37
+	ControlConstraints:	0x55
+	Control:	38
+	Editable:	1
+)
+
+(RectD.37
+	Left:	1.20833333333333
+	Top:	2.52083333333333
+	Right:	5.06250000000000
+	Bottom:	1.38541666666667
+)
+
+(CPanel.38
+	InternalName:	"aControlPanel1"
+	UseGraphicNfy:	1
+	Constraints:	0x55
+	VisibleBorder:	1
+	Listening:	1
+)
+
+(GCtrl.39
+	Name:	"densityfactor"
+	Bounds:	40
+	ControlConstraints:	0x55
+	Control:	41
+	Editable:	1
+)
+
+(RectD.40
+	Left:	1.29166666666667
+	Top:	2.84375000000000
+	Right:	3.11458333333333
+	Bottom:	2.63541666666667
+)
+
+(TextLine.41
+	InternalName:	"densityfactor"
+	UseGraphicNfy:	1
+	Label:	"Dichte-Faktor"
+	Constraints:	0x55
+	Listening:	1
+	TextType:	42
+	Changed:	"Splply.densityfactor.changed"
+	NextControl:	43
+)
+
+(AVEnum.42
+	Name:	"TEXTLINE_TYPE_ALL"
+)
+
+(TextLine.43
+	InternalName:	"iterations"
+	UseGraphicNfy:	1
+	Label:	"Durchgänge"
+	Constraints:	0x55
+	Listening:	1
+	TextType:	42
+	Changed:	"Splply.iterations.changed"
+	NextControl:	44
+)
+
+(TextLine.44
+	InternalName:	"red"
+	UseGraphicNfy:	1
+	Label:	"R"
+	Constraints:	0x55
+	Listening:	1
+	TextType:	45
+	Changed:	"Splply.red.changed"
+	NextControl:	46
+)
+
+(AVEnum.45
+	Name:	"TEXTLINE_TYPE_ALL"
+)
+
+(TextLine.46
+	InternalName:	"green"
+	UseGraphicNfy:	1
+	Label:	"G"
+	Constraints:	0x55
+	Listening:	1
+	TextType:	47
+	Changed:	"Splply.green.changed"
+	NextControl:	48
+)
+
+(AVEnum.47
+	Name:	"TEXTLINE_TYPE_ALL"
+)
+
+(TextLine.48
+	InternalName:	"blue"
+	UseGraphicNfy:	1
+	Label:	"B"
+	Constraints:	0x55
+	Listening:	1
+	TextType:	49
+	Changed:	"Splply.blue.changed"
+	NextControl:	50
+)
+
+(AVEnum.49
+	Name:	"TEXTLINE_TYPE_ALL"
+)
+
+(TextLine.50
+	InternalName:	"stroke"
+	UseGraphicNfy:	1
+	Label:	"Strichstärke"
+	Constraints:	0x55
+	Listening:	1
+	TextType:	51
+	Changed:	"Splply.stroke.changed"
+	NextControl:	41
+)
+
+(AVEnum.51
+	Name:	"TEXTLINE_TYPE_ALL"
+)
+
+(GCtrl.52
+	Name:	"iterations"
+	Bounds:	53
+	ControlConstraints:	0x55
+	Control:	43
+	Editable:	1
+)
+
+(RectD.53
+	Left:	3.21875000000000
+	Top:	2.84375000000000
+	Right:	4.98958333333333
+	Bottom:	2.63541666666667
+)
+
+(GCtrl.54
+	Name:	"OK"
+	Bounds:	55
+	ControlConstraints:	0x55
+	Control:	56
+	Editable:	1
+)
+
+(RectD.55
+	Left:	3.90625000000000
+	Top:	2.11458333333333
+	Right:	5.00000000000000
+	Bottom:	1.84375000000000
+)
+
+(LButn.56
+	InternalName:	"OK"
+	UseGraphicNfy:	1
+	Disabled:	1
+	Label:	"OK"
+	Click:	"Splply.Spline"
+)
+
+(GCtrl.57
+	Name:	"Close"
+	Bounds:	58
+	ControlConstraints:	0x55
+	Control:	59
+	Editable:	1
+)
+
+(RectD.58
+	Left:	3.90625000000000
+	Top:	1.72916666666667
+	Right:	5.00000000000000
+	Bottom:	1.46875000000000
+)
+
+(LButn.59
+	InternalName:	"Close"
+	UseGraphicNfy:	1
+	Label:	"Schliessen"
+	Click:	"Splply.Close"
+)
+
+(GCtrl.60
+	Name:	"red"
+	Bounds:	61
+	ControlConstraints:	0x55
+	Control:	44
+	Editable:	1
+)
+
+(RectD.61
+	Left:	2.16666666666667
+	Top:	2.42708333333333
+	Right:	3.11458333333333
+	Bottom:	2.21875000000000
+)
+
+(GCtrl.62
+	Name:	"stroke"
+	Bounds:	63
+	ControlConstraints:	0x55
+	Control:	50
+	Editable:	1
+)
+
+(RectD.63
+	Left:	3.25000000000000
+	Top:	2.42708333333333
+	Right:	5.00000000000000
+	Bottom:	2.21875000000000
+)
+
+(GCtrl.64
+	Name:	"color"
+	Bounds:	65
+	ControlConstraints:	0x55
+	Control:	66
+	Editable:	1
+)
+
+(RectD.65
+	Left:	1.29166666666667
+	Top:	2.42708333333333
+	Right:	2.29166666666667
+	Bottom:	2.13541666666667
+)
+
+(TextLabel.66
+	InternalName:	"color"
+	UseGraphicNfy:	1
+	Constraints:	0x55
+	Label:	"Farbe (RGB)"
+	Listening:	1
+)
+
+(GCtrl.67
+	Name:	"green"
+	Bounds:	68
+	ControlConstraints:	0x55
+	Control:	46
+	Editable:	1
+)
+
+(RectD.68
+	Left:	2.16666666666667
+	Top:	2.13541666666667
+	Right:	3.11458333333333
+	Bottom:	1.92708333333333
+)
+
+(GCtrl.69
+	Name:	"blue"
+	Bounds:	70
+	ControlConstraints:	0x55
+	Control:	48
+	Editable:	1
+)
+
+(RectD.70
+	Left:	2.17708333333333
+	Top:	1.82291666666667
+	Right:	3.11458333333333
+	Bottom:	1.61458333333333
+)
+
+(PageDpy.71
+	Top:	3.32291666666667
+	Right:	5.32291666666667
+	ReportUnits:	1
+	Units:	1
+	Scale:	72
+	ZoomRight:	5.32291666666667
+	ZoomTop:	3.32291666666667
+	GridSpacingX:	0.10000000000000
+	GridSpacingY:	0.10000000000000
+)
+
+(Numb.72
+	N:	0.18786692759295
+)
+
+(Numb.73
+)
+
+(AVDLog.74
+	Name:	"Splinepolylines"
+	X:	615
+	Y:	294
+	W:	380
+	H:	157
+	ConstrainedControlNames:	75
+	ConstrainedControlNames:	76
+	Constraints:	77
+	Constraints:	78
+	Server:	79
+	ControlPanel:	80
+	Title:	"Spline Polylines"
+	EscapeEnabled:	1
+	AlwaysOnTop:	1
+	HasTitleBar:	1
+	Closeable:	1
+	Open:	"Splply.dlgOpen"
+	DefaultButton:	109
+)
+
+(AVStr.75
+	S:	"OK"
+)
+
+(AVStr.76
+	S:	"Close"
+)
+
+(Numb.77
+	N:	85.00000000000000
+)
+
+(Numb.78
+	N:	85.00000000000000
+)
+
+(Nil.79
+)
+
+(CPanel.80
+	Child:	81
+	Child:	96
+	ResBox:	107
+	ResBox:	108
+	Listening:	1
+)
+
+(CPanel.81
+	InternalName:	"aControlPanel3"
+	Child:	82
+	Child:	84
+	Constraints:	0x55
+	ResBox:	94
+	ResBox:	95
+	VisibleBorder:	1
+	Listening:	1
+)
+
+(TextLine.82
+	InternalName:	"densityfactor"
+	Text:	"0.002"
+	Label:	"Dichte-Faktor"
+	Constraints:	0x55
+	Listening:	1
+	TextType:	83
+	Changed:	"Splply.densityfactor.changed"
+	NextControl:	84
+)
+
+(AVEnum.83
+	Name:	"TEXTLINE_TYPE_ALL"
+)
+
+(TextLine.84
+	InternalName:	"iterations"
+	Text:	"3"
+	Label:	"Durchgänge"
+	Constraints:	0x55
+	Listening:	1
+	TextType:	85
+	Changed:	"Splply.iterations.changed"
+	NextControl:	86
+)
+
+(AVEnum.85
+	Name:	"TEXTLINE_TYPE_ALL"
+)
+
+(TextLine.86
+	InternalName:	"red"
+	Text:	"255"
+	Label:	"R"
+	Constraints:	0x55
+	Listening:	1
+	TextType:	87
+	Changed:	"Splply.red.changed"
+	NextControl:	88
+)
+
+(AVEnum.87
+	Name:	"TEXTLINE_TYPE_ALL"
+)
+
+(TextLine.88
+	InternalName:	"green"
+	Text:	"0"
+	Label:	"G"
+	Constraints:	0x55
+	Listening:	1
+	TextType:	89
+	Changed:	"Splply.green.changed"
+	NextControl:	90
+)
+
+(AVEnum.89
+	Name:	"TEXTLINE_TYPE_ALL"
+)
+
+(TextLine.90
+	InternalName:	"blue"
+	Text:	"0"
+	Label:	"B"
+	Constraints:	0x55
+	Listening:	1
+	TextType:	91
+	Changed:	"Splply.blue.changed"
+	NextControl:	92
+)
+
+(AVEnum.91
+	Name:	"TEXTLINE_TYPE_ALL"
+)
+
+(TextLine.92
+	InternalName:	"stroke"
+	Text:	"2"
+	Label:	"Strichstärke"
+	Constraints:	0x55
+	Listening:	1
+	TextType:	93
+	Changed:	"Splply.stroke.changed"
+	NextControl:	82
+)
+
+(AVEnum.93
+	Name:	"TEXTLINE_TYPE_ALL"
+)
+
+(RectD.94
+	Left:	9.00000000000000
+	Top:	29.00000000000000
+	Right:	184.00000000000000
+	Bottom:	9.00000000000000
+)
+
+(RectD.95
+	Left:	194.00000000000000
+	Top:	29.00000000000000
+	Right:	364.00000000000000
+	Bottom:	9.00000000000000
+)
+
+(CPanel.96
+	InternalName:	"aControlPanel1"
+	Child:	97
+	Child:	98
+	Child:	86
+	Child:	92
+	Child:	99
+	Child:	88
+	Child:	90
+	Constraints:	0x55
+	ResBox:	100
+	ResBox:	101
+	ResBox:	102
+	ResBox:	103
+	ResBox:	104
+	ResBox:	105
+	ResBox:	106
+	VisibleBorder:	1
+	Listening:	1
+)
+
+(LButn.97
+	InternalName:	"OK"
+	Label:	"OK"
+	Click:	"Splply.Spline"
+)
+
+(LButn.98
+	InternalName:	"Close"
+	Label:	"Schliessen"
+	Click:	"Splply.Close"
+)
+
+(TextLabel.99
+	InternalName:	"color"
+	Constraints:	0x55
+	Label:	"Farbe (RGB)"
+	Listening:	1
+)
+
+(RectD.100
+	Left:	259.00000000000000
+	Top:	65.00000000000000
+	Right:	364.00000000000000
+	Bottom:	39.00000000000000
+)
+
+(RectD.101
+	Left:	259.00000000000000
+	Top:	101.00000000000000
+	Right:	364.00000000000000
+	Bottom:	76.00000000000000
+)
+
+(RectD.102
+	Left:	92.00000000000000
+	Top:	29.00000000000000
+	Right:	183.00000000000000
+	Bottom:	9.00000000000000
+)
+
+(RectD.103
+	Left:	196.00000000000000
+	Top:	29.00000000000000
+	Right:	364.00000000000000
+	Bottom:	9.00000000000000
+)
+
+(RectD.104
+	Left:	8.00000000000000
+	Top:	37.00000000000000
+	Right:	104.00000000000000
+	Bottom:	9.00000000000000
+)
+
+(RectD.105
+	Left:	92.00000000000000
+	Top:	57.00000000000000
+	Right:	183.00000000000000
+	Bottom:	37.00000000000000
+)
+
+(RectD.106
+	Left:	93.00000000000000
+	Top:	87.00000000000000
+	Right:	183.00000000000000
+	Bottom:	67.00000000000000
+)
+
+(RectD.107
+	Left:	7.00000000000000
+	Top:	39.00000000000000
+	Right:	378.00000000000000
+	Bottom:	3.00000000000000
+)
+
+(RectD.108
+	Left:	8.00000000000000
+	Top:	152.00000000000000
+	Right:	378.00000000000000
+	Bottom:	43.00000000000000
+)
+
+(Nil.109
+)
+
+(RectD.110
+	Left:	1.12500000000000
+	Top:	2.96875000000000
+	Right:	5.08333333333333
+	Bottom:	1.33333333333333
+)
+
+(SEd.111
+	Name:	"Splply.blue.changed"
+	Creator:	"adrian"
+	CreationDate:	"Son 14 Jul 2013 17:25:44 CEST"
+	GUIName:	"Script"
+	Win:	112
+	CSMgr:	113
+	DocExts:	114
+	Source:	"if ((Self.GetText.AsNumber < 0) or (Self.GetText.AsNumber > 255)) then\n  Self.SetText(\"\")\n  MsgBox.Error(\"RGB-Wert muss zwischen 0 und 255 liegen\",\"\")\nend\n\nif (Self.GetText <> \"\") then\n  Self.GetDialog.FindByName(\"OK\").SetEnabled(true)\nelse\n  Self.GetDialog.FindByName(\"OK\").SetEnabled(false)\nend\n"
+)
+
+(DocWin.112
+	Owner:	111
+	X:	95
+	Y:	95
+	W:	745
+	H:	325
+)
+
+(CSMgr.113
+)
+
+(DocAct.114
+	Doc:	111
+)
+
+(SEd.115
+	Name:	"Splply.Close"
+	Creator:	"adrian"
+	CreationDate:	"Sam 13 Jul 2013 15:30:55 CEST"
+	GUIName:	"Script"
+	Win:	116
+	CSMgr:	117
+	DocExts:	118
+	Source:	"Self.GetDialog.Close"
+)
+
+(DocWin.116
+	Owner:	115
+	X:	35
+	Y:	35
+	W:	363
+	H:	245
+)
+
+(CSMgr.117
+)
+
+(DocAct.118
+	Doc:	115
+)
+
+(SEd.119
+	Name:	"Splply.densityfactor.changed"
+	Creator:	"adrian"
+	CreationDate:	"Sam 13 Jul 2013 14:57:12 CEST"
+	GUIName:	"Script"
+	Win:	120
+	CSMgr:	121
+	DocExts:	122
+	Source:	"if ((Self.GetText.AsNumber < 0) or (Self.GetText.AsNumber > 1)) then\n  Self.SetText(\"\")\n  MsgBox.Error(\"Dichte-Faktor muss zwischen 0 und 1 liegen\",\"\")\nend\n\nif (Self.GetText <> \"\") then\n  Self.GetDialog.FindByName(\"OK\").SetEnabled(true)\nelse\n  Self.GetDialog.FindByName(\"OK\").SetEnabled(false)\nend\n"
+)
+
+(DocWin.120
+	Owner:	119
+	X:	325
+	Y:	244
+	W:	678
+	H:	288
+)
+
+(CSMgr.121
+)
+
+(DocAct.122
+	Doc:	119
+)
+
+(SEd.123
+	Name:	"Splply.dlgOpen"
+	Creator:	"adrian"
+	CreationDate:	"Sam 13 Jul 2013 15:00:31 CEST"
+	GUIName:	"Script"
+	Win:	124
+	CSMgr:	125
+	DocExts:	126
+	Source:	"Self.FindByName(\"densityfactor\").SetText(0.002.AsString)\nSelf.FindByName(\"iterations\").SetText(3.AsString)\nSelf.FindByName(\"stroke\").SetText(2.AsString)\nSelf.FindByName(\"red\").SetText(255.AsString)\nSelf.FindByName(\"green\").SetText(0.AsString)\nSelf.FindByName(\"blue\").SetText(0.AsString)\n"
+)
+
+(DocWin.124
+	Owner:	123
+	X:	280
+	Y:	182
+	W:	505
+	H:	227
+)
+
+(CSMgr.125
+)
+
+(DocAct.126
+	Doc:	123
+)
+
+(SEd.127
+	Name:	"Splply.green.changed"
+	Creator:	"adrian"
+	CreationDate:	"Son 14 Jul 2013 17:25:26 CEST"
+	GUIName:	"Script"
+	Win:	128
+	CSMgr:	129
+	DocExts:	130
+	Source:	"if ((Self.GetText.AsNumber < 0) or (Self.GetText.AsNumber > 255)) then\n  Self.SetText(\"\")\n  MsgBox.Error(\"RGB-Wert muss zwischen 0 und 255 liegen\",\"\")\nend\n\nif (Self.GetText <> \"\") then\n  Self.GetDialog.FindByName(\"OK\").SetEnabled(true)\nelse\n  Self.GetDialog.FindByName(\"OK\").SetEnabled(false)\nend\n"
+)
+
+(DocWin.128
+	Owner:	127
+	X:	80
+	Y:	80
+	W:	727
+	H:	295
+)
+
+(CSMgr.129
+)
+
+(DocAct.130
+	Doc:	127
+)
+
+(SEd.131
+	Name:	"Splply.iterations.changed"
+	Creator:	"adrian"
+	CreationDate:	"Sam 13 Jul 2013 14:59:15 CEST"
+	GUIName:	"Script"
+	Win:	132
+	CSMgr:	133
+	DocExts:	134
+	Source:	"if ((Self.GetText.AsNumber < 1) or (Self.GetText.AsNumber > 100)) then\n  Self.SetText(\"\")\n  MsgBox.Error(\"Zwischen 1 und 100 Durchgänge sind möglich\",\"\")\nend\n\nif (Self.GetText <> \"\") then\n  Self.GetDialog.FindByName(\"OK\").SetEnabled(true)\nelse\n  Self.GetDialog.FindByName(\"OK\").SetEnabled(false)\nend\n"
+)
+
+(DocWin.132
+	Owner:	131
+	X:	80
+	Y:	80
+	W:	681
+	H:	266
+)
+
+(CSMgr.133
+)
+
+(DocAct.134
+	Doc:	131
+)
+
+(SEd.135
+	Name:	"Splply.red.changed"
+	Creator:	"adrian"
+	CreationDate:	"Son 14 Jul 2013 17:25:12 CEST"
+	GUIName:	"Script"
+	Win:	136
+	CSMgr:	137
+	DocExts:	138
+	Source:	"if ((Self.GetText.AsNumber < 0) or (Self.GetText.AsNumber > 255)) then\n  Self.SetText(\"\")\n  MsgBox.Error(\"RGB-Wert muss zwischen 0 und 255 liegen\",\"\")\nend\n\nif (Self.GetText <> \"\") then\n  Self.GetDialog.FindByName(\"OK\").SetEnabled(true)\nelse\n  Self.GetDialog.FindByName(\"OK\").SetEnabled(false)\nend\n"
+)
+
+(DocWin.136
+	Owner:	135
+	X:	65
+	Y:	65
+	W:	658
+	H:	362
+)
+
+(CSMgr.137
+)
+
+(DocAct.138
+	Doc:	135
+)
+
+(SEd.139
+	Name:	"Splply.Spline"
+	Creator:	"adrian"
+	CreationDate:	"Sam 13 Jul 2013 14:43:58 CEST"
+	GUIName:	"Script"
+	Win:	140
+	CSMgr:	141
+	DocExts:	142
+	Source:	"'##############################################################\n'#\n'# Filename:     spline_polylines_scale_graphics.ave\n'# Author:       Adrian Boehlen\n'# Date:         28.01.2023\n'# Version:      1.3\n'#\n'# Purpose:      erzeugt simulierte Splinekurve aus \n'#               selektierten Linienfeatures als Graphic\n'#               \n'#               Staerke der Splines, Strichstaerke\n'#               und Farbe koennen angegeben werden\n'#\n'#               Wenn gewuenscht, koennen die erzeugten\n'#               
+Linien entsprechend dem Referenzmassstab\n'#               skaliert werden \n'#\n'#               Wenn gewuenscht, koennen die erzeugten \n'#               Grafiken anschliessend in ein Shapefile\n'#               konvertiert werden. Die definierte \n'#               Symbolik bleibt dabei erhalten\n'#\n'# Based on:     spline_polyline.ave\n'#               scale_graphics_text.ave\n'#               Scriptgra2shp.ave\n'#\n'# This script uses a basic combination of densifying the \n'# polyline and implementing the Bezier's
+ spline\n'# method on the polyline. This script needs a view\n'# and the target theme active.\n'#\n'# A combination of these two variables will produce different\n'# results depending on the nature and scale of the Polyline.\n'#\n'# densityfactor 0.000 to 1.000 only\n'# iterations 1 to 100 works best\n'#\n'##############################################################\n\n'# Variablen aus Dialog einlesen\nderDialog = Self.GetDialog\ndensityfactor = derDialog.FindByName(\"densityfactor\").GetText.AsNumber\niterations = derDia
+log.FindByName(\"iterations\").GetText.AsNumber\nstrichst = derDialog.FindByName(\"stroke\").GetText.AsNumber\nrot = derDialog.FindByName(\"red\").GetText.AsNumber\ngruen = derDialog.FindByName(\"green\").GetText.AsNumber\nblau = derDialog.FindByName(\"blue\").GetText.AsNumber\n\ntheView = av.GetActiveDoc \n\nif (theView.Is(view).Not) then\n  MsgBox.Warning(\"Start this tool from an active View.\",\"\")\n  return nil\nend\n\ntheDisplay = theView.GetDisplay\n\n'# Thema pruefen\ntheGraphics = theView.GetGraphics\nthm = theView.GetActiveThe
+mes.Get(0)\nftb = thm.GetFtab\nif(ftb.GetShapeclass.GetClassname <> \"PolyLine\") then\n  MsgBox.Error(\"Nur Linienfeatures koennen verarbeitet werden\",\"\")\n  return nil\nend\n\nif (ftb.getselection.count = 0) then\n  MsgBox.Info(\"ein oder mehrere Linienfeatures muessen selektiert sein\",\"\")\n  return nil\nend\n\n'# Fortschrittsanzeige mit Stop button definieren\nav.ShowMsg(\"Spline polylines...\")\ncanceled = False\nav.ShowStopButton\nstatusIndex = 0\nav.SetStatus(statusIndex)\n\n'# Spline-Funktion mit Fortschrittsanzeige\nfor each
+ selrec in ftb.GetSelection\n  statusIncrement = 100 / ftb.GetSelection.Count\n  thepolyline = ftb.ReturnValue(ftb.FindField(\"Shape\"),SelRec)\n    \n  howdense = thepolyline.ReturnLength*densityfactor\n  oldplist = thepolyline.ReturnDensified(howdense).AsList\n  \n  newplist = {}\n  for each apart in oldplist\n    for each ap in apart\n      newplist.Add(ap)\n    end\n  end\n  \n  for each x in 1..iterations\n    statusIndex = statusIndex + statusIncrement\n    continued = av.SetStatus(statusIndex)\n    if (Not continued) t
+hen\n      canceled = true\n      break\n    end\n\n    newerplist = {}  \n    for each i in 0..(newplist.count-1)\n      if (i = 0) then\n        newerplist.Add(newplist.Get(i))\n      elseif (i = (newplist.Count-1)) then\n        newerplist.add(newplist.Get(i))\n        break\n      end        \n      newp = Line.Make(newplist.Get(i),newplist.Get(i+1)).ReturnCenter \n      newerplist.Add(newp)  \n    end\n    newplist = newerplist.DeepClone  \n  end\n  \n  newpolyline = Polyline.Make({newplist})  \n\n  theGraphicShape = Graph
+icshape.Make(newpolyline)\n  asymbol = Symbol.Make(#SYMBOL_PEN)\n  asymbol.SetSize(strichst)\n  nc = Color.Make\n  nc.SetRGBList({rot,gruen,blau})\n  asymbol.SetColor(nc)\n  theGraphicShape.SetSymbol(asymbol)\n  theGraphicShape.SetSelected(true)\n  theGraphics.Add(theGraphicShape)\nend\n\n'# Falls Stop button gedrueckt wurde, Meldung ausgeben\nif (canceled) then\n  av.ShowMsg(\"Process interrupted\")\nelse\n  av.ShowMsg(\"Process completed\")\n  av.ClearStatus   '# damit Fortschrittsanzeige verschwindet\nend\n\n\n'# Grafikfeatures
+ skalieren\ntheGTL = theView.GetGraphics.FindAllByClass(graphicshape)\nthingsToStopScaling = theView.GetGraphics.GetSelected\ntheSelGTL = {}\n\nif (MsgBox.YesNo(\"Linien skalieren ?\",\"Skalieren\",true)) then\n  theChoice = 1\n  theScale = MsgBox.Input(\"Geben Sie den Referenzmassstab ein:\" + 10.AsChar + \"1 :...\",\n    \"Referenzmassstab definieren\",1000.AsString)\n  if (theScale = nil) then\n    return nil\n  elseif (theScale.IsNumber.Not) then\n    MsgBox.Error(\"Ungueltige Eingabe\",\"Abbruch\")\n    return nil\n  end\n  theDis
+play.ZoomToScale(theScale.AsNumber)\n  for each g in thingsToStopScaling \n    if (g.GetShape.Is(polygon).Not) then\n      g.GetSymbol.UnHook\n    end\n  end\n  for each gt in theGTL\n    if (gt.IsSelected)\n      then\n        theSelGTL.Add(gt)\n     end\n  end\n  for each gt in theSelGTL\n    theDisplay.HookupSymbol(gt.GetSymbol)\n  end\n  theDisplay.UndoZoom\nelse\n  theChoice = 0\n  for each g in thingsToStopScaling \n    if (g.GetShape.Is(polygon).Not) then\n      g.GetSymbol.UnHook\n    end\n  end\nend\nav.purgeobjects\n\n'# G
+rafiken in Shapefile konvertieren\nif (MsgBox.YesNo(\"Grafiken zu Shapefile konvertieren ?\",\"Zu Shapefile konvertieren\",true)) then\n  theGPL=theView.GetGraphics.GetSelected\n  if (theGPL = nil) then \n    MsgBox.Error(\"No graphic shapes in view\",\"\")\n    return nil\n  end\n\n  theclass = polyline\n\n  theCLoF={}\n  for each g in theGPL\n    if ((g.getshape.is(rect)) or (g.getshape.is(circle))) then\n      g = graphicshape.make(g.getshape.aspolygon)\n    end\n    if (g.getshape.Is(theclass)) then\n      theCLoF.Add(g)  \n   
+ end\n  end\n\n  if (theCLoF.count = 0) then\n    MsgBox.error(\"No graphic features in\"+\n    \"view\",\"\")\n    return nil\n  end\n\n  tmpfn = av.GetProject.GetWorkDir\n  theOutFileName=FileDialog.Put(tmpfn,\"*.shp\",\"neues Shapefile definieren\")\n  theFtab=Ftab.MakeNew(theOutFileName, theclass)\n  theIDfld=Field.Make(\"myID\", #FIELD_LONG, 10, 0)\n  theShapeFld=theFtab.FindField(\"Shape\")\n  theFldList={theIDfld}\n  theFtab.AddFields(theFldList)\n\n  for each fea in theCLoF\n    theRecNo=theFtab.AddRecord\n    theFtab.SetValue(theI
+Dfld, theRecNo, theRecNo)\n    eachShape=fea.getshape\n    theFtab.SetValue(theShapeFld, theRecNo, eachShape)\n  end\n  \n  theFTheme=Ftheme.Make(theFTab)\n  theView.AddTheme(theFTheme)\n\n  theLeg = theFTheme.GetLegend\n  theLine = Symbol.Make(#SYMBOL_PEN)\n  theLine.SetColor(nc)\n  theLine.SetSize(strichst)\n  theLeg.SetLegendType(#LEGEND_TYPE_SIMPLE)\n  if (theChoice = 1) then\n    theLeg.SetScaleSymbols(true)\n    theLeg.SetRefScale(theScale.AsNumber)\n  end\n  theLeg.GetSymbols.Set(0,theLine)\n  \n  '# Grafikfeatures wie
+der loeschen\n  if (theView.GetGraphics.HasSelected) then\n    av.GetProject.SetModified(true)\n  end\n\n  theView.GetGraphics.ClearSelected\nend\n\n"
+)
+
+(DocWin.140
+	Owner:	139
+	X:	167
+	Y:	37
+	W:	831
+	H:	600
+)
+
+(CSMgr.141
+)
+
+(DocAct.142
+	Doc:	139
+)
+
+(SEd.143
+	Name:	"Splply.Start"
+	Creator:	"adrian"
+	CreationDate:	"Son 14 Jul 2013 16:26:55 CEST"
+	GUIName:	"Script"
+	Win:	144
+	CSMgr:	145
+	DocExts:	146
+	Source:	"av.getproject.finddialog(\"Splinepolylines\").open"
+)
+
+(DocWin.144
+	Owner:	143
+	X:	131
+	Y:	322
+	W:	474
+	H:	245
+)
+
+(CSMgr.145
+)
+
+(DocAct.146
+	Doc:	143
+)
+
+(SEd.147
+	Name:	"Splply.stroke.changed"
+	Creator:	"adrian"
+	CreationDate:	"Son 14 Jul 2013 17:18:22 CEST"
+	GUIName:	"Script"
+	Win:	148
+	CSMgr:	149
+	DocExts:	150
+	Source:	"if (Self.GetText.AsNumber < 0) then\n  Self.SetText(\"\")\n  MsgBox.Error(\"Strichstärke muss grösser als 0 sein\",\"\")\nend\n\nif (Self.GetText <> \"\") then\n  Self.GetDialog.FindByName(\"OK\").SetEnabled(true)\nelse\n  Self.GetDialog.FindByName(\"OK\").SetEnabled(false)\nend\n"
+)
+
+(DocWin.148
+	Owner:	147
+	X:	50
+	Y:	50
+	W:	806
+	H:	410
+)
+
+(CSMgr.149
+)
+
+(DocAct.150
+	Doc:	147
+)
+
+(View.151
+	Name:	"View1"
+	Creator:	"adrian"
+	CreationDate:	"Sam 13 Jul 2013 14:43:49 CEST"
+	GUIName:	"View"
+	Win:	152
+	CSMgr:	153
+	DocExts:	155
+	DocExts:	156
+	Graphics:	157
+	Dpy:	158
+	TOCWidth:	150
+	CoordPrecision:	2
+)
+
+(DocWin.152
+	Owner:	151
+	Open:	1
+	X:	260
+	Y:	5
+	W:	746
+	H:	458
+)
+
+(CSMgr.153
+	Client:	154
+)
+
+(CSClient.154
+	Client:	155
+	ReqName:	"ClientNfy"
+)
+
+(PanMgr.155
+	Doc:	151
+)
+
+(DocAct.156
+	Doc:	151
+)
+
+(GList.157
+	Dpy:	158
+	FormatNumb:	163
+)
+
+(MapDpy.158
+	Left:	142940.70708578159000
+	Bottom:	658564.95797725720000
+	Top:	659018.29972687690000
+	Right:	143321.95298279088000
+	ReportUnits:	7
+	Units:	7
+	Scale:	159
+	FrameTop:	4.44791666666667
+	FrameRight:	6.05208333333333
+	PageDpy:	160
+	FitToPage:	1
+	MouseLoc:	162
+)
+
+(Numb.159
+	N:	0.00981139873042
+)
+
+(PageDpy.160
+	Top:	4.44791666666667
+	Right:	6.05208333333333
+	ReportUnits:	1
+	Units:	1
+	Scale:	161
+	ZoomRight:	6.05208333333333
+	ZoomTop:	4.44791666666667
+	GridSpacingX:	0.25000000000000
+	GridSpacingY:	0.25000000000000
+)
+
+(Numb.161
+	N:	96.00000000000000
+)
+
+(PointD.162
+	x:	142830.34083986661000
+	y:	658743.32194432069000
+)
+
+(Numb.163
+)
+
+(LButn.164
+	HelpTopic:	"New_button"
+	Update:	"Doc.NewUpdate"
+	Label:	"&New"
+	Click:	"Script.New"
+)
+
+(LButn.165
+	HelpTopic:	"Open_button"
+	Update:	"Doc.OpenUpdate"
+	Label:	"&Open"
+	Click:	"Doc.Open"
+)
+
+(LButn.166
+	HelpTopic:	"Run_button"
+	Update:	"Script.ActionUpdate"
+	Label:	"&Run"
+	Click:	"Script.Action"
+)
+
+(FN.167
+	Path:	"$AVEXT/dialog.avx"
+)
+
+(NameDict.168
+)
+
+(NameDict.169
+	Obj:	170
+	Obj:	173
+	Obj:	174
+)
+
+(AVDict.170
+	InternalName:	"Dialog Designer"
+	Key:	171
+	Value:	172
+)
+
+(AVStr.171
+	S:	"IsVisible"
+)
+
+(Bool.172
+	Truth:	1
+)
+
+(AVDict.173
+	InternalName:	"Table of Contents Defaults Dialog"
+)
+
+(AVDict.174
+	InternalName:	"_Thor_"
+	Key:	175
+	Value:	176
+)
+
+(AVStr.175
+	S:	"DLOGS"
+)
+
+(NameDict.176
+)
+
+(DocGUI.177
+	Name:	"View"
+	Type:	"View"
+	Modified:	1
+	Visible:	1
+	MenuBar:	178
+	ButnBar:	297
+	Popups:	340
+	ToolBar:	362
+	NewScript:	"View.New"
+	OpenScript:	"Doc.Open"
+	ActionScript:	"Doc.Action"
+	NewUpdateScript:	"Doc.NewUpdate"
+	OpenUpdateScript:	"Doc.OpenUpdate"
+	ActionUpdateScript:	"Doc.ActionUpdate"
+	Title:	"Views"
+	Icon:	439
+)
+
+(MenuBar.178
+	Child:	179
+	Child:	196
+	Child:	216
+	Child:	239
+	Child:	262
+	Child:	280
+	Child:	292
+)
+
+(PMenu.179
+	InternalName:	"File"
+	Child:	180
+	Child:	181
+	Child:	182
+	Child:	183
+	Child:	184
+	Child:	185
+	Child:	186
+	Child:	187
+	Child:	188
+	Child:	189
+	Child:	190
+	Child:	191
+	Child:	192
+	Child:	193
+	Child:	194
+	Child:	195
+	Label:	"&File"
+)
+
+(Choice.180
+	Help:	"Closes the active component"
+	HelpTopic:	"Close"
+	Label:	"&Close"
+	Click:	"Project.CloseDoc"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.181
+	Help:	"Closes all components"
+	HelpTopic:	"Close_All"
+	Label:	"Close &All"
+	Click:	"Project.CloseAll"
+	Shortcut:	"Keys.None"
+)
+
+(Space.182
+)
+
+(Choice.183
+	Help:	"Allows you to specify the current working directory"
+	HelpTopic:	"Set_Working_Directory"
+	Label:	"Set &Working Directory..."
+	Click:	"Project.SetProjectWorkDir"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.184
+	Help:	"Saves the current project"
+	HelpTopic:	"Save_Project"
+	Label:	"&Save Project"
+	Click:	"Project.Save"
+	Shortcut:	"Keys.Ctrl+S"
+)
+
+(Choice.185
+	Help:	"Saves the current project with a new name"
+	HelpTopic:	"Save_Project_As"
+	Label:	"Save Project As..."
+	Click:	"Project.SaveAs"
+	Shortcut:	"Keys.None"
+)
+
+(Space.186
+)
+
+(Choice.187
+	Help:	"Displays the Extensions dialog"
+	HelpTopic:	"Extensions"
+	Label:	"Extensions..."
+	Click:	"Appl.GetExtensionWin"
+	Shortcut:	"Keys.None"
+)
+
+(Space.188
+)
+
+(Choice.189
+	Help:	"Prints the view"
+	HelpTopic:	"Print"
+	Label:	"&Print..."
+	Click:	"View.Print"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.190
+	Help:	"Edits the printer and the printing options"
+	HelpTopic:	"Print_Setup"
+	Label:	"P&rint Setup..."
+	Click:	"Project.PrintSetup"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.191
+	Disabled:	1
+	Help:	"Exports the view"
+	HelpTopic:	"Export"
+	Update:	"View.HasThemesUpdate"
+	Label:	"&Export..."
+	Click:	"View.ExportDisp"
+	Shortcut:	"Keys.None"
+)
+
+(Space.192
+)
+
+(Choice.193
+	Help:	"Displays the dialog box to delete, edit, and copy data sources"
+	HelpTopic:	"Manage_Sources"
+	Label:	"&Manage Data Sources..."
+	Click:	"View.ManageSources"
+	Shortcut:	"Keys.None"
+)
+
+(Space.194
+)
+
+(Choice.195
+	Help:	"Exits ArcView"
+	HelpTopic:	"Exit"
+	Label:	"E&xit"
+	Click:	"Project.Exit"
+	Shortcut:	"Keys.None"
+)
+
+(PMenu.196
+	InternalName:	"Edit"
+	Child:	197
+	Child:	198
+	Child:	199
+	Child:	200
+	Child:	201
+	Child:	202
+	Child:	203
+	Child:	204
+	Child:	205
+	Child:	206
+	Child:	207
+	Child:	208
+	Child:	209
+	Child:	210
+	Child:	211
+	Child:	212
+	Child:	213
+	Child:	214
+	Child:	215
+	Label:	"&Edit"
+)
+
+(Choice.197
+	Disabled:	1
+	Help:	"Cuts the active themes to the clipboard"
+	HelpTopic:	"Cut_Themes"
+	Update:	"View.ActiveDeletableThemesUpdate"
+	Label:	"Cut T&hemes"
+	Click:	"View.CutThemes"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.198
+	Disabled:	1
+	Help:	"Copies the active themes to the clipboard"
+	HelpTopic:	"Copy_Themes"
+	Update:	"View.ActiveThemesUpdate"
+	Label:	"Cop&y Themes"
+	Click:	"View.CopyThemes"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.199
+	Disabled:	1
+	Help:	"Removes the active themes from the view"
+	HelpTopic:	"Delete_Themes"
+	Update:	"View.ActiveDeletableThemesUpdate"
+	Label:	"De&lete Themes"
+	Click:	"View.DeleteThemes"
+	Shortcut:	"Keys.None"
+)
+
+(Space.200
+)
+
+(Choice.201
+	Help:	"Undo the last edit to graphics on a view"
+	HelpTopic:	"Undo_Graphic_Edit_on_a_view"
+	Update:	"View.UndoEditUpdate"
+	Label:	"&Undo Graphic Edit"
+	Click:	"View.UndoEdit"
+	Shortcut:	"Keys.Ctrl+Z"
+)
+
+(Choice.202
+	Disabled:	1
+	Invisible:	1
+	Help:	"Redo the last edit operation on a theme that was undone"
+	HelpTopic:	"Redo_Feature_Edit_on_a_view"
+	Update:	"View.RedoEditUpdate"
+	Label:	"&Redo Feature Edit"
+	Click:	"View.RedoEdit"
+	Shortcut:	"Keys.Ctrl+Y"
+)
+
+(Space.203
+)
+
+(Choice.204
+	Disabled:	1
+	Help:	"Cuts the selected graphics to the clipboard"
+	HelpTopic:	"Cut_Graphics"
+	Update:	"View.CutUpdate"
+	Label:	"Cu&t Graphics"
+	Click:	"View.CutGraphics"
+	Shortcut:	"Keys.Ctrl+X"
+)
+
+(Choice.205
+	Disabled:	1
+	Help:	"Copies the selected graphics to the clipboard"
+	HelpTopic:	"Copy_Graphics"
+	Update:	"View.CopyUpdate"
+	Label:	"&Copy Graphics"
+	Click:	"View.CopyGraphics"
+	Shortcut:	"Keys.Ctrl+C"
+)
+
+(Choice.206
+	Disabled:	1
+	Help:	"Removes the selected graphics from the view"
+	HelpTopic:	"Delete_Graphics"
+	Update:	"View.DeleteUpdate"
+	Label:	"&Delete Graphics"
+	Click:	"View.DeleteGraphics"
+	Shortcut:	"Keys.Del"
+)
+
+(Space.207
+)
+
+(Choice.208
+	Disabled:	1
+	Help:	"Combines the selected polygons"
+	HelpTopic:	"Combine_Graphics"
+	Update:	"View.CombineUpdate"
+	Label:	"Com&bine Graphics"
+	Click:	"View.CombineGraphics"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.209
+	Disabled:	1
+	Help:	"Unions the selected graphics to create a new graphic"
+	HelpTopic:	"Union_Graphics"
+	Update:	"View.UnionUpdate"
+	Label:	"U&nion Graphics"
+	Click:	"View.UnionGraphics"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.210
+	Disabled:	1
+	Help:	"Subtracts one selected polygon from the other selected polygon"
+	HelpTopic:	"Subtract_Graphics"
+	Update:	"View.SubtractUpdate"
+	Label:	"&Subtract Graphics"
+	Click:	"View.SubtractGraphics"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.211
+	Disabled:	1
+	Help:	"Creates a new polygon from the area  of overlap between the selected polygons"
+	HelpTopic:	"Intersect_Graphics"
+	Update:	"View.IntersectUpdate"
+	Label:	"&Intersect Graphics"
+	Click:	"View.IntersectGraphics"
+	Shortcut:	"Keys.None"
+)
+
+(Space.212
+)
+
+(Choice.213
+	Disabled:	1
+	Help:	"Inserts the contents of the clipboard"
+	HelpTopic:	"Paste"
+	Update:	"View.PasteUpdate"
+	Label:	"&Paste"
+	Click:	"View.Paste"
+	Shortcut:	"Keys.Ctrl+V"
+)
+
+(Space.214
+)
+
+(Choice.215
+	Disabled:	1
+	Help:	"Selects all graphics in the view"
+	HelpTopic:	"Select_All_Graphics"
+	Update:	"View.HasGraphicsUpdate"
+	Label:	"Select &All Graphics"
+	Click:	"Graphic.SelectAll"
+	Shortcut:	"Keys.None"
+)
+
+(PMenu.216
+	InternalName:	"View"
+	Child:	217
+	Child:	218
+	Child:	219
+	Child:	220
+	Child:	221
+	Child:	222
+	Child:	223
+	Child:	224
+	Child:	225
+	Child:	226
+	Child:	227
+	Child:	228
+	Child:	229
+	Child:	230
+	Child:	231
+	Child:	232
+	Child:	233
+	Child:	234
+	Child:	235
+	Child:	236
+	Child:	237
+	Child:	238
+	Label:	"&View"
+)
+
+(Choice.217
+	Help:	"Displays the dialog box to edit properties of the view"
+	HelpTopic:	"View_Properties"
+	Label:	"&Properties..."
+	Click:	"View.Properties"
+	Shortcut:	"Keys.None"
+)
+
+(Space.218
+)
+
+(Choice.219
+	Help:	"Inserts themes into the view"
+	HelpTopic:	"Add_Theme"
+	Label:	"&Add Theme..."
+	Click:	"View.Add"
+	Shortcut:	"Keys.Ctrl+T"
+)
+
+(Choice.220
+	Disabled:	1
+	Help:	"Displays a dialog box to create a geocoded theme"
+	HelpTopic:	"Geocode_Addresses"
+	Update:	"View.GeocodeUpdate"
+	Label:	"&Geocode Addresses..."
+	Click:	"View.Geocode"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.221
+	Help:	"Displays a dialog box to create an XY or dynamic segmentation event-based theme "
+	HelpTopic:	"Add_Event_Theme"
+	Update:	"View.AddEventUpdate"
+	Label:	"Add &Event Theme..."
+	Click:	"View.AddEvent"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.222
+	Help:	"Creates a new theme"
+	HelpTopic:	"New_Theme"
+	Label:	"&New Theme..."
+	Click:	"View.NewTheme"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.223
+	Disabled:	1
+	Help:	"Makes all themes visible"
+	HelpTopic:	"Themes_On_Themes_Off"
+	Update:	"View.HasThemesUpdate"
+	Label:	"&Themes On"
+	Click:	"View.ThemesOn"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.224
+	Disabled:	1
+	Help:	"Makes all themes invisible"
+	HelpTopic:	"Themes_On_Themes_Off"
+	Update:	"View.HasThemesUpdate"
+	Label:	"T&hemes Off"
+	Click:	"View.ThemesOff"
+	Shortcut:	"Keys.None"
+)
+
+(Space.225
+)
+
+(Choice.226
+	Disabled:	1
+	Help:	"Create a Layout from the View"
+	HelpTopic:	"Layout_menu_choice"
+	Update:	"View.HasThemesUpdate"
+	Label:	"La&yout..."
+	Click:	"View.Layout"
+	Shortcut:	"Keys.None"
+)
+
+(Space.227
+)
+
+(Choice.228
+	Help:	"Shows a dialog where you can change the style of the TOC"
+	HelpTopic:	"TOC_Defaults"
+	Update:	"TocDefs.ShowUpdate"
+	Label:	"TOC Style..."
+	Click:	"TocDefs.Show"
+	Shortcut:	"Keys.None"
+)
+
+(Space.229
+)
+
+(Choice.230
+	Disabled:	1
+	Help:	"Zooms to the extent of all themes"
+	HelpTopic:	"Zoom_to_Full_Extent"
+	Update:	"View.HasDataUpdate"
+	Label:	"Full E&xtent"
+	Click:	"View.ZoomFullExtent"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.231
+	Disabled:	1
+	Help:	"Zooms in on the center of the display"
+	HelpTopic:	"Zoom_In"
+	Update:	"View.HasDataUpdate"
+	Label:	"Zoom &In"
+	Click:	"View.ZoomIn"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.232
+	Disabled:	1
+	Help:	"Zooms out from the center of the display"
+	HelpTopic:	"Zoom_Out"
+	Update:	"View.HasDataUpdate"
+	Label:	"Zoom &Out"
+	Click:	"View.ZoomOut"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.233
+	Disabled:	1
+	Help:	"Zooms to the extent of active themes"
+	HelpTopic:	"Zoom_to_Active_Theme"
+	Update:	"View.ActiveThemesUpdate"
+	Label:	"&Zoom To Themes"
+	Click:	"View.ZoomToThemes"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.234
+	Disabled:	1
+	Help:	"Zooms to the extent of the selected features"
+	HelpTopic:	"Zoom_to_Selected"
+	Update:	"View.SelectableThemesUpdate"
+	Label:	"Zoom To &Selected"
+	Click:	"View.ZoomToSelected"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.235
+	Help:	"Goes back to the previous extent you were viewing"
+	HelpTopic:	"Zoom_Previous"
+	Update:	"View.UndoZoomUpdate"
+	Label:	"Zoom Pre&vious"
+	Click:	"View.UndoZoom"
+	Shortcut:	"Keys.None"
+)
+
+(Space.236
+)
+
+(Choice.237
+	Disabled:	1
+	Help:	"Finds features in the active themes using the text you enter"
+	HelpTopic:	"Find"
+	Update:	"View.TabularThemesUpdate"
+	Label:	"&Find..."
+	Click:	"View.Find"
+	Shortcut:	"Keys.Ctrl+F"
+)
+
+(Choice.238
+	Disabled:	1
+	Help:	"Locates an address in the active, matchable theme"
+	HelpTopic:	"Locate_Address"
+	Update:	"View.LocateUpdate"
+	Label:	"&Locate Address..."
+	Click:	"View.Locate"
+	Shortcut:	"Keys.None"
+)
+
+(PMenu.239
+	InternalName:	"Theme"
+	Child:	240
+	Child:	241
+	Child:	242
+	Child:	243
+	Child:	244
+	Child:	245
+	Child:	246
+	Child:	247
+	Child:	248
+	Child:	249
+	Child:	250
+	Child:	251
+	Child:	252
+	Child:	253
+	Child:	254
+	Child:	255
+	Child:	256
+	Child:	257
+	Child:	258
+	Child:	259
+	Child:	260
+	Child:	261
+	Label:	"&Theme"
+)
+
+(Choice.240
+	Disabled:	1
+	Help:	"Displays the dialog box to edit properties of the active theme"
+	HelpTopic:	"Theme_Properties"
+	Update:	"View.ActiveThemesUpdate"
+	Label:	"&Properties..."
+	Click:	"View.ThemeProperties"
+	Shortcut:	"Keys.None"
+)
+
+(Space.241
+)
+
+(Choice.242
+	Disabled:	1
+	Help:	"Starts or stops editing of shapefile"
+	HelpTopic:	"Start_Stop_Editing_in_a_view"
+	Update:	"View.ToggleEditingUpdate"
+	Label:	"Start &Editing"
+	Click:	"View.ToggleEditing"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.243
+	Disabled:	1
+	Help:	"Save edits to the source shapefile"
+	HelpTopic:	"Save_edits_theme"
+	Update:	"View.SaveEditsUpdate"
+	Label:	"Save Ed&its"
+	Click:	"View.SaveEdits"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.244
+	Disabled:	1
+	Help:	"Saves edits to a new shapefile"
+	HelpTopic:	"Save_edits_as_theme"
+	Update:	"View.SaveEditsUpdate"
+	Label:	"Save E&dits As..."
+	Click:	"View.SaveEditsAs"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.245
+	Disabled:	1
+	Help:	"Converts a theme to a shapefile"
+	HelpTopic:	"Convert_to_Shapefile"
+	Update:	"View.ExportUpdate"
+	Label:	"Convert to &Shapefile..."
+	Click:	"View.Export"
+	Shortcut:	"Keys.None"
+)
+
+(Space.246
+)
+
+(Choice.247
+	Disabled:	1
+	Help:	"Displays the legends of the active themes"
+	HelpTopic:	"Edit_Legend"
+	Update:	"View.ActiveThemesUpdate"
+	Label:	"Edit &Legend..."
+	Click:	"View.EditLegendClick"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.248
+	Disabled:	1
+	Help:	"Shows or hides the active themes' legends"
+	HelpTopic:	"Hide_show_Legend"
+	Update:	"View.ActiveThemesUpdate"
+	Label:	"&Hide/Show Legend"
+	Click:	"View.ToggleLegend"
+	Shortcut:	"Keys.None"
+)
+
+(Space.249
+)
+
+(Choice.250
+	Disabled:	1
+	Help:	"Displays the Re-match dialog for re-matching addresses"
+	HelpTopic:	"Re_match_Addresses"
+	Update:	"View.EditMatchUpdate"
+	Label:	"&Re-match Addresses..."
+	Click:	"View.EditMatch"
+	Shortcut:	"Keys.None"
+)
+
+(Space.251
+)
+
+(Choice.252
+	Disabled:	1
+	Help:	"Labels features in active, visible themes"
+	HelpTopic:	"Auto_label"
+	Update:	"View.LabelThemesUpdate"
+	Label:	"&Auto-label..."
+	Click:	"View.LabelThemes"
+	Shortcut:	"Keys.Ctrl+L"
+)
+
+(Choice.253
+	Disabled:	1
+	Help:	"Removes any labels from active themes"
+	HelpTopic:	"Remove_Labels"
+	Update:	"View.RemoveThemeLabelsUpdate"
+	Label:	"Rem&ove Labels"
+	Click:	"View.RemoveThemeLabels"
+	Shortcut:	"Keys.Ctrl+R"
+)
+
+(Choice.254
+	Disabled:	1
+	Help:	"Removes the overlapping labels from active themes, if they are still green."
+	HelpTopic:	"Remove_Overlapping_Labels"
+	Update:	"View.RemoveOverlapThemeLabelsUpdate"
+	Label:	"Remove Overlappi&ng Labels"
+	Click:	"View.RemoveOverlapThemeLabels"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.255
+	Disabled:	1
+	Help:	"Converts selected overlapping labels to symbol of selected good label"
+	HelpTopic:	"Convert_Overlapping_Labels"
+	Update:	"View.ConvertOverlapLabelsUpdate"
+	Label:	"&Convert Overlapping Labels"
+	Click:	"View.ConvertOverlapLabels"
+	Shortcut:	"Keys.Ctrl+O"
+)
+
+(Space.256
+)
+
+(Choice.257
+	Disabled:	1
+	Help:	"Opens the tables of the active themes"
+	HelpTopic:	"Open_Theme_Table"
+	Update:	"View.TabularThemesUpdate"
+	Label:	"&Table..."
+	Click:	"View.ShowTable"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.258
+	Disabled:	1
+	Help:	"Displays the Query Builder to select features with a logical expression"
+	HelpTopic:	"Query_Builder"
+	Update:	"View.AttributeThemesUpdate"
+	Label:	"&Query..."
+	Click:	"View.Query"
+	Shortcut:	"Keys.Ctrl+Q"
+)
+
+(Choice.259
+	Disabled:	1
+	Help:	"Selects features in the active themes using another theme's features"
+	HelpTopic:	"Select_By_Theme"
+	Update:	"View.SelectableThemesUpdate"
+	Label:	"Select &By Theme..."
+	Click:	"View.SelectByTheme"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.260
+	Disabled:	1
+	Help:	"Creates buffers around features"
+	HelpTopic:	"Create_Buffer_Choice"
+	Update:	"WizardBuffer.OpenDialogUpdate"
+	Label:	"Create Buffers..."
+	Click:	"WizardBuffer.OpenDialog"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.261
+	Disabled:	1
+	Help:	"Unselects the selected features of all active themes"
+	HelpTopic:	"Clear_Selected_Features"
+	Update:	"View.AttributeThemesUpdate"
+	Label:	"Clear Selected &Features"
+	Click:	"View.ClearSelect"
+	Shortcut:	"Keys.None"
+)
+
+(PMenu.262
+	InternalName:	"Graphics"
+	Child:	263
+	Child:	264
+	Child:	265
+	Child:	266
+	Child:	267
+	Child:	268
+	Child:	269
+	Child:	270
+	Child:	271
+	Child:	274
+	Child:	275
+	Child:	276
+	Child:	277
+	Child:	278
+	Child:	279
+	Label:	"&Graphics"
+)
+
+(Choice.263
+	Disabled:	1
+	Help:	"Displays the property editor for the selected graphic"
+	HelpTopic:	"Graphic_Properties"
+	Update:	"Graphic.HasSelectionUpdate"
+	Label:	"&Properties..."
+	Click:	"Graphic.Edit"
+	Shortcut:	"Keys.None"
+)
+
+(Space.264
+)
+
+(Choice.265
+	Help:	"Shows a dialog where you can set the default values for the label and text tools"
+	HelpTopic:	"Default_settings_for_text_and_label_tools"
+	Label:	"&Text and Label Defaults..."
+	Click:	"Graphic.Label Defaults Show"
+	Shortcut:	"Keys.None"
+)
+
+(Space.266
+)
+
+(Choice.267
+	Disabled:	1
+	Help:	"Displays a dialog box to adjust size and position of selected graphic"
+	HelpTopic:	"Size_and_Position"
+	Update:	"Graphic.SingleSelectionUpdate"
+	Label:	"&Size and Position..."
+	Click:	"Graphic.SizePos"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.268
+	Disabled:	1
+	Help:	"Aligns the selected graphics"
+	HelpTopic:	"Align"
+	Update:	"Graphic.HasSelectionUpdate"
+	Label:	"&Align..."
+	Click:	"Graphic.Align"
+	Shortcut:	"Keys.Ctrl+A"
+)
+
+(Space.269
+)
+
+(Choice.270
+	Disabled:	1
+	Help:	"Moves selected graphics in front of other graphics"
+	HelpTopic:	"Bring_to_Front_on_a_view"
+	Update:	"Graphic.HasSelectionUpdate"
+	Label:	"Bring to &Front"
+	Click:	"Graphic.ToFront"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.271
+	Disabled:	1
+	Help:	"Moves selected graphics behind other graphics"
+	HelpTopic:	"Send_to_Back_on_a_view"
+	Update:	"Graphic.HasSelectionUpdate"
+	Label:	"Send to &Back "
+	Click:	"Graphic.ToBack"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.274
+	Disabled:	1
+	Help:	"Groups selected graphics"
+	HelpTopic:	"Group_on_a_view"
+	Update:	"Graphic.GroupUpdate"
+	Label:	"&Group"
+	Click:	"Graphic.Group"
+	Shortcut:	"Keys.Ctrl+G"
+)
+
+(Choice.275
+	Disabled:	1
+	Help:	"Ungroups selected graphics"
+	HelpTopic:	"Ungroup_on_a_view"
+	Update:	"Graphic.UngroupUpdate"
+	Label:	"&Ungroup"
+	Click:	"Graphic.Ungroup"
+	Shortcut:	"Keys.Ctrl+U"
+)
+
+(Space.276
+)
+
+(Choice.277
+	Disabled:	1
+	Help:	"Associates selected graphics with active themes"
+	HelpTopic:	"Attach_Graphics"
+	Update:	"View.AddGraphicsUpdate"
+	Label:	"A&ttach Graphics"
+	Click:	"View.AddGraphics"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.278
+	Disabled:	1
+	Help:	"Removes association between graphics and active themes"
+	HelpTopic:	"Detach_Graphics"
+	Update:	"View.ClearGraphicsUpdate"
+	Label:	"&Detach Graphics"
+	Click:	"View.ClearGraphics"
+	Shortcut:	"Keys.None"
+)
+
+(Space.279
+)
+
+(PMenu.280
+	InternalName:	"Window"
+	Child:	281
+	Child:	282
+	Child:	283
+	Child:	284
+	Child:	285
+	Child:	287
+	Child:	289
+	Child:	290
+	Child:	291
+	Label:	"&Window"
+)
+
+(Choice.281
+	Help:	"Arranges windows as non-overlapping tiles"
+	HelpTopic:	"Tile"
+	Label:	"&Tile"
+	Click:	"Project.Tile"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.282
+	Help:	"Arranges windows"
+	HelpTopic:	"Cascade"
+	Label:	"&Cascade"
+	Click:	"Project.Cascade"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.283
+	Help:	"Arranges iconified windows"
+	HelpTopic:	"Arrange_Icons"
+	Label:	"&Arrange Icons"
+	Click:	"Project.ArrangeIcons"
+	Shortcut:	"Keys.None"
+)
+
+(Space.284
+)
+
+(Choice.285
+	Help:	"Shows the symbol window"
+	HelpTopic:	"Show_Symbol_Window"
+	Label:	"Show Symbol Window..."
+	Click:	"Project.ShowHideSymWin"
+	Shortcut:	"Keys.Ctrl+P"
+)
+
+(Space.287
+	ObjectTag:	288
+	Update:	"WindowMenuUpdate"
+)
+
+(AVStr.288
+	S:	"splinepolylines.apr Splply.Spline View1"
+)
+
+(Choice.289
+	Help:	"Activates splinepolylines.apr"
+	Label:	"&1 splinepolylines.apr"
+	Click:	"WindowActivate"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.290
+	Help:	"Activates Splply.Spline"
+	Label:	"&2 Splply.Spline"
+	Click:	"WindowActivate"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.291
+	Help:	"Activates View1"
+	Label:	"&3 View1"
+	Click:	"WindowActivate"
+	Shortcut:	"Keys.None"
+)
+
+(PMenu.292
+	InternalName:	"Help"
+	Child:	293
+	Child:	294
+	Child:	295
+	Child:	296
+	Label:	"&Help"
+)
+
+(Choice.293
+	Help:	"Displays the dialog for browsing and searching ArcView's help system"
+	HelpTopic:	"Help_on_Help_Topics"
+	Label:	"Help &Topics..."
+	Click:	"Project.HelpTopics"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.294
+	Help:	"Provides instructions for how to obtain help from ArcView"
+	HelpTopic:	"Help_on_How_to_Get_Help"
+	Label:	"&How to Get Help..."
+	Click:	"Project.HelpHelp"
+	Shortcut:	"Keys.None"
+)
+
+(Space.295
+)
+
+(Choice.296
+	Help:	"Provides information about ArcView"
+	HelpTopic:	"About"
+	Label:	"&About ArcView..."
+	Click:	"Project.About"
+	Shortcut:	"Keys.None"
+)
+
+(ButnBar.297
+	Child:	298
+	Child:	300
+	Child:	301
+	Child:	303
+	Child:	304
+	Child:	306
+	Child:	308
+	Child:	310
+	Child:	311
+	Child:	313
+	Child:	315
+	Child:	317
+	Child:	318
+	Child:	320
+	Child:	322
+	Child:	324
+	Child:	326
+	Child:	328
+	Child:	330
+	Child:	331
+	Child:	333
+	Child:	335
+	Child:	336
+	Child:	338
+)
+
+(Butn.298
+	Help:	"Save Project//Saves the current project"
+	HelpTopic:	"Save_Project"
+	Icon:	299
+	Click:	"Project.Save"
+)
+
+(AVIcon.299
+	Name:	"Save"
+	Res:	"Icons.Save"
+
+)
+
+(Space.300
+)
+
+(Butn.301
+	Help:	"Add Theme//Inserts themes into the view"
+	HelpTopic:	"Add_Theme"
+	Icon:	302
+	Click:	"View.Add"
+)
+
+(AVIcon.302
+	Name:	"AddTheme"
+	Res:	"Icons.AddTheme"
+
+)
+
+(Space.303
+)
+
+(Butn.304
+	Disabled:	1
+	Help:	"Theme Properties//Displays the dialog box to edit properties of the active theme"
+	HelpTopic:	"Theme_Properties"
+	Update:	"View.ActiveThemesUpdate"
+	Icon:	305
+	Click:	"View.ThemeProperties"
+)
+
+(AVIcon.305
+	Name:	"Props"
+	Res:	"Icons.Props"
+
+)
+
+(Butn.306
+	Disabled:	1
+	Help:	"Edit Legend//Displays the legends of the active themes"
+	HelpTopic:	"Edit_Legend"
+	Update:	"View.ActiveThemesUpdate"
+	Icon:	307
+	Click:	"View.EditLegendClick"
+)
+
+(AVIcon.307
+	Name:	"Legend"
+	Res:	"Icons.Legend"
+
+)
+
+(Butn.308
+	Disabled:	1
+	Help:	"Open Theme Table//Opens the tables of the active themes"
+	HelpTopic:	"Open_Theme_Table"
+	Update:	"View.TabularThemesUpdate"
+	Icon:	309
+	Click:	"View.ShowTable"
+)
+
+(AVIcon.309
+	Name:	"Table"
+	Res:	"Icons.Table"
+
+)
+
+(Space.310
+)
+
+(Butn.311
+	Disabled:	1
+	Help:	"Find//Finds features in the active themes using the text you enter"
+	HelpTopic:	"Find"
+	Update:	"View.TabularThemesUpdate"
+	Icon:	312
+	Click:	"View.Find"
+)
+
+(AVIcon.312
+	Name:	"Find"
+	Res:	"Icons.Find"
+
+)
+
+(Butn.313
+	Disabled:	1
+	Help:	"Locate Address//Locates an address in the active, matchable theme"
+	HelpTopic:	"Locate_Address"
+	Update:	"View.LocateUpdate"
+	Icon:	314
+	Click:	"View.Locate"
+)
+
+(AVIcon.314
+	Name:	"AddMatch"
+	Res:	"Icons.AddMatch"
+
+)
+
+(Butn.315
+	Disabled:	1
+	Help:	"Query Builder//Displays the Query Builder to select features with a logical expression"
+	HelpTopic:	"Query_Builder"
+	Update:	"View.AttributeThemesUpdate"
+	Icon:	316
+	Click:	"View.Query"
+)
+
+(AVIcon.316
+	Name:	"QueryBuilder"
+	Res:	"Icons.QueryBuilder"
+
+)
+
+(Space.317
+)
+
+(Butn.318
+	Disabled:	1
+	Help:	"Zoom to Full Extent//Zooms to the extent of all themes"
+	HelpTopic:	"Zoom_to_Full_Extent"
+	Update:	"View.HasDataUpdate"
+	Icon:	319
+	Click:	"View.ZoomFullExtent"
+)
+
+(AVIcon.319
+	Name:	"ZoomView"
+	Res:	"Icons.ZoomView"
+
+)
+
+(Butn.320
+	Disabled:	1
+	Help:	"Zoom to Active Theme(s)//Zooms to the extent of active themes"
+	HelpTopic:	"Zoom_to_Active_Theme"
+	Update:	"View.ActiveThemesUpdate"
+	Icon:	321
+	Click:	"View.ZoomToThemes"
+)
+
+(AVIcon.321
+	Name:	"ZoomTheme"
+	Res:	"Icons.ZoomTheme"
+
+)
+
+(Butn.322
+	Disabled:	1
+	Help:	"Zoom to Selected//Zooms to the extent of the selected features"
+	HelpTopic:	"Zoom_to_Selected"
+	Update:	"View.SelectableThemesUpdate"
+	Icon:	323
+	Click:	"View.ZoomToSelected"
+)
+
+(AVIcon.323
+	Name:	"ZoomToSelected"
+	Res:	"Icons.ZoomToSelected"
+
+)
+
+(Butn.324
+	Disabled:	1
+	Help:	"Zoom In//Zooms in on the center of the display"
+	HelpTopic:	"Zoom_In"
+	Update:	"View.HasDataUpdate"
+	Icon:	325
+	Click:	"View.ZoomIn"
+)
+
+(AVIcon.325
+	Name:	"ZoomIn"
+	Res:	"Icons.ZoomIn"
+
+)
+
+(Butn.326
+	Disabled:	1
+	Help:	"Zoom Out//Zooms out from the center of the display"
+	HelpTopic:	"Zoom_Out"
+	Update:	"View.HasDataUpdate"
+	Icon:	327
+	Click:	"View.ZoomOut"
+)
+
+(AVIcon.327
+	Name:	"ZoomOut"
+	Res:	"Icons.ZoomOut"
+
+)
+
+(Butn.328
+	Help:	"Zoom to Previous Extent//Goes back to the previous extent you were viewing"
+	HelpTopic:	"Zoom_Previous"
+	Update:	"View.UndoZoomUpdate"
+	Icon:	329
+	Click:	"View.UndoZoom"
+)
+
+(AVIcon.329
+	Name:	"ZoomPrevious"
+	Res:	"Icons.ZoomPrevious"
+
+)
+
+(Space.330
+)
+
+(Butn.331
+	Disabled:	1
+	Help:	"Select Features Using Graphic//Selects features in active themes using selected graphics"
+	HelpTopic:	"Select_Features_Using_Graphic"
+	Update:	"View.SpatialSelectUpdate"
+	Icon:	332
+	Click:	"View.SpatialSelect"
+)
+
+(AVIcon.332
+	Name:	"SpatialSelect"
+	Res:	"Icons.SpatialSelect"
+
+)
+
+(Butn.333
+	Disabled:	1
+	Help:	"Clear Selected Features//Unselects the selected features of all active themes"
+	HelpTopic:	"Clear_Selected_Features"
+	Update:	"View.AttributeThemesUpdate"
+	Icon:	334
+	Click:	"View.ClearSelect"
+)
+
+(AVIcon.334
+	Name:	"SelectNone"
+	Res:	"Icons.SelectNone"
+
+)
+
+(Space.335
+)
+
+(Butn.336
+	Help:	"Help//Gets help about the next button, tool, or menu choice you click"
+	HelpTopic:	"Help_button"
+	Icon:	337
+	Click:	"Help.Tool"
+)
+
+(AVIcon.337
+	Name:	"HelpTool"
+	Res:	"Icons.HelpTool"
+
+)
+
+(Butn.338
+	Help:	"Spline polylines//"
+	Icon:	339
+	Click:	"Splply.Start"
+)
+
+(AVIcon.339
+	Name:	"Contour"
+	Res:	"Icons.Contour"
+
+)
+
+(PopupSet.340
+	Child:	341
+)
+
+(Popup.341
+	Child:	342
+	Child:	343
+	Child:	344
+	Child:	345
+	Child:	346
+	Child:	347
+	Child:	348
+	Child:	349
+	Child:	350
+	Child:	351
+	Child:	352
+	Child:	353
+	Child:	354
+	Child:	355
+	Child:	356
+	Child:	357
+	Child:	358
+	Child:	359
+	Child:	360
+	Child:	361
+	Label:	"Menu"
+)
+
+(Choice.342
+	Disabled:	1
+	Invisible:	1
+	Help:	"Deletes the last entered point on the line or polygon being drawn"
+	Update:	"View.DelLastPointUpdate"
+	Label:	"Delete Last Point"
+	Click:	"View.DeleteLastPoint"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.343
+	Help:	"Undo the last edit to graphics on a view"
+	HelpTopic:	"Undo_Graphic_Edit_on_a_view"
+	Update:	"View.UndoEditUpdate"
+	Label:	"Undo Graphic Edit"
+	Click:	"View.UndoEdit"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.344
+	Disabled:	1
+	Invisible:	1
+	Help:	"Redo the last edit operation on a theme that was undone"
+	Update:	"View.RedoEditUpdate"
+	Label:	"Redo Feature Edit"
+	Click:	"View.RedoEdit"
+	Shortcut:	"Keys.None"
+)
+
+(Space.345
+)
+
+(Choice.346
+	Disabled:	1
+	Invisible:	1
+	Help:	"Turns general snapping on"
+	Update:	"View.ToggleGeneralSnapUpdate"
+	Label:	"Enable General Snapping"
+	Click:	"View.ToggleGeneralSnap"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.347
+	Disabled:	1
+	Invisible:	1
+	Help:	"Turns interactive snapping on"
+	Update:	"View.ToggleInteractiveSnapUpdate"
+	Label:	"Enable Interactive Snapping"
+	Click:	"View.ToggleInteractiveSnap"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.348
+	Disabled:	1
+	Invisible:	1
+	Help:	"Turns snap tolerance cursor on"
+	Update:	"View.ToggleTolCursorUpdate"
+	Label:	"Show Snap Tolerance Cursor"
+	Click:	"View.ToggleTolCursor"
+	Shortcut:	"Keys.None"
+)
+
+(Space.349
+)
+
+(Choice.350
+	Disabled:	1
+	Invisible:	1
+	Help:	"Snaps the next entered point to the nearest vertex within the user tolerance"
+	Update:	"View.InteractiveSnapUpdate"
+	Label:	"Snap to Vertex"
+	Click:	"View.SnapToVertex"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.351
+	Disabled:	1
+	Invisible:	1
+	Help:	"Snaps the next entered point to the nearest line segment"
+	Update:	"View.InteractiveSnapUpdate"
+	Label:	"Snap to Boundary"
+	Click:	"View.SnapToBoundary"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.352
+	Disabled:	1
+	Invisible:	1
+	Help:	"Snaps the next entered point to the nearest node common to two or more features"
+	Update:	"View.InteractiveSnapUpdate"
+	Label:	"Snap to Intersection"
+	Click:	"View.SnapToIntersection"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.353
+	Disabled:	1
+	Invisible:	1
+	Help:	"Snaps the next entered point to the nearest endpoint of an existing line"
+	Update:	"View.SnapToEndPointUpdate"
+	Label:	"Snap to Endpoint"
+	Click:	"View.SnapToEndPoint"
+	Shortcut:	"Keys.None"
+)
+
+(Space.354
+)
+
+(Choice.355
+	Help:	"Unselects the selected features in all active themes"
+	Update:	"View.AttributeThemesUpdate"
+	Label:	"Clear Selection"
+	Click:	"View.ClearSelect"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.356
+	Help:	"Zooms in at point where you click to bring up popup menu"
+	Update:	"View.HasDataUpdate"
+	Label:	"Zoom In"
+	Click:	"View.PopupZoomIn"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.357
+	Help:	"Zooms out from point where you click to bring up popup menu"
+	Update:	"View.HasDataUpdate"
+	Label:	"Zoom Out"
+	Click:	"View.PopupZoomOut"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.358
+	Help:	"Zooms to the extent of the selected features"
+	Update:	"View.SelectableThemesUpdate"
+	Label:	"Zoom to Selected"
+	Click:	"View.ZoomToSelected"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.359
+	Help:	"Centers display on point where you click to bring up popup"
+	Update:	"View.HasDataUpdate"
+	Label:	"Pan"
+	Click:	"View.PopupPan"
+	Shortcut:	"Keys.None"
+)
+
+(Space.360
+)
+
+(Choice.361
+	Help:	"Opens the shape properties window for editing vertex locations"
+	Update:	"ShapeWin.PopUp Update"
+	Label:	"Shape Properties"
+	Click:	"ShapeWin.PopUp Open"
+	Shortcut:	"Keys.None"
+)
+
+(ToolBar.362
+	Child:	363
+	Child:	365
+	Child:	367
+	Child:	369
+	Child:	371
+	Child:	373
+	Child:	375
+	Child:	377
+	Child:	379
+	Child:	381
+	Child:	383
+	Child:	402
+	Child:	415
+	Child:	434
+)
+
+(Tool.363
+	Disabled:	1
+	Help:	"Identify//Provides information about a feature"
+	HelpTopic:	"Identify_tool"
+	Update:	"View.IdentifyUpdate"
+	Icon:	364
+	Cursor:	"Cursors.ID"
+	Apply:	"View.Identify"
+)
+
+(AVIcon.364
+	Name:	"ID"
+	Res:	"Icons.ID"
+
+)
+
+(Tool.365
+	Disabled:	1
+	Help:	"Pointer//Selects, moves, and resizes graphics"
+	HelpTopic:	"Pointer_tool"
+	Update:	"View.HasDataUpdate"
+	Icon:	366
+	Cursor:	"Cursors.Select"
+	Apply:	"View.Select"
+	Click:	"View.SelectTool"
+)
+
+(AVIcon.366
+	Name:	"Select"
+	Res:	"Icons.Select"
+
+)
+
+(Tool.367
+	Disabled:	1
+	Help:	"Vertex Edit//Adds, moves, and deletes vertices of features and graphics"
+	HelpTopic:	"Vertex_Edit_tool"
+	Update:	"View.SelectToEditUpdate"
+	Icon:	368
+	Cursor:	"Cursors.SelectEdit"
+	Apply:	"View.SelectToEdit"
+	Click:	"View.SelectToEditTool"
+)
+
+(AVIcon.368
+	Name:	"SelectEdit"
+	Res:	"Icons.SelectEdit"
+
+)
+
+(Tool.369
+	Disabled:	1
+	Help:	"Select Feature//Selects features in the active themes by pointing or dragging"
+	HelpTopic:	"Select_Feature_tool"
+	Update:	"View.SelectableThemesUpdate"
+	Icon:	370
+	Cursor:	"Cursors.Default"
+	Apply:	"View.SelectPoint"
+)
+
+(AVIcon.370
+	Name:	"FeatureSelect"
+	Res:	"Icons.FeatureSelect"
+
+)
+
+(Tool.371
+	Disabled:	1
+	Help:	"Zoom In//Zooms in at a point you click or zooms in on a rectangle you drag"
+	HelpTopic:	"Zoom_In_tool"
+	Update:	"View.HasDataUpdate"
+	Icon:	372
+	Cursor:	"Cursors.ZoomIn"
+	Apply:	"View.ZoomInTool"
+)
+
+(AVIcon.372
+	Name:	"ZoomInTool"
+	Res:	"Icons.ZoomInTool"
+
+)
+
+(Tool.373
+	Disabled:	1
+	Help:	"Zoom Out//Zooms out from a point you click or zooms out to include a rectangle you drag"
+	HelpTopic:	"Zoom_Out_tool"
+	Update:	"View.HasDataUpdate"
+	Icon:	374
+	Cursor:	"Cursors.ZoomOut"
+	Apply:	"View.ZoomOutTool"
+)
+
+(AVIcon.374
+	Name:	"ZoomOutTool"
+	Res:	"Icons.ZoomOutTool"
+
+)
+
+(Tool.375
+	Disabled:	1
+	Help:	"Pan//Drags the display in the direction you move the cursor"
+	HelpTopic:	"Pan_tool"
+	Update:	"View.HasDataUpdate"
+	Icon:	376
+	Cursor:	"Cursors.Pan"
+	Apply:	"View.Pan"
+)
+
+(AVIcon.376
+	Name:	"Pan"
+	Res:	"Icons.Pan"
+
+)
+
+(Tool.377
+	Disabled:	1
+	Help:	"Measure//Measures distance"
+	HelpTopic:	"Measure_tool"
+	Update:	"View.HasDataUpdate"
+	Icon:	378
+	Cursor:	"Cursors.Measure"
+	Apply:	"View.Measure"
+)
+
+(AVIcon.378
+	Name:	"Measure"
+	Res:	"Icons.Measure"
+
+)
+
+(Tool.379
+	Disabled:	1
+	Help:	"Hot Link//Follows a hot link in the active themes"
+	HelpTopic:	"Hot_Link_tool"
+	Update:	"View.HotLinkUpdate"
+	Icon:	380
+	Cursor:	"Cursors.Media"
+	Apply:	"View.HotLink"
+)
+
+(AVIcon.380
+	Name:	"Media"
+	Res:	"Icons.Media"
+
+)
+
+(Tool.381
+	Disabled:	1
+	Help:	"Area of Interest//Sets the view's Area Of Interest for library-based themes"
+	HelpTopic:	"Area_Of_Interest_tool"
+	Update:	"View.AOIToolUpdate"
+	Icon:	382
+	Cursor:	"Cursors.Default"
+	Apply:	"View.AOITool"
+)
+
+(AVIcon.382
+	Name:	"AOI"
+	Res:	"Icons.AOI"
+
+)
+
+(ToolMenu.383
+	Disabled:	1
+	Help:	"Label//Labels a feature in the active theme with data from its table"
+	HelpTopic:	"Label_Tool"
+	Update:	"View.LabelToolUpdate"
+	Icon:	384
+	Cursor:	"Cursors.Tag"
+	Apply:	"View.LabelTool"
+	Child:	385
+	Child:	386
+	Child:	388
+	Child:	390
+	Child:	392
+	Child:	394
+	Child:	396
+	Child:	398
+	Child:	400
+)
+
+(AVIcon.384
+	Name:	"Tag"
+	Res:	"Icons.Tag"
+
+)
+
+(Tool.385
+	Disabled:	1
+	Help:	"Label//Labels a feature in the active theme with data from its table"
+	HelpTopic:	"Label_Tool"
+	Update:	"View.LabelToolUpdate"
+	Icon:	384
+	Cursor:	"Cursors.Tag"
+	Apply:	"View.LabelTool"
+)
+
+(Tool.386
+	Disabled:	1
+	Help:	"Callout Label//Click on a feature and drag in the direction you want the label to appear"
+	HelpTopic:	"Label_Tool"
+	Update:	"View.CalloutUpdate"
+	Icon:	387
+	Cursor:	"Cursors.Tag"
+	Apply:	"View.CalloutLabelTool"
+)
+
+(AVIcon.387
+	Name:	"CallOutLabel1"
+	Res:	"Icons.CallOutLabel1"
+
+)
+
+(Tool.388
+	Disabled:	1
+	Help:	"Bullet Leader Label//Click on a feature and drag in the direction you want the label to appear"
+	HelpTopic:	"Label_Tool"
+	Update:	"View.CalloutUpdate"
+	Icon:	389
+	Cursor:	"Cursors.Tag"
+	Apply:	"View.BulletLeaderLabelTool"
+)
+
+(AVIcon.389
+	Name:	"CallOutLabel2"
+	Res:	"Icons.CallOutLabel2"
+
+)
+
+(Tool.390
+	Disabled:	1
+	Help:	"Banner Label//Click on a feature you want to label"
+	HelpTopic:	"Label_Tool"
+	Update:	"View.CalloutUpdate"
+	Icon:	391
+	Cursor:	"Cursors.Tag"
+	Apply:	"View.ShadowBoxLabelTool"
+)
+
+(AVIcon.391
+	Name:	"CallOutLabel3"
+	Res:	"Icons.CallOutLabel3"
+
+)
+
+(Tool.392
+	Disabled:	1
+	Help:	"U.S. Interstate//Click where you want to place a highway shield"
+	HelpTopic:	"Label_Tool"
+	Update:	"View.CalloutUpdate"
+	Icon:	393
+	Cursor:	"Cursors.Tag"
+	Apply:	"View.Highway1 Apply"
+)
+
+(AVIcon.393
+	Name:	"BW US Interstate"
+	Res:	"Icons.BW US Interstate"
+
+)
+
+(Tool.394
+	Disabled:	1
+	Help:	"U.S. Route//Click where you want to place a highway shield"
+	HelpTopic:	"Label_Tool"
+	Update:	"View.CalloutUpdate"
+	Icon:	395
+	Cursor:	"Cursors.Tag"
+	Apply:	"View.Highway2 Apply"
+)
+
+(AVIcon.395
+	Name:	"USRoute"
+	Res:	"Icons.USRoute"
+
+)
+
+(Tool.396
+	Disabled:	1
+	Help:	"Generic State Hwy//Click where you want to place a highway shield"
+	HelpTopic:	"Label_Tool"
+	Update:	"View.CalloutUpdate"
+	Icon:	397
+	Cursor:	"Cursors.Tag"
+	Apply:	"View.Highway3 Apply"
+)
+
+(AVIcon.397
+	Name:	"GenericStateHighway"
+	Res:	"Icons.GenericStateHighway"
+
+)
+
+(Tool.398
+	Disabled:	1
+	Help:	"Generic Square Hwy//Click where you want to place a highway shield"
+	HelpTopic:	"Label_Tool"
+	Update:	"View.CalloutUpdate"
+	Icon:	399
+	Cursor:	"Cursors.Tag"
+	Apply:	"View.Highway4 Apply"
+)
+
+(AVIcon.399
+	Name:	"GenericHighway1"
+	Res:	"Icons.GenericHighway1"
+
+)
+
+(Tool.400
+	Disabled:	1
+	Help:	"Generic Oval Hwy//Click where you want to place a highway shield"
+	Update:	"View.CalloutUpdate"
+	Icon:	401
+	Cursor:	"Cursors.Tag"
+	Apply:	"View.Highway5 Apply"
+)
+
+(AVIcon.401
+	Name:	"GenericHighway2"
+	Res:	"Icons.GenericHighway2"
+
+)
+
+(ToolMenu.402
+	Help:	"Text//Creates text on the display"
+	HelpTopic:	"Text_tool"
+	Update:	"View.TextToolUpdate"
+	Icon:	403
+	Cursor:	"Cursors.Text"
+	Apply:	"View.TextTool"
+	Click:	"SymWin.DisplayFontPanel"
+	Child:	404
+	Child:	405
+	Child:	407
+	Child:	409
+	Child:	411
+	Child:	413
+)
+
+(AVIcon.403
+	Name:	"Text"
+	Res:	"Icons.Text"
+
+)
+
+(Tool.404
+	Help:	"Text//Creates text on the display"
+	HelpTopic:	"Text_tool"
+	Update:	"View.TextToolUpdate"
+	Icon:	403
+	Cursor:	"Cursors.Text"
+	Apply:	"View.TextTool"
+	Click:	"SymWin.DisplayFontPanel"
+)
+
+(Tool.405
+	Help:	"Callout Text//Click and drag to where you want your text to appear, then enter the text"
+	HelpTopic:	"Text_tool"
+	Update:	"View.TextToolUpdate"
+	Icon:	406
+	Cursor:	"Cursors.Bullseye"
+	Apply:	"View.CalloutTextTool"
+)
+
+(AVIcon.406
+	Name:	"CallOutText1"
+	Res:	"Icons.CallOutText1"
+
+)
+
+(Tool.407
+	Help:	"Bullet Leader Text//Click and drag to where you want your text to appear, then enter the text"
+	HelpTopic:	"Text_tool"
+	Update:	"View.TextToolUpdate"
+	Icon:	408
+	Cursor:	"Cursors.Bullseye"
+	Apply:	"View.BulletLeaderTextTool"
+)
+
+(AVIcon.408
+	Name:	"CallOutText2"
+	Res:	"Icons.CallOutText2"
+
+)
+
+(Tool.409
+	Help:	"Banner Text//Click where you want your label to appear and enter your text"
+	HelpTopic:	"Text_tool"
+	Update:	"View.TextToolUpdate"
+	Icon:	410
+	Cursor:	"Cursors.Bullseye"
+	Apply:	"View.ShadowBoxTextTool"
+)
+
+(AVIcon.410
+	Name:	"CallOutText3"
+	Res:	"Icons.CallOutText3"
+
+)
+
+(Tool.411
+	Help:	"Drop-Shadow Text//Click where you want your text to appear and enter your text"
+	HelpTopic:	"Text_tool"
+	Update:	"View.TextToolUpdate"
+	Icon:	412
+	Cursor:	"Cursors.Target"
+	Apply:	"View.CreateDropShadowText"
+)
+
+(AVIcon.412
+	Name:	"DropShadowText"
+	Res:	"Icons.DropShadowText"
+
+)
+
+(Tool.413
+	Help:	"Spline Text//Adds text that is aligned to a splined baseline"
+	HelpTopic:	"Text_tool"
+	Update:	"View.TextToolUpdate"
+	Icon:	414
+	Cursor:	"Cursors.Bullseye"
+	Apply:	"View.SplineText"
+)
+
+(AVIcon.414
+	Name:	"TextAligned"
+	Res:	"Icons.TextAligned"
+
+)
+
+(ToolMenu.415
+	Help:	"Draw Point//Creates a point on the display"
+	HelpTopic:	"Draw_tool"
+	Update:	"View.PointToolUpdate"
+	Icon:	416
+	Cursor:	"Cursors.CrossHair"
+	Apply:	"View.PointTool"
+	Click:	"SymWin.DisplayMarkerPanel"
+	Child:	417
+	Child:	418
+	Child:	420
+	Child:	422
+	Child:	424
+	Child:	426
+	Child:	428
+	Child:	430
+	Child:	432
+)
+
+(AVIcon.416
+	Name:	"Point"
+	Res:	"Icons.Point"
+
+)
+
+(Tool.417
+	Help:	"Draw Point//Creates a point on the display"
+	HelpTopic:	"Draw_tool"
+	Update:	"View.PointToolUpdate"
+	Icon:	416
+	Cursor:	"Cursors.CrossHair"
+	Apply:	"View.PointTool"
+	Click:	"SymWin.DisplayMarkerPanel"
+)
+
+(Tool.418
+	Help:	"Draw Straight Line//Creates a line on the display"
+	HelpTopic:	"Draw_tool"
+	Update:	"View.GraphicToolUpdate"
+	Icon:	419
+	Cursor:	"Cursors.CrossHair"
+	Apply:	"View.LineTool"
+	Click:	"SymWin.DisplayPenPanel"
+)
+
+(AVIcon.419
+	Name:	"SelectLine"
+	Res:	"Icons.SelectLine"
+
+)
+
+(Tool.420
+	Help:	"Draw Line//Creates a line with two or more points on the display"
+	HelpTopic:	"Draw_tool"
+	Update:	"View.PolyLineToolUpdate"
+	Icon:	421
+	Cursor:	"Cursors.CrossHair"
+	Apply:	"View.PolyLineTool"
+	Click:	"SymWin.DisplayPenPanel"
+)
+
+(AVIcon.421
+	Name:	"Lines"
+	Res:	"Icons.Lines"
+
+)
+
+(Tool.422
+	Help:	"Draw Rectangle//Creates a rectangle on the display"
+	HelpTopic:	"Draw_tool"
+	Update:	"View.PolyToolUpdate"
+	Icon:	423
+	Cursor:	"Cursors.CrossHair"
+	Apply:	"View.RectTool"
+	Click:	"SymWin.DisplayFillPanel"
+)
+
+(AVIcon.423
+	Name:	"Rect"
+	Res:	"Icons.Rect"
+
+)
+
+(Tool.424
+	Help:	"Draw Circle//Creates a circle on the display"
+	HelpTopic:	"Draw_tool"
+	Update:	"View.PolyToolUpdate"
+	Icon:	425
+	Cursor:	"Cursors.CrossHair"
+	Apply:	"View.CircleTool"
+	Click:	"SymWin.DisplayFillPanel"
+)
+
+(AVIcon.425
+	Name:	"Disk"
+	Res:	"Icons.Disk"
+
+)
+
+(Tool.426
+	Help:	"Draw Polygon//Creates a polygon on the display"
+	HelpTopic:	"Draw_tool"
+	Update:	"View.PolyToolUpdate"
+	Icon:	427
+	Cursor:	"Cursors.CrossHair"
+	Apply:	"View.PolyTool"
+	Click:	"SymWin.DisplayFillPanel"
+)
+
+(AVIcon.427
+	Name:	"Poly"
+	Res:	"Icons.Poly"
+
+)
+
+(Tool.428
+	Disabled:	1
+	Help:	"Draw Line to Split Feature//Creates a line to split line features"
+	HelpTopic:	"Draw_tool"
+	Update:	"View.SplitLineToolUpdate"
+	Icon:	429
+	Cursor:	"Cursors.CrossHair"
+	Apply:	"View.SplitTool"
+)
+
+(AVIcon.429
+	Name:	"SplitLine"
+	Res:	"Icons.SplitLine"
+
+)
+
+(Tool.430
+	Disabled:	1
+	Help:	"Draw Line to Split Polygon//Creates a line to split polygon features"
+	HelpTopic:	"Draw_tool"
+	Update:	"View.SplitPolyToolUpdate"
+	Icon:	431
+	Cursor:	"Cursors.CrossHair"
+	Apply:	"View.SplitTool"
+)
+
+(AVIcon.431
+	Name:	"SplitPoly"
+	Res:	"Icons.SplitPoly"
+
+)
+
+(Tool.432
+	Disabled:	1
+	Help:	"Draw Line to Append Polygon//Appends a new polygon adjacent to other polygons"
+	HelpTopic:	"Draw_tool"
+	Update:	"View.AutoCompleteUpdate"
+	Icon:	433
+	Cursor:	"Cursors.CrossHair"
+	Apply:	"View.AutoCompleteTool"
+)
+
+(AVIcon.433
+	Name:	"AutoComplete"
+	Res:	"Icons.AutoComplete"
+
+)
+
+(ToolMenu.434
+	Disabled:	1
+	Invisible:	1
+	Help:	"Snap//Sets the general snapping tolerance for the editable theme"
+	HelpTopic:	"Snap_tools"
+	Update:	"View.SnapToolUpdate"
+	Icon:	435
+	Cursor:	"Cursors.Default"
+	Apply:	"View.SnapTool"
+	Child:	436
+	Child:	437
+)
+
+(AVIcon.435
+	Name:	"SnapTool"
+	Res:	"Icons.SnapTool"
+
+)
+
+(Tool.436
+	Disabled:	1
+	Invisible:	1
+	Help:	"Snap//Sets the general snapping tolerance for the editable theme"
+	HelpTopic:	"Snap_tools"
+	Update:	"View.SnapToolUpdate"
+	Icon:	435
+	Cursor:	"Cursors.Default"
+	Apply:	"View.SnapTool"
+)
+
+(Tool.437
+	Disabled:	1
+	Invisible:	1
+	Help:	"Snap//Sets the interactive snapping tolerance for the editable theme"
+	HelpTopic:	"Snap_tools"
+	Update:	"View.InteractiveSnapToolUpdate"
+	Icon:	438
+	Cursor:	"Cursors.Default"
+	Apply:	"View.InteractiveSnapTool"
+)
+
+(AVIcon.438
+	Name:	"SnapFeatureTool"
+	Res:	"Icons.SnapFeatureTool"
+
+)
+
+(AVIcon.439
+	Name:	"Icon"
+	Res:	"View.Icon"
+
+)
+
+(FN.1133
+	Path:	"z:/home/adrian/av/av_gis30/arcview/projects/splinepolylines"
+)
+
+(TClr.1134
+	Red:	0xffff
+	Green:	0xffff
+)
+
+(AVStr.1135
+	S:	"View"
+)
+
+(AVStr.1136
+	S:	"Table"
+)
+
+(AVStr.1137
+	S:	"Chart"
+)
+
+(AVStr.1138
+	S:	"Layout"
+)
+
+(AVStr.1139
+	S:	"Script"
+)
+
+(AVStr.1140
+	S:	"Project"
+)
+
+(AVStr.1141
+	S:	"Appl"
+)
+
+(AVStr.1142
+	S:	"DialogEditor"
+)
+

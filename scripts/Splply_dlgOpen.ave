@@ -1,0 +1,7 @@
+Self.FindByName("densityfactor").SetText(0.002.AsString)
+Self.FindByName("iterations").SetText(3.AsString)
+Self.FindByName("stroke").SetText(2.AsString)
+Self.FindByName("red").SetText(255.AsString)
+Self.FindByName("green").SetText(0.AsString)
+Self.FindByName("blue").SetText(0.AsString)
+

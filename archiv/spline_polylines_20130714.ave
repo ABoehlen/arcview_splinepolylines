@@ -1,0 +1,109 @@
+'########################################################
+'#
+'# Filename:     spline_polylines.apr
+'# Author:       Adrian Boehlen
+'# Date:         14.07.2013
+'# Version:      0.2
+'#
+'# Purpose:      erzeugt simulierte Splinekurve aus 
+'#               selektierten Linienfeatures als Graphic
+'#               
+'#               Staerke der Splines, Strichstaerke
+'#               und Farbe koennen angegeben werden
+'#
+'# Based on:     spline_polyline.ave
+'#
+'# This script uses a basic combination of densifying the 
+'# polyline and implementing the Bezier's spline
+'# method on the polyline. This script needs a view
+'# and the target theme active.
+'#
+'# A combination of these two variables will produce different
+'# results depending on the nature and scale of the Polyline.
+'#
+'# densityfactor 0.000 to 1.000 only
+'# iterations 1 to 100 works best
+'#
+'########################################################
+
+'# read variables from dialog
+
+derDialog = Self.GetDialog
+densityfactor = derDialog.FindByName("densityfactor").GetText.AsNumber
+iterations = derDialog.FindByName("iterations").GetText.AsNumber
+strichst = derDialog.FindByName("stroke").GetText.AsNumber
+rot = derDialog.FindByName("red").GetText.AsNumber
+gruen = derDialog.FindByName("green").GetText.AsNumber
+blau = derDialog.FindByName("blue").GetText.AsNumber
+
+
+'# if the name of the active view is not "View1"
+
+if (Av.FindDoc("View1") = nil) then
+  v = MsgBox.ListAsString(Av.GetProject.GetDocs,"Select your view","")
+else
+  v = Av.FindDoc("View1")
+end
+
+
+'# check theme
+
+vg = v.GetGraphics
+thm = v.GetActiveThemes.Get(0)
+ftb = thm.GetFtab
+if(ftb.GetShapeclass.GetClassname <> "PolyLine") then
+  MsgBox.Error("We can only spline PolyLine features.","")
+  return nil
+end
+
+if (ftb.getselection.count = 0) then
+  MsgBox.Info("Please select one or more PolyLine features","")
+end
+
+
+'# spline function
+
+for each selrec in ftb.GetSelection
+
+  thepolyline = ftb.ReturnValue(ftb.FindField("Shape"),SelRec)
+    
+  howdense = thepolyline.ReturnLength*densityfactor
+  oldplist = thepolyline.ReturnDensified(howdense).AsList
+  
+  newplist = {}
+  for each apart in oldplist
+    for each ap in apart
+      newplist.Add(ap)
+    end
+  end
+  
+  for each x in 1..iterations 
+    newerplist = {}  
+    for each i in 0..(newplist.count-1)
+      if (i = 0) then
+        newerplist.Add(newplist.Get(i))
+      elseif (i = (newplist.Count-1)) then
+        newerplist.add(newplist.Get(i))
+        break
+      end        
+      newp = Line.Make(newplist.Get(i),newplist.Get(i+1)).ReturnCenter 
+      newerplist.Add(newp)  
+    end
+    newplist = newerplist.DeepClone  
+  end
+  
+  newpolyline = Polyline.Make({newplist})  
+
+  gs = Graphicshape.Make(newpolyline)
+  asymbol = Symbol.Make(#SYMBOL_PEN)
+  asymbol.SetSize(strichst)
+  nc = Color.Make
+  nc.SetRGBList({rot,gruen,blau})
+  asymbol.SetColor(nc)
+  gs.SetSymbol(asymbol)
+  vg.Add(gs)
+end
+v.Invalidate
+
+
+

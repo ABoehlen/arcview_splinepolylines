@@ -1,0 +1,439 @@
+/3.2
+(Extension.1
+	Name:	"Spline Polylines"
+	Dependencies:	"$AVBIN/avdlog.dll\n"
+	FirstRootClassName:	"Butn"
+	Roots:	2
+	Roots:	4
+	Roots:	36
+	Roots:	37
+	Roots:	38
+	Roots:	39
+	Roots:	40
+	Roots:	41
+	Roots:	42
+	Roots:	43
+	Roots:	44
+	Roots:	45
+	Version:	32
+	About:	"erzeugt simulierte Splinekurve aus selektierten Linienfeatures als Graphic (v1.0)"
+	UnloadScript:	46
+	InstallScript:	47
+	UninstallScript:	48
+	ExtVersion:	1
+)
+
+(Butn.2
+	Help:	"Spline polylines//"
+	Icon:	3
+	Click:	"Splply.Start"
+)
+
+(AVIcon.3
+	Name:	"splinepolylines.bmp"
+	Data:	4e442049 6d616765 00010016 00170000 
+	Data:	0228ffff ffffffff ffffffff ffffffff 
+	Data:	ffffffff ffffffff 0000ffff ffffffff 
+	Data:	ffffffff ffffffff ffffffff ffffffff 
+	Data:	0000ff00 ffffffff ffffffff ffffffff 
+	Data:	ffffffff ffffffff 0000ffff 00ffffff 
+	Data:	ffffffff ffff0000 00ffffff ffffffff 
+	Data:	0000ffff ff0000ff ffffffff ffffffff 
+	Data:	ff000000 ffffffff 0000ffff fffdff00 
+	Data:	ffffffff ffffffff ffffff00 00ffffff 
+	Data:	0000ffff ffffffff 00ffffff ffffffff 
+	Data:	ffffffff 0000ffff 0000ffff ffffffff 
+	Data:	ff00ffff ffffffff ffffffff ff00ffff 
+	Data:	0000ffff ffffffff 00ffffff ffffffff 
+	Data:	ffffffff ff00ffff 0000ffff ffffff00 
+	Data:	ffffffff fffe7ffe ffffffff ff00ffff 
+	Data:	0000ffff ffff00ff ffffffff ffff0000 
+	Data:	7ffeffff fd00ffff 0000ffff fffb00ff 
+	Data:	00000000 00000000 006effff 0000ffff 
+	Data:	0000ffff ff00ffff ffffffff ffff0000 
+	Data:	7fffff00 00ffffff 0000ffff 00ffffff 
+	Data:	ffffffff ffff6eff feff0000 ffffffff 
+	Data:	0000ff00 ffffffff ffffffff ffffffff 
+	Data:	ff0000ff ffffffff 000000fd ffffffff 
+	Data:	ffffffff ffffffff 0000ffff ffffffff 
+	Data:	0000ff00 ffffffff ffffffff ffffffff 
+	Data:	00ffffff ffffffff 0000ffff 0000ffff 
+	Data:	ffffffff ffffffff 00ffffff ffffffff 
+	Data:	0000ffff ffff00ff ffffffff ffffffff 
+	Data:	0000ffff ffffffff 0000ffff ffffff00 
+	Data:	ffffffff ffffffff ff000000 ffffffff 
+	Data:	0000ffff ffffffff 00ffffff ffffffff 
+	Data:	ffffff00 000000ff 0000ffff ffffffff 
+	Data:	ffffffff ffffffff ffffffff ffffffff 
+	Data:	0000ffff ffffffff ffffffff ffffffff 
+	Data:	ffffffff ffffffff 00000000 04000000 
+	Data:	00000101 01000202 02000303 03000404 
+	Data:	04000505 05000606 06000707 07000808 
+	Data:	08000909 09000a0a 0a000b0b 0b000c0c 
+	Data:	0c000d0d 0d000e0e 0e000f0f 0f001010 
+	Data:	10001111 11001212 12001313 13001414 
+	Data:	14001515 15001616 16001717 17001818 
+	Data:	18001919 19001a1a 1a001b1b 1b001c1c 
+	Data:	1c001d1d 1d001e1e 1e001f1f 1f002020 
+	Data:	20002121 21002222 22002323 23002424 
+	Data:	24002525 25002626 26002727 27002828 
+	Data:	28002929 29002a2a 2a002b2b 2b002c2c 
+	Data:	2c002d2d 2d002e2e 2e002f2f 2f003030 
+	Data:	30003131 31003232 32003333 33003434 
+	Data:	34003535 35003636 36003737 37003838 
+	Data:	38003939 39003a3a 3a003b3b 3b003c3c 
+	Data:	3c003d3d 3d003e3e 3e003f3f 3f004040 
+	Data:	40004141 41004242 42004343 43004444 
+	Data:	44004545 45004646 46004747 47004848 
+	Data:	48004949 49004a4a 4a004b4b 4b004c4c 
+	Data:	4c004d4d 4d004e4e 4e004f4f 4f005050 
+	Data:	50005151 51005252 52005353 53005454 
+	Data:	54005555 55005656 56005757 57005858 
+	Data:	58005959 59005a5a 5a005b5b 5b005c5c 
+	Data:	5c005d5d 5d005e5e 5e005f5f 5f006060 
+	Data:	60006161 61006262 62006363 63006464 
+	Data:	64006565 65006666 66006767 67006868 
+	Data:	68006969 69006a6a 6a006b6b 6b006c6c 
+	Data:	6c006d6d 6d006e6e 6e006f6f 6f007070 
+	Data:	70007171 71007272 72007373 73007474 
+	Data:	74007575 75007676 76007777 77007878 
+	Data:	78007979 79007a7a 7a007b7b 7b007c7c 
+	Data:	7c007d7d 7d007e7e 7e007f7f 7f008080 
+	Data:	80008181 81008282 82008383 83008484 
+	Data:	84008585 85008686 86008787 87008888 
+	Data:	88008989 89008a8a 8a008b8b 8b008c8c 
+	Data:	8c008d8d 8d008e8e 8e008f8f 8f009090 
+	Data:	90009191 91009292 92009393 93009494 
+	Data:	94009595 95009696 96009797 97009898 
+	Data:	98009999 99009a9a 9a009b9b 9b009c9c 
+	Data:	9c009d9d 9d009e9e 9e009f9f 9f00a0a0 
+	Data:	a000a1a1 a100a2a2 a200a3a3 a300a4a4 
+	Data:	a400a5a5 a500a6a6 a600a7a7 a700a8a8 
+	Data:	a800a9a9 a900aaaa aa00abab ab00acac 
+	Data:	ac00adad ad00aeae ae00afaf af00b0b0 
+	Data:	b000b1b1 b100b2b2 b200b3b3 b300b4b4 
+	Data:	b400b5b5 b500b6b6 b600b7b7 b700b8b8 
+	Data:	b800b9b9 b900baba ba00bbbb bb00bcbc 
+	Data:	bc00bdbd bd00bebe be00bfbf bf00c0c0 
+	Data:	c000c1c1 c100c2c2 c200c3c3 c300c4c4 
+	Data:	c400c5c5 c500c6c6 c600c7c7 c700c8c8 
+	Data:	c800c9c9 c900caca ca00cbcb cb00cccc 
+	Data:	cc00cdcd cd00cece ce00cfcf cf00d0d0 
+	Data:	d000d1d1 d100d2d2 d200d3d3 d300d4d4 
+	Data:	d400d5d5 d500d6d6 d600d7d7 d700d8d8 
+	Data:	d800d9d9 d900dada da00dbdb db00dcdc 
+	Data:	dc00dddd dd00dede de00dfdf df00e0e0 
+	Data:	e000e1e1 e100e2e2 e200e3e3 e300e4e4 
+	Data:	e400e5e5 e500e6e6 e600e7e7 e700e8e8 
+	Data:	e800e9e9 e900eaea ea00ebeb eb00ecec 
+	Data:	ec00eded ed00eeee ee00efef ef00f0f0 
+	Data:	f000f1f1 f100f2f2 f200f3f3 f300f4f4 
+	Data:	f400f5f5 f500f6f6 f600f7f7 f700f8f8 
+	Data:	f800f9f9 f900fafa fa00fbfb fb00fcfc 
+	Data:	fc00fdfd fd00fefe fe00ffff ff000002 
+	Data:	00080007 00200001 00020000 00000000 
+	Data:	0000
+)
+
+(AVDLog.4
+	Name:	"Splinepolylines"
+	X:	111
+	Y:	50
+	W:	378
+	H:	150
+	ConstrainedControlNames:	5
+	ConstrainedControlNames:	6
+	Constraints:	7
+	Constraints:	8
+	Server:	9
+	ControlPanel:	10
+	Title:	"Spline Polylines"
+	EscapeEnabled:	1
+	AlwaysOnTop:	1
+	HasTitleBar:	1
+	Closeable:	1
+	Open:	"Splply.dlgOpen"
+	DefaultButton:	35
+)
+
+(AVStr.5
+	S:	"OK"
+)
+
+(AVStr.6
+	S:	"Close"
+)
+
+(Numb.7
+	N:	85.00000000000000
+)
+
+(Numb.8
+	N:	85.00000000000000
+)
+
+(Nil.9
+)
+
+(CPanel.10
+	Child:	11
+	Child:	13
+	Child:	23
+	Child:	24
+	Child:	15
+	Child:	21
+	Child:	25
+	Child:	17
+	Child:	19
+	ResBox:	26
+	ResBox:	27
+	ResBox:	28
+	ResBox:	29
+	ResBox:	30
+	ResBox:	31
+	ResBox:	32
+	ResBox:	33
+	ResBox:	34
+	Listening:	1
+)
+
+(TextLine.11
+	InternalName:	"densityfactor"
+	Label:	"Density Factor"
+	Constraints:	0x55
+	Listening:	1
+	TextType:	12
+	Changed:	"Splply.densityfactor.changed"
+	NextControl:	13
+)
+
+(AVEnum.12
+	Name:	"TEXTLINE_TYPE_ALL"
+)
+
+(TextLine.13
+	InternalName:	"iterations"
+	Label:	"Iterations"
+	Constraints:	0x55
+	Listening:	1
+	TextType:	14
+	Changed:	"Splply.iterations.changed"
+	NextControl:	15
+)
+
+(AVEnum.14
+	Name:	"TEXTLINE_TYPE_ALL"
+)
+
+(TextLine.15
+	InternalName:	"red"
+	Label:	"R"
+	Constraints:	0x55
+	Listening:	1
+	TextType:	16
+	Changed:	"Splply.red.changed"
+	NextControl:	17
+)
+
+(AVEnum.16
+	Name:	"TEXTLINE_TYPE_ALL"
+)
+
+(TextLine.17
+	InternalName:	"green"
+	Label:	"G"
+	Constraints:	0x55
+	Listening:	1
+	TextType:	18
+	Changed:	"Splply.green.changed"
+	NextControl:	19
+)
+
+(AVEnum.18
+	Name:	"TEXTLINE_TYPE_ALL"
+)
+
+(TextLine.19
+	InternalName:	"blue"
+	Label:	"B"
+	Constraints:	0x55
+	Listening:	1
+	TextType:	20
+	Changed:	"Splply.blue.changed"
+	NextControl:	21
+)
+
+(AVEnum.20
+	Name:	"TEXTLINE_TYPE_ALL"
+)
+
+(TextLine.21
+	InternalName:	"stroke"
+	Label:	"Stroke Size"
+	Constraints:	0x55
+	Listening:	1
+	TextType:	22
+	Changed:	"Splply.stroke.changed"
+	NextControl:	11
+)
+
+(AVEnum.22
+	Name:	"TEXTLINE_TYPE_ALL"
+)
+
+(LButn.23
+	InternalName:	"OK"
+	Disabled:	1
+	Label:	"OK"
+	Click:	"Splply.Spline"
+)
+
+(LButn.24
+	InternalName:	"Close"
+	Label:	"Close"
+	Click:	"Splply.Close"
+)
+
+(TextLabel.25
+	InternalName:	"color"
+	Constraints:	0x55
+	Label:	"Color (RGB)"
+	Listening:	1
+)
+
+(RectD.26
+	Left:	16.00000000000000
+	Top:	38.00000000000000
+	Right:	191.00000000000000
+	Bottom:	18.00000000000000
+)
+
+(RectD.27
+	Left:	214.00000000000000
+	Top:	38.00000000000000
+	Right:	371.00000000000000
+	Bottom:	18.00000000000000
+)
+
+(RectD.28
+	Left:	265.00000000000000
+	Top:	105.00000000000000
+	Right:	372.00000000000000
+	Bottom:	79.00000000000000
+)
+
+(RectD.29
+	Left:	265.00000000000000
+	Top:	141.00000000000000
+	Right:	372.00000000000000
+	Bottom:	116.00000000000000
+)
+
+(RectD.30
+	Left:	100.00000000000000
+	Top:	69.00000000000000
+	Right:	191.00000000000000
+	Bottom:	49.00000000000000
+)
+
+(RectD.31
+	Left:	204.00000000000000
+	Top:	68.00000000000000
+	Right:	372.00000000000000
+	Bottom:	48.00000000000000
+)
+
+(RectD.32
+	Left:	29.00000000000000
+	Top:	77.00000000000000
+	Right:	125.00000000000000
+	Bottom:	49.00000000000000
+)
+
+(RectD.33
+	Left:	100.00000000000000
+	Top:	97.00000000000000
+	Right:	191.00000000000000
+	Bottom:	77.00000000000000
+)
+
+(RectD.34
+	Left:	101.00000000000000
+	Top:	127.00000000000000
+	Right:	191.00000000000000
+	Bottom:	107.00000000000000
+)
+
+(Nil.35
+)
+
+(Script.36
+	Name:	"Splply.blue.changed"
+	SourceCode:	"if ((Self.GetText.AsNumber < 0) or (Self.GetText.AsNumber > 255)) then\n  Self.SetText(\"\")\n  MsgBox.Error(\"RGB color must be between 0 and 255\",\"\")\nend\n\nif (Self.GetText <> \"\") then\n  Self.GetDialog.FindByName(\"OK\").SetEnabled(true)\nelse\n  Self.GetDialog.FindByName(\"OK\").SetEnabled(false)\nend\n"
+)
+
+(Script.37
+	Name:	"Splply.Close"
+	SourceCode:	"Self.GetDialog.Close"
+)
+
+(Script.38
+	Name:	"Splply.densityfactor.changed"
+	SourceCode:	"if ((Self.GetText.AsNumber < 0) or (Self.GetText.AsNumber > 1)) then\n  Self.SetText(\"\")\n  MsgBox.Error(\"Density Factor must be between 0 and 1\",\"\")\nend\n\nif (Self.GetText <> \"\") then\n  Self.GetDialog.FindByName(\"OK\").SetEnabled(true)\nelse\n  Self.GetDialog.FindByName(\"OK\").SetEnabled(false)\nend\n"
+)
+
+(Script.39
+	Name:	"Splply.dlgOpen"
+	SourceCode:	"Self.FindByName(\"densityfactor\").SetText(0.002.AsString)\nSelf.FindByName(\"iterations\").SetText(3.AsString)\nSelf.FindByName(\"stroke\").SetText(2.AsString)\nSelf.FindByName(\"red\").SetText(255.AsString)\nSelf.FindByName(\"green\").SetText(0.AsString)\nSelf.FindByName(\"blue\").SetText(0.AsString)\n"
+)
+
+(Script.40
+	Name:	"Splply.green.changed"
+	SourceCode:	"if ((Self.GetText.AsNumber < 0) or (Self.GetText.AsNumber > 255)) then\n  Self.SetText(\"\")\n  MsgBox.Error(\"RGB color must be between 0 and 255\",\"\")\nend\n\nif (Self.GetText <> \"\") then\n  Self.GetDialog.FindByName(\"OK\").SetEnabled(true)\nelse\n  Self.GetDialog.FindByName(\"OK\").SetEnabled(false)\nend\n"
+)
+
+(Script.41
+	Name:	"Splply.iterations.changed"
+	SourceCode:	"if ((Self.GetText.AsNumber < 1) or (Self.GetText.AsNumber > 100)) then\n  Self.SetText(\"\")\n  MsgBox.Error(\"Iterations must be between 1 and 100\",\"\")\nend\n\nif (Self.GetText <> \"\") then\n  Self.GetDialog.FindByName(\"OK\").SetEnabled(true)\nelse\n  Self.GetDialog.FindByName(\"OK\").SetEnabled(false)\nend\n"
+)
+
+(Script.42
+	Name:	"Splply.red.changed"
+	SourceCode:	"if ((Self.GetText.AsNumber < 0) or (Self.GetText.AsNumber > 255)) then\n  Self.SetText(\"\")\n  MsgBox.Error(\"RGB color must be between 0 and 255\",\"\")\nend\n\nif (Self.GetText <> \"\") then\n  Self.GetDialog.FindByName(\"OK\").SetEnabled(true)\nelse\n  Self.GetDialog.FindByName(\"OK\").SetEnabled(false)\nend\n"
+)
+
+(Script.43
+	Name:	"Splply.Spline"
+	SourceCode:	"'########################################################\n'#\n'# Filename:     spline_polylines.apr\n'# Author:       Adrian Boehlen\n'# Date:         14.07.2013\n'# Version:      0.2\n'#\n'# Purpose:      erzeugt simulierte Splinekurve aus \n'#               selektierten Linienfeatures als Graphic\n'#               \n'#               Staerke der Splines, Strichstaerke\n'#               und Farbe koennen angegeben werden\n'#\n'# Based on:     spline_polyline.ave\n'#\n'# This script uses a basic combination of densifying 
+the \n'# polyline and implementing the Bezier's spline\n'# method on the polyline. This script needs a view\n'# and the target theme active.\n\n'# A combination of these two variables will produce different\n'# results depending on the nature and scale of the Polyline.\n\n'# densityfactor 0.000 to 1.000 only\n'# iterations 1 to 100 works best\n\n'########################################################\n\n'# read variables from dialog\n\nderDialog = Self.GetDialog\ndensityfactor = derDialog.FindByName(\"densityfactor\").GetT
+ext.AsNumber\niterations = derDialog.FindByName(\"iterations\").GetText.AsNumber\nstrichst = derDialog.FindByName(\"stroke\").GetText.AsNumber\nrot = derDialog.FindByName(\"red\").GetText.AsNumber\ngruen = derDialog.FindByName(\"green\").GetText.AsNumber\nblau = derDialog.FindByName(\"blue\").GetText.AsNumber\n\n\n'# if the name of the active view is not \"View1\"\n\nif (Av.FindDoc(\"View1\") = nil) then\n  v = MsgBox.ListAsString(Av.GetProject.GetDocs,\"Select your view\",\"\")\nelse\n  v = Av.FindDoc(\"View1\")\nend\n\n\n'# check theme\n\nvg =
+ v.GetGraphics\nthm = v.GetActiveThemes.Get(0)\nftb = thm.GetFtab\nif(ftb.GetShapeclass.GetClassname <> \"PolyLine\") then\n  MsgBox.Error(\"We can only spline PolyLine features.\",\"\")\n  return nil\nend\n\nif (ftb.getselection.count = 0) then\n  MsgBox.Info(\"Please select one or more PolyLine features\",\"\")\nend\n\n\n'# spline function\n\nfor each selrec in ftb.GetSelection\n\n  thepolyline = ftb.ReturnValue(ftb.FindField(\"Shape\"),SelRec)\n    \n  howdense = thepolyline.ReturnLength*densityfactor\n  oldplist = thepolyline.ReturnDe
+nsified(howdense).AsList\n  \n  newplist = {}\n  for each apart in oldplist\n    for each ap in apart\n      newplist.Add(ap)\n    end\n  end\n  \n  for each x in 1..iterations \n    newerplist = {}  \n    for each i in 0..(newplist.count-1)\n      if (i = 0) then\n        newerplist.Add(newplist.Get(i))\n      elseif (i = (newplist.Count-1)) then\n        newerplist.add(newplist.Get(i))\n        break\n      end        \n      newp = Line.Make(newplist.Get(i),newplist.Get(i+1)).ReturnCenter \n      newerplist.Add(newp)  \n   
+ end\n    newplist = newerplist.DeepClone  \n  end\n  \n  newpolyline = Polyline.Make({newplist})  \n\n  gs = Graphicshape.Make(newpolyline)\n  asymbol = Symbol.Make(#SYMBOL_PEN)\n  asymbol.SetSize(strichst)\n  nc = Color.Make\n  nc.SetRGBList({rot,gruen,blau})\n  asymbol.SetColor(nc)\n  gs.SetSymbol(asymbol)\n  vg.Add(gs)\nend\nv.Invalidate\n\n\n"
+)
+
+(Script.44
+	Name:	"Splply.Start"
+	SourceCode:	"av.getproject.finddialog(\"Splinepolylines\").open"
+)
+
+(Script.45
+	Name:	"Splply.stroke.changed"
+	SourceCode:	"if (Self.GetText.AsNumber < 0) then\n  Self.SetText(\"\")\n  MsgBox.Error(\"Stroke width must be greater than 0\",\"\")\nend\n\nif (Self.GetText <> \"\") then\n  Self.GetDialog.FindByName(\"OK\").SetEnabled(true)\nelse\n  Self.GetDialog.FindByName(\"OK\").SetEnabled(false)\nend\n"
+)
+
+(Script.46
+	Name:	"Ext_Unload"
+	SourceCode:	"Dialog.DetachFromExtension(self)\n"
+)
+
+(Script.47
+	Name:	"Ext_Inst"
+	SourceCode:	"if (av.GetProject = nil) then\n  return nil\nend\n\nSack=Self 'Der Sack vom makescript, wo alles Benötigte drin ist\n\nSchaltflaeche=Sack.Get(0)\nviewGUI = av.GetProject.FindGUI( \"View\" )\nif (viewGUI <> nil) then\n  'prüfen, ob die Schaltfläche schon existiert\n  if(viewGUI.GetButtonBar.FindByScript(Schaltflaeche.GetClick)=nil)then\n    viewGUI.GetButtonBar.Add( Schaltflaeche, 20)\n  end\nend\n\nav.GetProject.AddDialog( Sack.Get(1))\n\n\n\n\n"
+)
+
+(Script.48
+	Name:	"Ext_Unin"
+	SourceCode:	"if (av.GetProject = nil) then\n  return nil\nend\n\nif (av.GetProject.IsClosing) then\n  return nil\nend\n\nviewGUI = av.GetProject.FindGUI( \"View\" )\n\nviewGUI.GetButtonBar.Remove(viewGUI.GetButtonBar.FindByScript( \"Splply.start\")) ' Schaltfläche\nav.GetProject.removedialog(\"SplplyDialog\")  'Dialog\n\n'Das 4. Script Ext_unload bleibt wie's ist.\n"
+)
+

@@ -1,0 +1,70 @@
+'-- Scriptgra2shp.ave
+'-- Converts all view graphics of the selected feature type into a shapefile,
+'-- then adds that shapefile to the View.
+
+theView=av.getactivedoc
+theGPL=theView.getgraphics.findallbyclass(GraphicShape)
+if (theGPL = nil) then 
+  MsgBox.error("No graphic shapes in view","")
+  return nil
+end
+
+'theFTL={"Point", "Polyline", "Polygon"}
+'aShapeType=MsgBox.listasstring(theFTL, "Select the type of graphics you want"+
+'"converted into a shapefile", "Choose a feature type")
+'if (aShapeType = nil) then 
+'  return nil
+'end
+
+'if (aShapetype = "point") then
+'  theclass = point
+'elseif (aShapeType = "polyline") then
+theclass = polyline
+'elseif (aShapeType = "polygon") then
+'  theclass = polygon
+'end
+
+theCLoF={}
+for each g in theGPL
+  if ((g.getshape.is(rect)) or (g.getshape.is(circle))) then
+    g = graphicshape.make(g.getshape.aspolygon)
+  end
+  if (g.getshape.Is(theclass)) then
+    theCLoF.Add(g)  
+  end
+end
+
+if (theCLoF.count = 0) then
+  MsgBox.error("No graphic features in"+
+  "view","")
+  return nil
+end
+
+tmpfn = av.GetProject.GetWorkDir
+theOutFileName=FileDialog.Put(tmpfn,"*.shp","Create new shapefile from graphic")
+theFtab=Ftab.MakeNew(theOutFileName, theclass)
+theIDfld=Field.Make("myID", #FIELD_LONG, 10, 0)
+theShapeFld=theFtab.FindField("Shape")
+theFldList={theIDfld}
+theFtab.AddFields(theFldList)
+
+for each fea in theCLoF
+  theRecNo=theFtab.AddRecord
+  theFtab.SetValue(theIDfld, theRecNo, theRecNo)
+  eachShape=fea.getshape
+  theFtab.SetValue(theShapeFld, theRecNo, eachShape)
+end
+  
+theFTheme=Ftheme.Make(theFTab)
+theView.AddTheme(theFTheme)
+
+theLeg = theFTheme.GetLegend
+theLine = Symbol.Make(#SYMBOL_PEN)
+theLine.SetColor(Color.GetRed)
+theLine.SetSize(1)
+theLeg.SetLegendType(#LEGEND_TYPE_SIMPLE)
+theLeg.GetSymbols.Set(0,theLine)
+theLeg.GetSymbols.Unhook
+
+theView.Invalidate
+

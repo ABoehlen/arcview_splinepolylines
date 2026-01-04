@@ -1,0 +1,20 @@
+if (av.GetProject = nil) then
+  return nil
+end
+
+Sack=Self
+
+Schaltflaeche=Sack.Get(0)
+viewGUI = av.GetProject.FindGUI( "View" )
+if (viewGUI <> nil) then
+  if(viewGUI.GetButtonBar.FindByScript(Schaltflaeche.GetClick)=nil)then
+    viewGUI.GetButtonBar.Add( Schaltflaeche, 20)
+  end
+end
+
+av.GetProject.AddDialog( Sack.Get(1))
+
+
+
+
+

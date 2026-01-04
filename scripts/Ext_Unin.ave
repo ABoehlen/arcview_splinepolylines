@@ -1,0 +1,13 @@
+if (av.GetProject = nil) then
+  return nil
+end
+
+if (av.GetProject.IsClosing) then
+  return nil
+end
+
+viewGUI = av.GetProject.FindGUI( "View" )
+
+viewGUI.GetButtonBar.Remove(viewGUI.GetButtonBar.FindByScript( "Splply.start"))
+av.GetProject.removedialog("SplplyDialog")
+

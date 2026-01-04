@@ -1,0 +1,11 @@
+if (Self.GetText.AsNumber < 0) then
+  Self.SetText("")
+  MsgBox.Error("Strichstärke muss grösser als 0 sein","")
+end
+
+if (Self.GetText <> "") then
+  Self.GetDialog.FindByName("OK").SetEnabled(true)
+else
+  Self.GetDialog.FindByName("OK").SetEnabled(false)
+end
+

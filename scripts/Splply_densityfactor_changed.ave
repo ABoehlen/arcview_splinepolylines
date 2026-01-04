@@ -1,0 +1,11 @@
+if ((Self.GetText.AsNumber < 0) or (Self.GetText.AsNumber > 1)) then
+  Self.SetText("")
+  MsgBox.Error("Dichte-Faktor muss zwischen 0 und 1 liegen","")
+end
+
+if (Self.GetText <> "") then
+  Self.GetDialog.FindByName("OK").SetEnabled(true)
+else
+  Self.GetDialog.FindByName("OK").SetEnabled(false)
+end
+
