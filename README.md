@@ -10,8 +10,8 @@ This tool uses a basic combination of densifying the polyline and implementing t
 
 A combination of the following two parameters will produce different results depending on the nature and scale of the Polyline.
 
-densityfactor 0.000 to 1.000 only
-iterations 1 to 100 works best
+* densityfactor 0.000 to 1.000 only
+* iterations 1 to 100 works best
 
 ## Background
 ESRI's ArcView GIS is a rather old (1995 – 2002), but for many purposes still useful GIS application. Due to its age it's very fast on modern hardware and has full support for the still widely used vector data format _Shape_ (SHP).
