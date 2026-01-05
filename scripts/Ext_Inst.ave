@@ -1,3 +1,14 @@
+'#########################################################################
+'#
+'# Filename:     ExtInst.ave
+'# Author:       Adrian Boehlen
+'# Date:         03.11.2022
+'# Version:      0.4
+'#
+'# Purpose:      installiert die Extension 
+'#
+'#########################################################################
+
 if (av.GetProject = nil) then
   return nil
 end

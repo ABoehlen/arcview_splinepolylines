@@ -1,3 +1,14 @@
+'#########################################################################
+'#
+'# Filename:     Ext.Unin.ave
+'# Author:       Adrian Boehlen
+'# Date:         03.11.2022
+'# Version:      0.4
+'#
+'# Purpose:      entfernt die Komponenten beim Deaktivieren der Extension 
+'#
+'#########################################################################
+
 if (av.GetProject = nil) then
   return nil
 end

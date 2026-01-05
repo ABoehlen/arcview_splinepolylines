@@ -2,8 +2,8 @@
 '#
 '# Filename:     spline_polylines_scale_graphics.ave
 '# Author:       Adrian Boehlen
-'# Date:         23.02.2014
-'# Version:      1.2
+'# Date:         28.01.2023
+'# Version:      1.3
 '#
 '# Purpose:      erzeugt simulierte Splinekurve aus 
 '#               selektierten Linienfeatures als Graphic
@@ -37,8 +37,7 @@
 '#
 '##############################################################
 
-'# read variables from dialog
-
+'# Variablen aus Dialog einlesen
 derDialog = Self.GetDialog
 densityfactor = derDialog.FindByName("densityfactor").GetText.AsNumber
 iterations = derDialog.FindByName("iterations").GetText.AsNumber
@@ -47,18 +46,16 @@ rot = derDialog.FindByName("red").GetText.AsNumber
 gruen = derDialog.FindByName("green").GetText.AsNumber
 blau = derDialog.FindByName("blue").GetText.AsNumber
 
-'# if the name of the active view is not "View1"
+theView = av.GetActiveDoc 
 
-if (Av.FindDoc("View1") = nil) then
-  theView = MsgBox.ListAsString(Av.GetProject.GetDocs,"View auswaehlen","")
-else
-  theView = Av.FindDoc("View1")
+if (theView.Is(view).Not) then
+  MsgBox.Warning("Start this tool from an active View.","")
+  return nil
 end
 
 theDisplay = theView.GetDisplay
 
-'# check theme
-
+'# Thema pruefen
 theGraphics = theView.GetGraphics
 thm = theView.GetActiveThemes.Get(0)
 ftb = thm.GetFtab
@@ -72,10 +69,16 @@ if (ftb.getselection.count = 0) then
   return nil
 end
 
-'# spline function
+'# Fortschrittsanzeige mit Stop button definieren
+av.ShowMsg("Spline polylines...")
+canceled = False
+av.ShowStopButton
+statusIndex = 0
+av.SetStatus(statusIndex)
 
+'# Spline-Funktion mit Fortschrittsanzeige
 for each selrec in ftb.GetSelection
-
+  statusIncrement = 100 / ftb.GetSelection.Count
   thepolyline = ftb.ReturnValue(ftb.FindField("Shape"),SelRec)
     
   howdense = thepolyline.ReturnLength*densityfactor
@@ -88,7 +91,14 @@ for each selrec in ftb.GetSelection
     end
   end
   
-  for each x in 1..iterations 
+  for each x in 1..iterations
+    statusIndex = statusIndex + statusIncrement
+    continued = av.SetStatus(statusIndex)
+    if (Not continued) then
+      canceled = true
+      break
+    end
+
     newerplist = {}  
     for each i in 0..(newplist.count-1)
       if (i = 0) then
@@ -116,8 +126,16 @@ for each selrec in ftb.GetSelection
   theGraphics.Add(theGraphicShape)
 end
 
-'# scale graphics
+'# Falls Stop button gedrueckt wurde, Meldung ausgeben
+if (canceled) then
+  av.ShowMsg("Process interrupted")
+else
+  av.ShowMsg("Process completed")
+  av.ClearStatus   '# damit Fortschrittsanzeige verschwindet
+end
 
+
+'# Grafikfeatures skalieren
 theGTL = theView.GetGraphics.FindAllByClass(graphicshape)
 thingsToStopScaling = theView.GetGraphics.GetSelected
 theSelGTL = {}
@@ -158,8 +176,7 @@ else
 end
 av.purgeobjects
 
-'# convert graphics to shapefile
-
+'# Grafiken in Shapefile konvertieren
 if (MsgBox.YesNo("Grafiken zu Shapefile konvertieren ?","Zu Shapefile konvertieren",true)) then
   theGPL=theView.GetGraphics.GetSelected
   if (theGPL = nil) then 
@@ -214,8 +231,7 @@ if (MsgBox.YesNo("Grafiken zu Shapefile konvertieren ?","Zu Shapefile konvertier
   end
   theLeg.GetSymbols.Set(0,theLine)
   
-  '# delete selected graphics
-
+  '# Grafikfeatures wieder loeschen
   if (theView.GetGraphics.HasSelected) then
     av.GetProject.SetModified(true)
   end

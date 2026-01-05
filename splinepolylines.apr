@@ -39,21 +39,21 @@
 	Scripts:	168
 	Prefs:	169
 	GUI:	177
-	WorkDir:	1133
-	WinX:	3
-	WinY:	2
+	WorkDir:	1127
+	WinX:	10
+	WinY:	26
 	WinW:	1362
 	WinH:	763
 	SerialNumber:	"899941126318"
-	SelColor:	1134
+	SelColor:	1128
+	GUINames:	1129
+	GUINames:	1130
+	GUINames:	1131
+	GUINames:	1132
+	GUINames:	1133
+	GUINames:	1134
 	GUINames:	1135
 	GUINames:	1136
-	GUINames:	1137
-	GUINames:	1138
-	GUINames:	1139
-	GUINames:	1140
-	GUINames:	1141
-	GUINames:	1142
 	TocWidthScale:	1.00000000000000
 )
 
@@ -74,14 +74,15 @@
 )
 
 (SEd.6
-	Name:	"Ext_Inst"
+	Name:	"Ext.Inst"
 	Creator:	"adrian"
 	CreationDate:	"Son 02 Feb 2014 09:51:17 CET"
 	GUIName:	"Script"
 	Win:	7
 	CSMgr:	8
 	DocExts:	9
-	Source:	"if (av.GetProject = nil) then\n  return nil\nend\n\nSack=Self\n\nSchaltflaeche=Sack.Get(0)\nviewGUI = av.GetProject.FindGUI( \"View\" )\nif (viewGUI <> nil) then\n  if(viewGUI.GetButtonBar.FindByScript(Schaltflaeche.GetClick)=nil)then\n    viewGUI.GetButtonBar.Add( Schaltflaeche, 20)\n  end\nend\n\nav.GetProject.AddDialog( Sack.Get(1))\n\n\n\n\n"
+	Source:	"'#########################################################################\n'#\n'# Filename:     ExtInst.ave\n'# Author:       Adrian Boehlen\n'# Date:         03.11.2022\n'# Version:      0.4\n'#\n'# Purpose:      installiert die Extension \n'#\n'#########################################################################\n\nif (av.GetProject = nil) then\n  return nil\nend\n\nSack=Self\n\nSchaltflaeche=Sack.Get(0)\nviewGUI = av.GetProject.FindGUI( \"View\" )\nif (viewGUI <> nil) then\n  if(viewGUI.GetButtonBar.FindByScript(Schaltf
+laeche.GetClick)=nil)then\n    viewGUI.GetButtonBar.Add( Schaltflaeche, 20)\n  end\nend\n\nav.GetProject.AddDialog( Sack.Get(1))\n\n\n\n\n"
 )
 
 (DocWin.7
@@ -100,15 +101,16 @@
 )
 
 (SEd.10
-	Name:	"Ext_Make"
+	Name:	"Ext.Make"
 	Creator:	"adrian"
 	CreationDate:	"Son 02 Feb 2014 09:52:07 CET"
 	GUIName:	"Script"
 	Win:	11
 	CSMgr:	12
 	DocExts:	13
-	Source:	"Splply = Extension.Make(\"$AVHOME/projects/splinepolylines/splinepolylines.avx\".AsFileName,\n\"Spline Polylines\",av.FindScript(\"Ext_inst\"),av.FindScript(\"Ext_unin\"), {\"$AVBIN/avdlog.dll\".AsFileName})\n\nSplply.SetExtVersion(1)\nSplply.SetAbout(\"erzeugt simulierte Splinekurve aus selektierten Linienfeatures als Graphic oder neues Shapefile (v1.3)\")\nSplply.SetUnloadScript(av.FindScript(\"ext_unload\"))\n\nSchaltflaeche=( av.FindGUI( \"View\").GetButtonBar.FindByScript(\"Splply.start\"))  \nSplplyDialog =av.FindDialog(\"Splin
-epolylines\")\nSplply.Add( Schaltflaeche)   'Schaltfläche hinzufügen\nSplply.Add(SplplyDialog)\n\nfor each aDoc in av.GetProject.GetDocs\n  if (aDoc.Is(SEd)) then\n    if (aDoc.GetName.Contains(\"Splply.\")) then\n      if (aDoc.IsCompiled.Not) then\n        aDoc.Compile\n      end\n      Splply.Add(av.FindScript(aDoc.GetName))\n    end\n  end\nend\n\nSplply.Commit\n\n"
+	Source:	"'#########################################################################\n'#\n'# Filename:     Ext.Make.ave\n'# Author:       Adrian Boehlen\n'# Date:         05.01.2026\n'# Version:      0.6\n'#\n'# Purpose:      erstellt die Extension\n'#               Zum Erstellen der Extension NUR dieses Script ausfuehren\n'#\n'#########################################################################\n\nSplply = Extension.Make(\"$AVHOME/projects/splinepolylines/splinepolylines.avx\".AsFileName,\n\"Spline Polylines\",av.FindScript(\"Ex
+t.Inst\"),av.FindScript(\"Ext.Unin\"), {\"$AVBIN/avdlog.dll\".AsFileName})\n\nSplply.SetExtVersion(1)\nSplply.SetAbout(\"erzeugt simulierte Splinekurve aus selektierten Linienfeatures als Graphic oder neues Shapefile (v1.3)\")\nSplply.SetUnloadScript(av.FindScript(\"ext.Unload\"))\n\nSchaltflaeche=( av.FindGUI( \"View\").GetButtonBar.FindByScript(\"Splply.start\"))  \nSplplyDialog =av.FindDialog(\"Splinepolylines\")\nSplply.Add( Schaltflaeche)   'Schaltfläche hinzufügen\nSplply.Add(SplplyDialog)\n\nfor each aDoc in av.GetProject.Get
+Docs\n  if (aDoc.Is(SEd)) then\n    if (aDoc.GetName.Contains(\"Splply.\")) then\n      if (aDoc.IsCompiled.Not) then\n        aDoc.Compile\n      end\n      Splply.Add(av.FindScript(aDoc.GetName))\n    end\n  end\nend\n\nSplply.Commit\n\n"
 	SearchStr:	"MeinDialog"
 )
 
@@ -128,14 +130,15 @@ epolylines\")\nSplply.Add( Schaltflaeche)   'Schaltfläche hinzufügen\nSplply.Add
 )
 
 (SEd.14
-	Name:	"Ext_Unin"
+	Name:	"Ext.Unin"
 	Creator:	"adrian"
 	CreationDate:	"Son 02 Feb 2014 09:52:25 CET"
 	GUIName:	"Script"
 	Win:	15
 	CSMgr:	16
 	DocExts:	17
-	Source:	"if (av.GetProject = nil) then\n  return nil\nend\n\nif (av.GetProject.IsClosing) then\n  return nil\nend\n\nviewGUI = av.GetProject.FindGUI( \"View\" )\n\nviewGUI.GetButtonBar.Remove(viewGUI.GetButtonBar.FindByScript( \"Splply.start\"))\nav.GetProject.removedialog(\"SplplyDialog\")\n"
+	Source:	"'#########################################################################\n'#\n'# Filename:     Ext.Unin.ave\n'# Author:       Adrian Boehlen\n'# Date:         03.11.2022\n'# Version:      0.4\n'#\n'# Purpose:      entfernt die Komponenten beim Deaktivieren der Extension \n'#\n'#########################################################################\n\nif (av.GetProject = nil) then\n  return nil\nend\n\nif (av.GetProject.IsClosing) then\n  return nil\nend\n\nviewGUI = av.GetProject.FindGUI( \"View\" )\n\nviewGUI.GetButtonBar.Re
+move(viewGUI.GetButtonBar.FindByScript( \"Splply.start\"))\nav.GetProject.removedialog(\"SplplyDialog\")\n"
 )
 
 (DocWin.15
@@ -154,7 +157,7 @@ epolylines\")\nSplply.Add( Schaltflaeche)   'Schaltfläche hinzufügen\nSplply.Add
 )
 
 (SEd.18
-	Name:	"Ext_Unload"
+	Name:	"Ext.Unload"
 	Creator:	"adrian"
 	CreationDate:	"Son 02 Feb 2014 09:52:39 CET"
 	GUIName:	"Script"
@@ -1207,8 +1210,8 @@ der loeschen\n  if (theView.GetGraphics.HasSelected) then\n    av.GetProject.Set
 )
 
 (PointD.162
-	x:	142830.34083986661000
-	y:	658743.32194432069000
+	x:	142833.52591070705000
+	y:	658989.63408931310000
 )
 
 (Numb.163
@@ -1244,26 +1247,26 @@ der loeschen\n  if (theView.GetGraphics.HasSelected) then\n    av.GetProject.Set
 
 (NameDict.169
 	Obj:	170
-	Obj:	173
+	Obj:	171
 	Obj:	174
 )
 
 (AVDict.170
-	InternalName:	"Dialog Designer"
-	Key:	171
-	Value:	172
+	InternalName:	"Table of Contents Defaults Dialog"
 )
 
-(AVStr.171
+(AVDict.171
+	InternalName:	"Dialog Designer"
+	Key:	172
+	Value:	173
+)
+
+(AVStr.172
 	S:	"IsVisible"
 )
 
-(Bool.172
+(Bool.173
 	Truth:	1
-)
-
-(AVDict.173
-	InternalName:	"Table of Contents Defaults Dialog"
 )
 
 (AVDict.174
@@ -1285,9 +1288,9 @@ der loeschen\n  if (theView.GetGraphics.HasSelected) then\n    av.GetProject.Set
 	Modified:	1
 	Visible:	1
 	MenuBar:	178
-	ButnBar:	297
-	Popups:	340
-	ToolBar:	362
+	ButnBar:	296
+	Popups:	339
+	ToolBar:	361
 	NewScript:	"View.New"
 	OpenScript:	"Doc.Open"
 	ActionScript:	"Doc.Action"
@@ -1295,7 +1298,7 @@ der loeschen\n  if (theView.GetGraphics.HasSelected) then\n    av.GetProject.Set
 	OpenUpdateScript:	"Doc.OpenUpdate"
 	ActionUpdateScript:	"Doc.ActionUpdate"
 	Title:	"Views"
-	Icon:	439
+	Icon:	438
 )
 
 (MenuBar.178
@@ -1305,7 +1308,7 @@ der loeschen\n  if (theView.GetGraphics.HasSelected) then\n    av.GetProject.Set
 	Child:	239
 	Child:	262
 	Child:	280
-	Child:	292
+	Child:	291
 )
 
 (PMenu.179
@@ -1492,6 +1495,7 @@ der loeschen\n  if (theView.GetGraphics.HasSelected) then\n    av.GetProject.Set
 )
 
 (Choice.201
+	Disabled:	1
 	Help:	"Undo the last edit to graphics on a view"
 	HelpTopic:	"Undo_Graphic_Edit_on_a_view"
 	Update:	"View.UndoEditUpdate"
@@ -1670,6 +1674,7 @@ der loeschen\n  if (theView.GetGraphics.HasSelected) then\n    av.GetProject.Set
 )
 
 (Choice.221
+	Disabled:	1
 	Help:	"Displays a dialog box to create an XY or dynamic segmentation event-based theme "
 	HelpTopic:	"Add_Event_Theme"
 	Update:	"View.AddEventUpdate"
@@ -1785,6 +1790,7 @@ der loeschen\n  if (theView.GetGraphics.HasSelected) then\n    av.GetProject.Set
 )
 
 (Choice.235
+	Disabled:	1
 	Help:	"Goes back to the previous extent you were viewing"
 	HelpTopic:	"Zoom_Previous"
 	Update:	"View.UndoZoomUpdate"
@@ -2171,7 +2177,6 @@ der loeschen\n  if (theView.GetGraphics.HasSelected) then\n    av.GetProject.Set
 	Child:	287
 	Child:	289
 	Child:	290
-	Child:	291
 	Label:	"&Window"
 )
 
@@ -2216,7 +2221,7 @@ der loeschen\n  if (theView.GetGraphics.HasSelected) then\n    av.GetProject.Set
 )
 
 (AVStr.288
-	S:	"splinepolylines.apr Splply.Spline View1"
+	S:	"splinepolylines.apr View1"
 )
 
 (Choice.289
@@ -2227,29 +2232,22 @@ der loeschen\n  if (theView.GetGraphics.HasSelected) then\n    av.GetProject.Set
 )
 
 (Choice.290
-	Help:	"Activates Splply.Spline"
-	Label:	"&2 Splply.Spline"
-	Click:	"WindowActivate"
-	Shortcut:	"Keys.None"
-)
-
-(Choice.291
 	Help:	"Activates View1"
-	Label:	"&3 View1"
+	Label:	"&2 View1"
 	Click:	"WindowActivate"
 	Shortcut:	"Keys.None"
 )
 
-(PMenu.292
+(PMenu.291
 	InternalName:	"Help"
+	Child:	292
 	Child:	293
 	Child:	294
 	Child:	295
-	Child:	296
 	Label:	"&Help"
 )
 
-(Choice.293
+(Choice.292
 	Help:	"Displays the dialog for browsing and searching ArcView's help system"
 	HelpTopic:	"Help_on_Help_Topics"
 	Label:	"Help &Topics..."
@@ -2257,7 +2255,7 @@ der loeschen\n  if (theView.GetGraphics.HasSelected) then\n    av.GetProject.Set
 	Shortcut:	"Keys.None"
 )
 
-(Choice.294
+(Choice.293
 	Help:	"Provides instructions for how to obtain help from ArcView"
 	HelpTopic:	"Help_on_How_to_Get_Help"
 	Label:	"&How to Get Help..."
@@ -2265,10 +2263,10 @@ der loeschen\n  if (theView.GetGraphics.HasSelected) then\n    av.GetProject.Set
 	Shortcut:	"Keys.None"
 )
 
-(Space.295
+(Space.294
 )
 
-(Choice.296
+(Choice.295
 	Help:	"Provides information about ArcView"
 	HelpTopic:	"About"
 	Label:	"&About ArcView..."
@@ -2276,316 +2274,318 @@ der loeschen\n  if (theView.GetGraphics.HasSelected) then\n    av.GetProject.Set
 	Shortcut:	"Keys.None"
 )
 
-(ButnBar.297
-	Child:	298
+(ButnBar.296
+	Child:	297
+	Child:	299
 	Child:	300
-	Child:	301
+	Child:	302
 	Child:	303
-	Child:	304
-	Child:	306
-	Child:	308
+	Child:	305
+	Child:	307
+	Child:	309
 	Child:	310
-	Child:	311
-	Child:	313
-	Child:	315
+	Child:	312
+	Child:	314
+	Child:	316
 	Child:	317
-	Child:	318
-	Child:	320
-	Child:	322
-	Child:	324
-	Child:	326
-	Child:	328
+	Child:	319
+	Child:	321
+	Child:	323
+	Child:	325
+	Child:	327
+	Child:	329
 	Child:	330
-	Child:	331
-	Child:	333
+	Child:	332
+	Child:	334
 	Child:	335
-	Child:	336
-	Child:	338
+	Child:	337
 )
 
-(Butn.298
+(Butn.297
 	Help:	"Save Project//Saves the current project"
 	HelpTopic:	"Save_Project"
-	Icon:	299
+	Icon:	298
 	Click:	"Project.Save"
 )
 
-(AVIcon.299
+(AVIcon.298
 	Name:	"Save"
 	Res:	"Icons.Save"
 
 )
 
-(Space.300
+(Space.299
 )
 
-(Butn.301
+(Butn.300
 	Help:	"Add Theme//Inserts themes into the view"
 	HelpTopic:	"Add_Theme"
-	Icon:	302
+	Icon:	301
 	Click:	"View.Add"
 )
 
-(AVIcon.302
+(AVIcon.301
 	Name:	"AddTheme"
 	Res:	"Icons.AddTheme"
 
 )
 
-(Space.303
+(Space.302
 )
 
-(Butn.304
+(Butn.303
 	Disabled:	1
 	Help:	"Theme Properties//Displays the dialog box to edit properties of the active theme"
 	HelpTopic:	"Theme_Properties"
 	Update:	"View.ActiveThemesUpdate"
-	Icon:	305
+	Icon:	304
 	Click:	"View.ThemeProperties"
 )
 
-(AVIcon.305
+(AVIcon.304
 	Name:	"Props"
 	Res:	"Icons.Props"
 
 )
 
-(Butn.306
+(Butn.305
 	Disabled:	1
 	Help:	"Edit Legend//Displays the legends of the active themes"
 	HelpTopic:	"Edit_Legend"
 	Update:	"View.ActiveThemesUpdate"
-	Icon:	307
+	Icon:	306
 	Click:	"View.EditLegendClick"
 )
 
-(AVIcon.307
+(AVIcon.306
 	Name:	"Legend"
 	Res:	"Icons.Legend"
 
 )
 
-(Butn.308
+(Butn.307
 	Disabled:	1
 	Help:	"Open Theme Table//Opens the tables of the active themes"
 	HelpTopic:	"Open_Theme_Table"
 	Update:	"View.TabularThemesUpdate"
-	Icon:	309
+	Icon:	308
 	Click:	"View.ShowTable"
 )
 
-(AVIcon.309
+(AVIcon.308
 	Name:	"Table"
 	Res:	"Icons.Table"
 
 )
 
-(Space.310
+(Space.309
 )
 
-(Butn.311
+(Butn.310
 	Disabled:	1
 	Help:	"Find//Finds features in the active themes using the text you enter"
 	HelpTopic:	"Find"
 	Update:	"View.TabularThemesUpdate"
-	Icon:	312
+	Icon:	311
 	Click:	"View.Find"
 )
 
-(AVIcon.312
+(AVIcon.311
 	Name:	"Find"
 	Res:	"Icons.Find"
 
 )
 
-(Butn.313
+(Butn.312
 	Disabled:	1
 	Help:	"Locate Address//Locates an address in the active, matchable theme"
 	HelpTopic:	"Locate_Address"
 	Update:	"View.LocateUpdate"
-	Icon:	314
+	Icon:	313
 	Click:	"View.Locate"
 )
 
-(AVIcon.314
+(AVIcon.313
 	Name:	"AddMatch"
 	Res:	"Icons.AddMatch"
 
 )
 
-(Butn.315
+(Butn.314
 	Disabled:	1
 	Help:	"Query Builder//Displays the Query Builder to select features with a logical expression"
 	HelpTopic:	"Query_Builder"
 	Update:	"View.AttributeThemesUpdate"
-	Icon:	316
+	Icon:	315
 	Click:	"View.Query"
 )
 
-(AVIcon.316
+(AVIcon.315
 	Name:	"QueryBuilder"
 	Res:	"Icons.QueryBuilder"
 
 )
 
-(Space.317
+(Space.316
 )
 
-(Butn.318
+(Butn.317
 	Disabled:	1
 	Help:	"Zoom to Full Extent//Zooms to the extent of all themes"
 	HelpTopic:	"Zoom_to_Full_Extent"
 	Update:	"View.HasDataUpdate"
-	Icon:	319
+	Icon:	318
 	Click:	"View.ZoomFullExtent"
 )
 
-(AVIcon.319
+(AVIcon.318
 	Name:	"ZoomView"
 	Res:	"Icons.ZoomView"
 
 )
 
-(Butn.320
+(Butn.319
 	Disabled:	1
 	Help:	"Zoom to Active Theme(s)//Zooms to the extent of active themes"
 	HelpTopic:	"Zoom_to_Active_Theme"
 	Update:	"View.ActiveThemesUpdate"
-	Icon:	321
+	Icon:	320
 	Click:	"View.ZoomToThemes"
 )
 
-(AVIcon.321
+(AVIcon.320
 	Name:	"ZoomTheme"
 	Res:	"Icons.ZoomTheme"
 
 )
 
-(Butn.322
+(Butn.321
 	Disabled:	1
 	Help:	"Zoom to Selected//Zooms to the extent of the selected features"
 	HelpTopic:	"Zoom_to_Selected"
 	Update:	"View.SelectableThemesUpdate"
-	Icon:	323
+	Icon:	322
 	Click:	"View.ZoomToSelected"
 )
 
-(AVIcon.323
+(AVIcon.322
 	Name:	"ZoomToSelected"
 	Res:	"Icons.ZoomToSelected"
 
 )
 
-(Butn.324
+(Butn.323
 	Disabled:	1
 	Help:	"Zoom In//Zooms in on the center of the display"
 	HelpTopic:	"Zoom_In"
 	Update:	"View.HasDataUpdate"
-	Icon:	325
+	Icon:	324
 	Click:	"View.ZoomIn"
 )
 
-(AVIcon.325
+(AVIcon.324
 	Name:	"ZoomIn"
 	Res:	"Icons.ZoomIn"
 
 )
 
-(Butn.326
+(Butn.325
 	Disabled:	1
 	Help:	"Zoom Out//Zooms out from the center of the display"
 	HelpTopic:	"Zoom_Out"
 	Update:	"View.HasDataUpdate"
-	Icon:	327
+	Icon:	326
 	Click:	"View.ZoomOut"
 )
 
-(AVIcon.327
+(AVIcon.326
 	Name:	"ZoomOut"
 	Res:	"Icons.ZoomOut"
 
 )
 
-(Butn.328
+(Butn.327
+	Disabled:	1
 	Help:	"Zoom to Previous Extent//Goes back to the previous extent you were viewing"
 	HelpTopic:	"Zoom_Previous"
 	Update:	"View.UndoZoomUpdate"
-	Icon:	329
+	Icon:	328
 	Click:	"View.UndoZoom"
 )
 
-(AVIcon.329
+(AVIcon.328
 	Name:	"ZoomPrevious"
 	Res:	"Icons.ZoomPrevious"
 
 )
 
-(Space.330
+(Space.329
 )
 
-(Butn.331
+(Butn.330
 	Disabled:	1
 	Help:	"Select Features Using Graphic//Selects features in active themes using selected graphics"
 	HelpTopic:	"Select_Features_Using_Graphic"
 	Update:	"View.SpatialSelectUpdate"
-	Icon:	332
+	Icon:	331
 	Click:	"View.SpatialSelect"
 )
 
-(AVIcon.332
+(AVIcon.331
 	Name:	"SpatialSelect"
 	Res:	"Icons.SpatialSelect"
 
 )
 
-(Butn.333
+(Butn.332
 	Disabled:	1
 	Help:	"Clear Selected Features//Unselects the selected features of all active themes"
 	HelpTopic:	"Clear_Selected_Features"
 	Update:	"View.AttributeThemesUpdate"
-	Icon:	334
+	Icon:	333
 	Click:	"View.ClearSelect"
 )
 
-(AVIcon.334
+(AVIcon.333
 	Name:	"SelectNone"
 	Res:	"Icons.SelectNone"
 
 )
 
-(Space.335
+(Space.334
 )
 
-(Butn.336
+(Butn.335
 	Help:	"Help//Gets help about the next button, tool, or menu choice you click"
 	HelpTopic:	"Help_button"
-	Icon:	337
+	Icon:	336
 	Click:	"Help.Tool"
 )
 
-(AVIcon.337
+(AVIcon.336
 	Name:	"HelpTool"
 	Res:	"Icons.HelpTool"
 
 )
 
-(Butn.338
+(Butn.337
 	Help:	"Spline polylines//"
-	Icon:	339
+	Icon:	338
 	Click:	"Splply.Start"
 )
 
-(AVIcon.339
+(AVIcon.338
 	Name:	"Contour"
 	Res:	"Icons.Contour"
 
 )
 
-(PopupSet.340
-	Child:	341
+(PopupSet.339
+	Child:	340
 )
 
-(Popup.341
+(Popup.340
+	Child:	341
 	Child:	342
 	Child:	343
 	Child:	344
@@ -2605,11 +2605,10 @@ der loeschen\n  if (theView.GetGraphics.HasSelected) then\n    av.GetProject.Set
 	Child:	358
 	Child:	359
 	Child:	360
-	Child:	361
 	Label:	"Menu"
 )
 
-(Choice.342
+(Choice.341
 	Disabled:	1
 	Invisible:	1
 	Help:	"Deletes the last entered point on the line or polygon being drawn"
@@ -2619,7 +2618,7 @@ der loeschen\n  if (theView.GetGraphics.HasSelected) then\n    av.GetProject.Set
 	Shortcut:	"Keys.None"
 )
 
-(Choice.343
+(Choice.342
 	Help:	"Undo the last edit to graphics on a view"
 	HelpTopic:	"Undo_Graphic_Edit_on_a_view"
 	Update:	"View.UndoEditUpdate"
@@ -2628,7 +2627,7 @@ der loeschen\n  if (theView.GetGraphics.HasSelected) then\n    av.GetProject.Set
 	Shortcut:	"Keys.None"
 )
 
-(Choice.344
+(Choice.343
 	Disabled:	1
 	Invisible:	1
 	Help:	"Redo the last edit operation on a theme that was undone"
@@ -2638,10 +2637,10 @@ der loeschen\n  if (theView.GetGraphics.HasSelected) then\n    av.GetProject.Set
 	Shortcut:	"Keys.None"
 )
 
-(Space.345
+(Space.344
 )
 
-(Choice.346
+(Choice.345
 	Disabled:	1
 	Invisible:	1
 	Help:	"Turns general snapping on"
@@ -2651,7 +2650,7 @@ der loeschen\n  if (theView.GetGraphics.HasSelected) then\n    av.GetProject.Set
 	Shortcut:	"Keys.None"
 )
 
-(Choice.347
+(Choice.346
 	Disabled:	1
 	Invisible:	1
 	Help:	"Turns interactive snapping on"
@@ -2661,7 +2660,7 @@ der loeschen\n  if (theView.GetGraphics.HasSelected) then\n    av.GetProject.Set
 	Shortcut:	"Keys.None"
 )
 
-(Choice.348
+(Choice.347
 	Disabled:	1
 	Invisible:	1
 	Help:	"Turns snap tolerance cursor on"
@@ -2671,10 +2670,10 @@ der loeschen\n  if (theView.GetGraphics.HasSelected) then\n    av.GetProject.Set
 	Shortcut:	"Keys.None"
 )
 
-(Space.349
+(Space.348
 )
 
-(Choice.350
+(Choice.349
 	Disabled:	1
 	Invisible:	1
 	Help:	"Snaps the next entered point to the nearest vertex within the user tolerance"
@@ -2684,7 +2683,7 @@ der loeschen\n  if (theView.GetGraphics.HasSelected) then\n    av.GetProject.Set
 	Shortcut:	"Keys.None"
 )
 
-(Choice.351
+(Choice.350
 	Disabled:	1
 	Invisible:	1
 	Help:	"Snaps the next entered point to the nearest line segment"
@@ -2694,7 +2693,7 @@ der loeschen\n  if (theView.GetGraphics.HasSelected) then\n    av.GetProject.Set
 	Shortcut:	"Keys.None"
 )
 
-(Choice.352
+(Choice.351
 	Disabled:	1
 	Invisible:	1
 	Help:	"Snaps the next entered point to the nearest node common to two or more features"
@@ -2704,7 +2703,7 @@ der loeschen\n  if (theView.GetGraphics.HasSelected) then\n    av.GetProject.Set
 	Shortcut:	"Keys.None"
 )
 
-(Choice.353
+(Choice.352
 	Disabled:	1
 	Invisible:	1
 	Help:	"Snaps the next entered point to the nearest endpoint of an existing line"
@@ -2714,10 +2713,10 @@ der loeschen\n  if (theView.GetGraphics.HasSelected) then\n    av.GetProject.Set
 	Shortcut:	"Keys.None"
 )
 
-(Space.354
+(Space.353
 )
 
-(Choice.355
+(Choice.354
 	Help:	"Unselects the selected features in all active themes"
 	Update:	"View.AttributeThemesUpdate"
 	Label:	"Clear Selection"
@@ -2725,7 +2724,7 @@ der loeschen\n  if (theView.GetGraphics.HasSelected) then\n    av.GetProject.Set
 	Shortcut:	"Keys.None"
 )
 
-(Choice.356
+(Choice.355
 	Help:	"Zooms in at point where you click to bring up popup menu"
 	Update:	"View.HasDataUpdate"
 	Label:	"Zoom In"
@@ -2733,7 +2732,7 @@ der loeschen\n  if (theView.GetGraphics.HasSelected) then\n    av.GetProject.Set
 	Shortcut:	"Keys.None"
 )
 
-(Choice.357
+(Choice.356
 	Help:	"Zooms out from point where you click to bring up popup menu"
 	Update:	"View.HasDataUpdate"
 	Label:	"Zoom Out"
@@ -2741,7 +2740,7 @@ der loeschen\n  if (theView.GetGraphics.HasSelected) then\n    av.GetProject.Set
 	Shortcut:	"Keys.None"
 )
 
-(Choice.358
+(Choice.357
 	Help:	"Zooms to the extent of the selected features"
 	Update:	"View.SelectableThemesUpdate"
 	Label:	"Zoom to Selected"
@@ -2749,7 +2748,7 @@ der loeschen\n  if (theView.GetGraphics.HasSelected) then\n    av.GetProject.Set
 	Shortcut:	"Keys.None"
 )
 
-(Choice.359
+(Choice.358
 	Help:	"Centers display on point where you click to bring up popup"
 	Update:	"View.HasDataUpdate"
 	Label:	"Pan"
@@ -2757,10 +2756,10 @@ der loeschen\n  if (theView.GetGraphics.HasSelected) then\n    av.GetProject.Set
 	Shortcut:	"Keys.None"
 )
 
-(Space.360
+(Space.359
 )
 
-(Choice.361
+(Choice.360
 	Help:	"Opens the shape properties window for editing vertex locations"
 	Update:	"ShapeWin.PopUp Update"
 	Label:	"Shape Properties"
@@ -2768,708 +2767,708 @@ der loeschen\n  if (theView.GetGraphics.HasSelected) then\n    av.GetProject.Set
 	Shortcut:	"Keys.None"
 )
 
-(ToolBar.362
-	Child:	363
-	Child:	365
-	Child:	367
-	Child:	369
-	Child:	371
-	Child:	373
-	Child:	375
-	Child:	377
-	Child:	379
-	Child:	381
-	Child:	383
-	Child:	402
-	Child:	415
-	Child:	434
+(ToolBar.361
+	Child:	362
+	Child:	364
+	Child:	366
+	Child:	368
+	Child:	370
+	Child:	372
+	Child:	374
+	Child:	376
+	Child:	378
+	Child:	380
+	Child:	382
+	Child:	401
+	Child:	414
+	Child:	433
 )
 
-(Tool.363
+(Tool.362
 	Disabled:	1
 	Help:	"Identify//Provides information about a feature"
 	HelpTopic:	"Identify_tool"
 	Update:	"View.IdentifyUpdate"
-	Icon:	364
+	Icon:	363
 	Cursor:	"Cursors.ID"
 	Apply:	"View.Identify"
 )
 
-(AVIcon.364
+(AVIcon.363
 	Name:	"ID"
 	Res:	"Icons.ID"
 
 )
 
-(Tool.365
+(Tool.364
 	Disabled:	1
 	Help:	"Pointer//Selects, moves, and resizes graphics"
 	HelpTopic:	"Pointer_tool"
 	Update:	"View.HasDataUpdate"
-	Icon:	366
+	Icon:	365
 	Cursor:	"Cursors.Select"
 	Apply:	"View.Select"
 	Click:	"View.SelectTool"
 )
 
-(AVIcon.366
+(AVIcon.365
 	Name:	"Select"
 	Res:	"Icons.Select"
 
 )
 
-(Tool.367
+(Tool.366
 	Disabled:	1
 	Help:	"Vertex Edit//Adds, moves, and deletes vertices of features and graphics"
 	HelpTopic:	"Vertex_Edit_tool"
 	Update:	"View.SelectToEditUpdate"
-	Icon:	368
+	Icon:	367
 	Cursor:	"Cursors.SelectEdit"
 	Apply:	"View.SelectToEdit"
 	Click:	"View.SelectToEditTool"
 )
 
-(AVIcon.368
+(AVIcon.367
 	Name:	"SelectEdit"
 	Res:	"Icons.SelectEdit"
 
 )
 
-(Tool.369
+(Tool.368
 	Disabled:	1
 	Help:	"Select Feature//Selects features in the active themes by pointing or dragging"
 	HelpTopic:	"Select_Feature_tool"
 	Update:	"View.SelectableThemesUpdate"
-	Icon:	370
+	Icon:	369
 	Cursor:	"Cursors.Default"
 	Apply:	"View.SelectPoint"
 )
 
-(AVIcon.370
+(AVIcon.369
 	Name:	"FeatureSelect"
 	Res:	"Icons.FeatureSelect"
 
 )
 
-(Tool.371
+(Tool.370
 	Disabled:	1
 	Help:	"Zoom In//Zooms in at a point you click or zooms in on a rectangle you drag"
 	HelpTopic:	"Zoom_In_tool"
 	Update:	"View.HasDataUpdate"
-	Icon:	372
+	Icon:	371
 	Cursor:	"Cursors.ZoomIn"
 	Apply:	"View.ZoomInTool"
 )
 
-(AVIcon.372
+(AVIcon.371
 	Name:	"ZoomInTool"
 	Res:	"Icons.ZoomInTool"
 
 )
 
-(Tool.373
+(Tool.372
 	Disabled:	1
 	Help:	"Zoom Out//Zooms out from a point you click or zooms out to include a rectangle you drag"
 	HelpTopic:	"Zoom_Out_tool"
 	Update:	"View.HasDataUpdate"
-	Icon:	374
+	Icon:	373
 	Cursor:	"Cursors.ZoomOut"
 	Apply:	"View.ZoomOutTool"
 )
 
-(AVIcon.374
+(AVIcon.373
 	Name:	"ZoomOutTool"
 	Res:	"Icons.ZoomOutTool"
 
 )
 
-(Tool.375
+(Tool.374
 	Disabled:	1
 	Help:	"Pan//Drags the display in the direction you move the cursor"
 	HelpTopic:	"Pan_tool"
 	Update:	"View.HasDataUpdate"
-	Icon:	376
+	Icon:	375
 	Cursor:	"Cursors.Pan"
 	Apply:	"View.Pan"
 )
 
-(AVIcon.376
+(AVIcon.375
 	Name:	"Pan"
 	Res:	"Icons.Pan"
 
 )
 
-(Tool.377
+(Tool.376
 	Disabled:	1
 	Help:	"Measure//Measures distance"
 	HelpTopic:	"Measure_tool"
 	Update:	"View.HasDataUpdate"
-	Icon:	378
+	Icon:	377
 	Cursor:	"Cursors.Measure"
 	Apply:	"View.Measure"
 )
 
-(AVIcon.378
+(AVIcon.377
 	Name:	"Measure"
 	Res:	"Icons.Measure"
 
 )
 
-(Tool.379
+(Tool.378
 	Disabled:	1
 	Help:	"Hot Link//Follows a hot link in the active themes"
 	HelpTopic:	"Hot_Link_tool"
 	Update:	"View.HotLinkUpdate"
-	Icon:	380
+	Icon:	379
 	Cursor:	"Cursors.Media"
 	Apply:	"View.HotLink"
 )
 
-(AVIcon.380
+(AVIcon.379
 	Name:	"Media"
 	Res:	"Icons.Media"
 
 )
 
-(Tool.381
+(Tool.380
 	Disabled:	1
 	Help:	"Area of Interest//Sets the view's Area Of Interest for library-based themes"
 	HelpTopic:	"Area_Of_Interest_tool"
 	Update:	"View.AOIToolUpdate"
-	Icon:	382
+	Icon:	381
 	Cursor:	"Cursors.Default"
 	Apply:	"View.AOITool"
 )
 
-(AVIcon.382
+(AVIcon.381
 	Name:	"AOI"
 	Res:	"Icons.AOI"
 
 )
 
-(ToolMenu.383
+(ToolMenu.382
 	Disabled:	1
 	Help:	"Label//Labels a feature in the active theme with data from its table"
 	HelpTopic:	"Label_Tool"
 	Update:	"View.LabelToolUpdate"
-	Icon:	384
+	Icon:	383
 	Cursor:	"Cursors.Tag"
 	Apply:	"View.LabelTool"
+	Child:	384
 	Child:	385
-	Child:	386
-	Child:	388
-	Child:	390
-	Child:	392
-	Child:	394
-	Child:	396
-	Child:	398
-	Child:	400
+	Child:	387
+	Child:	389
+	Child:	391
+	Child:	393
+	Child:	395
+	Child:	397
+	Child:	399
 )
 
-(AVIcon.384
+(AVIcon.383
 	Name:	"Tag"
 	Res:	"Icons.Tag"
 
 )
 
-(Tool.385
+(Tool.384
 	Disabled:	1
 	Help:	"Label//Labels a feature in the active theme with data from its table"
 	HelpTopic:	"Label_Tool"
 	Update:	"View.LabelToolUpdate"
-	Icon:	384
+	Icon:	383
 	Cursor:	"Cursors.Tag"
 	Apply:	"View.LabelTool"
 )
 
-(Tool.386
+(Tool.385
 	Disabled:	1
 	Help:	"Callout Label//Click on a feature and drag in the direction you want the label to appear"
 	HelpTopic:	"Label_Tool"
 	Update:	"View.CalloutUpdate"
-	Icon:	387
+	Icon:	386
 	Cursor:	"Cursors.Tag"
 	Apply:	"View.CalloutLabelTool"
 )
 
-(AVIcon.387
+(AVIcon.386
 	Name:	"CallOutLabel1"
 	Res:	"Icons.CallOutLabel1"
 
 )
 
-(Tool.388
+(Tool.387
 	Disabled:	1
 	Help:	"Bullet Leader Label//Click on a feature and drag in the direction you want the label to appear"
 	HelpTopic:	"Label_Tool"
 	Update:	"View.CalloutUpdate"
-	Icon:	389
+	Icon:	388
 	Cursor:	"Cursors.Tag"
 	Apply:	"View.BulletLeaderLabelTool"
 )
 
-(AVIcon.389
+(AVIcon.388
 	Name:	"CallOutLabel2"
 	Res:	"Icons.CallOutLabel2"
 
 )
 
-(Tool.390
+(Tool.389
 	Disabled:	1
 	Help:	"Banner Label//Click on a feature you want to label"
 	HelpTopic:	"Label_Tool"
 	Update:	"View.CalloutUpdate"
-	Icon:	391
+	Icon:	390
 	Cursor:	"Cursors.Tag"
 	Apply:	"View.ShadowBoxLabelTool"
 )
 
-(AVIcon.391
+(AVIcon.390
 	Name:	"CallOutLabel3"
 	Res:	"Icons.CallOutLabel3"
 
 )
 
-(Tool.392
+(Tool.391
 	Disabled:	1
 	Help:	"U.S. Interstate//Click where you want to place a highway shield"
 	HelpTopic:	"Label_Tool"
 	Update:	"View.CalloutUpdate"
-	Icon:	393
+	Icon:	392
 	Cursor:	"Cursors.Tag"
 	Apply:	"View.Highway1 Apply"
 )
 
-(AVIcon.393
+(AVIcon.392
 	Name:	"BW US Interstate"
 	Res:	"Icons.BW US Interstate"
 
 )
 
-(Tool.394
+(Tool.393
 	Disabled:	1
 	Help:	"U.S. Route//Click where you want to place a highway shield"
 	HelpTopic:	"Label_Tool"
 	Update:	"View.CalloutUpdate"
-	Icon:	395
+	Icon:	394
 	Cursor:	"Cursors.Tag"
 	Apply:	"View.Highway2 Apply"
 )
 
-(AVIcon.395
+(AVIcon.394
 	Name:	"USRoute"
 	Res:	"Icons.USRoute"
 
 )
 
-(Tool.396
+(Tool.395
 	Disabled:	1
 	Help:	"Generic State Hwy//Click where you want to place a highway shield"
 	HelpTopic:	"Label_Tool"
 	Update:	"View.CalloutUpdate"
-	Icon:	397
+	Icon:	396
 	Cursor:	"Cursors.Tag"
 	Apply:	"View.Highway3 Apply"
 )
 
-(AVIcon.397
+(AVIcon.396
 	Name:	"GenericStateHighway"
 	Res:	"Icons.GenericStateHighway"
 
 )
 
-(Tool.398
+(Tool.397
 	Disabled:	1
 	Help:	"Generic Square Hwy//Click where you want to place a highway shield"
 	HelpTopic:	"Label_Tool"
 	Update:	"View.CalloutUpdate"
-	Icon:	399
+	Icon:	398
 	Cursor:	"Cursors.Tag"
 	Apply:	"View.Highway4 Apply"
 )
 
-(AVIcon.399
+(AVIcon.398
 	Name:	"GenericHighway1"
 	Res:	"Icons.GenericHighway1"
 
 )
 
-(Tool.400
+(Tool.399
 	Disabled:	1
 	Help:	"Generic Oval Hwy//Click where you want to place a highway shield"
 	Update:	"View.CalloutUpdate"
-	Icon:	401
+	Icon:	400
 	Cursor:	"Cursors.Tag"
 	Apply:	"View.Highway5 Apply"
 )
 
-(AVIcon.401
+(AVIcon.400
 	Name:	"GenericHighway2"
 	Res:	"Icons.GenericHighway2"
 
 )
 
-(ToolMenu.402
+(ToolMenu.401
 	Help:	"Text//Creates text on the display"
 	HelpTopic:	"Text_tool"
 	Update:	"View.TextToolUpdate"
-	Icon:	403
+	Icon:	402
 	Cursor:	"Cursors.Text"
 	Apply:	"View.TextTool"
 	Click:	"SymWin.DisplayFontPanel"
+	Child:	403
 	Child:	404
-	Child:	405
-	Child:	407
-	Child:	409
-	Child:	411
-	Child:	413
+	Child:	406
+	Child:	408
+	Child:	410
+	Child:	412
 )
 
-(AVIcon.403
+(AVIcon.402
 	Name:	"Text"
 	Res:	"Icons.Text"
 
 )
 
-(Tool.404
+(Tool.403
 	Help:	"Text//Creates text on the display"
 	HelpTopic:	"Text_tool"
 	Update:	"View.TextToolUpdate"
-	Icon:	403
+	Icon:	402
 	Cursor:	"Cursors.Text"
 	Apply:	"View.TextTool"
 	Click:	"SymWin.DisplayFontPanel"
 )
 
-(Tool.405
+(Tool.404
 	Help:	"Callout Text//Click and drag to where you want your text to appear, then enter the text"
 	HelpTopic:	"Text_tool"
 	Update:	"View.TextToolUpdate"
-	Icon:	406
+	Icon:	405
 	Cursor:	"Cursors.Bullseye"
 	Apply:	"View.CalloutTextTool"
 )
 
-(AVIcon.406
+(AVIcon.405
 	Name:	"CallOutText1"
 	Res:	"Icons.CallOutText1"
 
 )
 
-(Tool.407
+(Tool.406
 	Help:	"Bullet Leader Text//Click and drag to where you want your text to appear, then enter the text"
 	HelpTopic:	"Text_tool"
 	Update:	"View.TextToolUpdate"
-	Icon:	408
+	Icon:	407
 	Cursor:	"Cursors.Bullseye"
 	Apply:	"View.BulletLeaderTextTool"
 )
 
-(AVIcon.408
+(AVIcon.407
 	Name:	"CallOutText2"
 	Res:	"Icons.CallOutText2"
 
 )
 
-(Tool.409
+(Tool.408
 	Help:	"Banner Text//Click where you want your label to appear and enter your text"
 	HelpTopic:	"Text_tool"
 	Update:	"View.TextToolUpdate"
-	Icon:	410
+	Icon:	409
 	Cursor:	"Cursors.Bullseye"
 	Apply:	"View.ShadowBoxTextTool"
 )
 
-(AVIcon.410
+(AVIcon.409
 	Name:	"CallOutText3"
 	Res:	"Icons.CallOutText3"
 
 )
 
-(Tool.411
+(Tool.410
 	Help:	"Drop-Shadow Text//Click where you want your text to appear and enter your text"
 	HelpTopic:	"Text_tool"
 	Update:	"View.TextToolUpdate"
-	Icon:	412
+	Icon:	411
 	Cursor:	"Cursors.Target"
 	Apply:	"View.CreateDropShadowText"
 )
 
-(AVIcon.412
+(AVIcon.411
 	Name:	"DropShadowText"
 	Res:	"Icons.DropShadowText"
 
 )
 
-(Tool.413
+(Tool.412
 	Help:	"Spline Text//Adds text that is aligned to a splined baseline"
 	HelpTopic:	"Text_tool"
 	Update:	"View.TextToolUpdate"
-	Icon:	414
+	Icon:	413
 	Cursor:	"Cursors.Bullseye"
 	Apply:	"View.SplineText"
 )
 
-(AVIcon.414
+(AVIcon.413
 	Name:	"TextAligned"
 	Res:	"Icons.TextAligned"
 
 )
 
-(ToolMenu.415
+(ToolMenu.414
 	Help:	"Draw Point//Creates a point on the display"
 	HelpTopic:	"Draw_tool"
 	Update:	"View.PointToolUpdate"
-	Icon:	416
+	Icon:	415
 	Cursor:	"Cursors.CrossHair"
 	Apply:	"View.PointTool"
 	Click:	"SymWin.DisplayMarkerPanel"
+	Child:	416
 	Child:	417
-	Child:	418
-	Child:	420
-	Child:	422
-	Child:	424
-	Child:	426
-	Child:	428
-	Child:	430
-	Child:	432
+	Child:	419
+	Child:	421
+	Child:	423
+	Child:	425
+	Child:	427
+	Child:	429
+	Child:	431
 )
 
-(AVIcon.416
+(AVIcon.415
 	Name:	"Point"
 	Res:	"Icons.Point"
 
 )
 
-(Tool.417
+(Tool.416
 	Help:	"Draw Point//Creates a point on the display"
 	HelpTopic:	"Draw_tool"
 	Update:	"View.PointToolUpdate"
-	Icon:	416
+	Icon:	415
 	Cursor:	"Cursors.CrossHair"
 	Apply:	"View.PointTool"
 	Click:	"SymWin.DisplayMarkerPanel"
 )
 
-(Tool.418
+(Tool.417
 	Help:	"Draw Straight Line//Creates a line on the display"
 	HelpTopic:	"Draw_tool"
 	Update:	"View.GraphicToolUpdate"
-	Icon:	419
+	Icon:	418
 	Cursor:	"Cursors.CrossHair"
 	Apply:	"View.LineTool"
 	Click:	"SymWin.DisplayPenPanel"
 )
 
-(AVIcon.419
+(AVIcon.418
 	Name:	"SelectLine"
 	Res:	"Icons.SelectLine"
 
 )
 
-(Tool.420
+(Tool.419
 	Help:	"Draw Line//Creates a line with two or more points on the display"
 	HelpTopic:	"Draw_tool"
 	Update:	"View.PolyLineToolUpdate"
-	Icon:	421
+	Icon:	420
 	Cursor:	"Cursors.CrossHair"
 	Apply:	"View.PolyLineTool"
 	Click:	"SymWin.DisplayPenPanel"
 )
 
-(AVIcon.421
+(AVIcon.420
 	Name:	"Lines"
 	Res:	"Icons.Lines"
 
 )
 
-(Tool.422
+(Tool.421
 	Help:	"Draw Rectangle//Creates a rectangle on the display"
 	HelpTopic:	"Draw_tool"
 	Update:	"View.PolyToolUpdate"
-	Icon:	423
+	Icon:	422
 	Cursor:	"Cursors.CrossHair"
 	Apply:	"View.RectTool"
 	Click:	"SymWin.DisplayFillPanel"
 )
 
-(AVIcon.423
+(AVIcon.422
 	Name:	"Rect"
 	Res:	"Icons.Rect"
 
 )
 
-(Tool.424
+(Tool.423
 	Help:	"Draw Circle//Creates a circle on the display"
 	HelpTopic:	"Draw_tool"
 	Update:	"View.PolyToolUpdate"
-	Icon:	425
+	Icon:	424
 	Cursor:	"Cursors.CrossHair"
 	Apply:	"View.CircleTool"
 	Click:	"SymWin.DisplayFillPanel"
 )
 
-(AVIcon.425
+(AVIcon.424
 	Name:	"Disk"
 	Res:	"Icons.Disk"
 
 )
 
-(Tool.426
+(Tool.425
 	Help:	"Draw Polygon//Creates a polygon on the display"
 	HelpTopic:	"Draw_tool"
 	Update:	"View.PolyToolUpdate"
-	Icon:	427
+	Icon:	426
 	Cursor:	"Cursors.CrossHair"
 	Apply:	"View.PolyTool"
 	Click:	"SymWin.DisplayFillPanel"
 )
 
-(AVIcon.427
+(AVIcon.426
 	Name:	"Poly"
 	Res:	"Icons.Poly"
 
 )
 
-(Tool.428
+(Tool.427
 	Disabled:	1
 	Help:	"Draw Line to Split Feature//Creates a line to split line features"
 	HelpTopic:	"Draw_tool"
 	Update:	"View.SplitLineToolUpdate"
-	Icon:	429
+	Icon:	428
 	Cursor:	"Cursors.CrossHair"
 	Apply:	"View.SplitTool"
 )
 
-(AVIcon.429
+(AVIcon.428
 	Name:	"SplitLine"
 	Res:	"Icons.SplitLine"
 
 )
 
-(Tool.430
+(Tool.429
 	Disabled:	1
 	Help:	"Draw Line to Split Polygon//Creates a line to split polygon features"
 	HelpTopic:	"Draw_tool"
 	Update:	"View.SplitPolyToolUpdate"
-	Icon:	431
+	Icon:	430
 	Cursor:	"Cursors.CrossHair"
 	Apply:	"View.SplitTool"
 )
 
-(AVIcon.431
+(AVIcon.430
 	Name:	"SplitPoly"
 	Res:	"Icons.SplitPoly"
 
 )
 
-(Tool.432
+(Tool.431
 	Disabled:	1
 	Help:	"Draw Line to Append Polygon//Appends a new polygon adjacent to other polygons"
 	HelpTopic:	"Draw_tool"
 	Update:	"View.AutoCompleteUpdate"
-	Icon:	433
+	Icon:	432
 	Cursor:	"Cursors.CrossHair"
 	Apply:	"View.AutoCompleteTool"
 )
 
-(AVIcon.433
+(AVIcon.432
 	Name:	"AutoComplete"
 	Res:	"Icons.AutoComplete"
 
 )
 
-(ToolMenu.434
+(ToolMenu.433
 	Disabled:	1
 	Invisible:	1
 	Help:	"Snap//Sets the general snapping tolerance for the editable theme"
 	HelpTopic:	"Snap_tools"
 	Update:	"View.SnapToolUpdate"
-	Icon:	435
+	Icon:	434
 	Cursor:	"Cursors.Default"
 	Apply:	"View.SnapTool"
+	Child:	435
 	Child:	436
-	Child:	437
 )
 
-(AVIcon.435
+(AVIcon.434
 	Name:	"SnapTool"
 	Res:	"Icons.SnapTool"
 
 )
 
-(Tool.436
+(Tool.435
 	Disabled:	1
 	Invisible:	1
 	Help:	"Snap//Sets the general snapping tolerance for the editable theme"
 	HelpTopic:	"Snap_tools"
 	Update:	"View.SnapToolUpdate"
-	Icon:	435
+	Icon:	434
 	Cursor:	"Cursors.Default"
 	Apply:	"View.SnapTool"
 )
 
-(Tool.437
+(Tool.436
 	Disabled:	1
 	Invisible:	1
 	Help:	"Snap//Sets the interactive snapping tolerance for the editable theme"
 	HelpTopic:	"Snap_tools"
 	Update:	"View.InteractiveSnapToolUpdate"
-	Icon:	438
+	Icon:	437
 	Cursor:	"Cursors.Default"
 	Apply:	"View.InteractiveSnapTool"
 )
 
-(AVIcon.438
+(AVIcon.437
 	Name:	"SnapFeatureTool"
 	Res:	"Icons.SnapFeatureTool"
 
 )
 
-(AVIcon.439
+(AVIcon.438
 	Name:	"Icon"
 	Res:	"View.Icon"
 
 )
 
-(FN.1133
+(FN.1127
 	Path:	"z:/home/adrian/av/av_gis30/arcview/projects/splinepolylines"
 )
 
-(TClr.1134
+(TClr.1128
 	Red:	0xffff
 	Green:	0xffff
 )
 
-(AVStr.1135
+(AVStr.1129
 	S:	"View"
 )
 
-(AVStr.1136
+(AVStr.1130
 	S:	"Table"
 )
 
-(AVStr.1137
+(AVStr.1131
 	S:	"Chart"
 )
 
-(AVStr.1138
+(AVStr.1132
 	S:	"Layout"
 )
 
-(AVStr.1139
+(AVStr.1133
 	S:	"Script"
 )
 
-(AVStr.1140
+(AVStr.1134
 	S:	"Project"
 )
 
-(AVStr.1141
+(AVStr.1135
 	S:	"Appl"
 )
 
-(AVStr.1142
+(AVStr.1136
 	S:	"DialogEditor"
 )
 
