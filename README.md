@@ -2,6 +2,8 @@
 Splinepolylines is an Avenue extension used in ArcView GIS that uses a basic combination of densifying the polyline and implementing the Bezier's spline method on the polyline.
 
 ## Purpose
+![Splinepolylines Dialog](https://github.com/ABoehlen/arcview_splinepolylines/blob/main/splinepolylines_dialog.png)
+
 Splinepolylines creates simulated spline curves as graphic elements from selected polyline features. The line width and colour can be defined. The lines can be scaled according to the theme's reference scale, if desired.
 
 It's possible to convert the resulting graphic elements to a new shapefile. The defined symbology is retained.
